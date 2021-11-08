@@ -25,22 +25,23 @@ const FormInputWithIcon: React.FC<IFormProps & IProps> = ({
 }) => {
   return (
     <FormControl isRequired={required}>
-      <FormLabel fontSize={12} color="gray.700">
+      <FormLabel fontSize={{ base: 12, xl: 14 }} color="gray.700">
         {label}
       </FormLabel>
       <InputGroup size="sm">
         <Input
+          fontSize={{ base: 12, xl: 14 }}
+          h={{ base: 10, lg: 12 }}
           borderRadius="md"
           borderTopWidth={1}
           borderWidth={0}
           bgColor="white"
-          h={{ lg: 12 }}
           shadow="md"
           {...rest}
         />
         <InputRightElement
           w={12}
-          h={{ lg: 12 }}
+          h={{ base: 10, lg: 12 }}
           roundedTopRight="md"
           roundedBottomRight="md"
           cursor={iconAction ? 'pointer' : 'default'}

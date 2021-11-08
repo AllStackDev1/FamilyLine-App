@@ -4,6 +4,7 @@ import { FiEye, FiEyeOff } from 'react-icons/fi'
 import {
   Box,
   Text,
+  Link,
   Grid,
   Flex,
   GridItem,
@@ -12,7 +13,7 @@ import {
 } from '@chakra-ui/react'
 
 import useAuth from 'Utils/Providers/AuthContextProvider'
-import Wrapper from 'Container/Layout/Wrapper'
+import Wrapper from 'Container/Layout'
 
 import { Input, InputWithIcon } from 'Components/Forms'
 import { IUser } from 'Interfaces/auth.interface'
@@ -39,11 +40,12 @@ const Login: FC = () => {
   return (
     <Wrapper>
       <Grid
-        shadow="xl"
-        borderRadius="xl"
-        my={{ '2xl': 10 }}
-        templateColumns={{ md: '50% 50%' }}
-        w={{ md: '90%', '2xl': '80%', '4xl': '70%' }}
+        my={{ xl: 10 }}
+        shadow={{ xl: 'xl' }}
+        borderRadius={{ xl: 'xl' }}
+        h={{ base: '100vh', xl: 'full' }}
+        templateColumns={{ xl: '50% 50%' }}
+        w={{ base: 'full', '2xl': '80%', '4xl': '70%' }}
       >
         <GridItem
           color="white"
@@ -52,6 +54,7 @@ const Login: FC = () => {
           bgRepeat="no-repeat"
           borderLeftRadius="xl"
           bgImage={`${Family}`}
+          d={{ base: 'none', xl: 'unset' }}
         >
           <Flex
             bgRepeat="no-repeat"
@@ -74,14 +77,16 @@ const Login: FC = () => {
             </Box>
           </Flex>
         </GridItem>
-        <GridItem bg="brand.bg.100" borderRightRadius="xl">
-          <Box px={{ lg: 8 }} pt={{ lg: 20 }} pb={{ lg: 24 }}>
-            <Flex mb={{ lg: 8 }} flexDir="column" align="center">
-              <Heading>Log Into Your Account</Heading>
+        <GridItem w="full" bg="brand.bg.100" borderRightRadius={{ xl: 'xl' }}>
+          <Box px={8} pt={{ base: 8, lg: 20 }} pb={{ lg: 24 }}>
+            <Flex mb={{ base: 5, lg: 8 }} flexDir="column" align="center">
+              <Heading fontSize={{ base: 'xl', xl: '4xl' }}>
+                Log Into Your Account
+              </Heading>
               <Divider
                 mt={2}
-                w="64"
                 borderWidth={2}
+                w={{ base: 36, xl: 64 }}
                 borderColor="brand.green.200"
               />
               <SocialButtons />
@@ -119,16 +124,29 @@ const Login: FC = () => {
                   setFieldTouched={formik.setFieldTouched}
                   iconAction={() => setShow(!show)}
                 />
+                <GridItem d="flex" mt={5} flexDir="column" alignItems="center">
+                  <Text fontSize={{ base: 10, xl: 12 }} textAlign="center">
+                    <Text as="span" fontWeight={500}>
+                      By clicking on Sign up, you agree to our
+                    </Text>{' '}
+                    <Link
+                      fontWeight={600}
+                      to="/terms-&-conditions"
+                      color="brand.green.200"
+                    >
+                      Terms & Conditions
+                    </Link>
+                  </Text>
+                  <Box mt={5} />
+                  <FilledButton
+                    w={36}
+                    type="submit"
+                    title="Login"
+                    isLoading={isLoading}
+                    isDisabled={isLoading || !(formik.dirty && formik.isValid)}
+                  />
+                </GridItem>
               </Grid>
-              <Box textAlign="center" mt={{ lg: 28 }}>
-                <FilledButton
-                  w={36}
-                  type="submit"
-                  title="Login"
-                  isLoading={isLoading}
-                  isDisabled={isLoading || !(formik.dirty && formik.isValid)}
-                />
-              </Box>
             </form>
           </Box>
         </GridItem>

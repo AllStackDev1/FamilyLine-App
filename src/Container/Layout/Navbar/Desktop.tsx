@@ -18,9 +18,8 @@ const AuthLink: FC<IAuthLink> = ({ to, text, display }) => (
     visibility={display}
     _activeLink={{
       color: 'white',
-      background: 'linear-gradient(180deg, #00BF4D 0%, #02993E 100%)',
-      boxShadow:
-        '0px 100px 161px rgba(245, 155, 90, 0.08), 0px 64.8148px 94.2894px rgba(245, 155, 90, 0.0607407), 0px 38.5185px 51.2815px rgba(245, 155, 90, 0.0485926), 0px 20px 26.1625px rgba(245, 155, 90, 0.04), 0px 8.14815px 13.1185px rgba(245, 155, 90, 0.0314074), 0px 1.85185px 6.33565px rgba(245, 155, 90, 0.0192593)'
+      background: 'linear-gradient(to left, #02993E, #00BF4D)',
+      filter: 'drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25))'
     }}
     _hover={{ textDecor: 'none' }}
     transition="box-shadow 1s"
@@ -45,10 +44,12 @@ const Layout: FC<{ menus: INavMenu[] }> = ({ menus }) => {
       pos="fixed"
       shadow="sm"
       zIndex={100}
+      bgColor="white"
       align="center"
       h={{ md: 16, lg: 24 }}
       justify="space-between"
-      px={{ base: 5, lg: 10, xl: 28 }}
+      d={{ base: 'none', xl: 'flex' }}
+      px={{ lg: 10, xl: 28 }}
     >
       <Box as="picture">
         <source srcSet={`${Logo2x}`} />

@@ -14,11 +14,12 @@ const FormInput: React.FC<IFormProps & InputProps> = ({
 }) => {
   return (
     <FormControl id={rest.id || rest.name} isRequired={required}>
-      <FormLabel fontSize={12} color="gray.700">
+      <FormLabel fontSize={{ base: 12, xl: 14 }} color="gray.700">
         {label}
       </FormLabel>
       <Input
-        h={{ lg: 12 }}
+        fontSize={{ base: 12, xl: 14 }}
+        h={{ base: 10, lg: 12 }}
         borderWidth={0}
         bgColor="white"
         shadow="md"

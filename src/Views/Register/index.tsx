@@ -6,14 +6,14 @@ import {
   Text,
   Grid,
   Flex,
-  GridItem,
+  Link,
   Heading,
   Divider,
-  Link
+  GridItem
 } from '@chakra-ui/react'
 
 import useAuth from 'Utils/Providers/AuthContextProvider'
-import Wrapper from 'Container/Layout/Wrapper'
+import Wrapper from 'Container/Layout'
 
 import { Input, InputWithIcon } from 'Components/Forms'
 import { IUser } from 'Interfaces/auth.interface'
@@ -43,11 +43,12 @@ const Register: FC = () => {
   return (
     <Wrapper>
       <Grid
-        shadow="xl"
-        borderRadius="xl"
-        my={{ '2xl': 10 }}
-        templateColumns={{ md: '50% 50%' }}
-        w={{ md: '90%', '2xl': '80%', '4xl': '70%' }}
+        my={{ xl: 10 }}
+        shadow={{ xl: 'xl' }}
+        borderRadius={{ xl: 'xl' }}
+        h={{ base: '100vh', xl: 'full' }}
+        templateColumns={{ xl: '50% 50%' }}
+        w={{ base: 'full', '2xl': '80%', '4xl': '70%' }}
       >
         <GridItem
           color="white"
@@ -56,6 +57,7 @@ const Register: FC = () => {
           bgRepeat="no-repeat"
           borderLeftRadius="xl"
           bgImage={`${MomDaughter}`}
+          d={{ base: 'none', xl: 'unset' }}
         >
           <Flex
             bgRepeat="no-repeat"
@@ -78,14 +80,16 @@ const Register: FC = () => {
             </Box>
           </Flex>
         </GridItem>
-        <GridItem bg="brand.bg.100" borderRightRadius="xl">
-          <Box px={{ lg: 8 }} py={{ lg: 8 }}>
-            <Flex flexDir="column" align="center">
-              <Heading>Create An Account</Heading>
+        <GridItem w="full" bg="brand.bg.100" borderRightRadius={{ xl: 'xl' }}>
+          <Box p={8}>
+            <Flex mb={{ base: 5, lg: 8 }} flexDir="column" align="center">
+              <Heading fontSize={{ base: 'xl', xl: '4xl' }}>
+                Create An Account
+              </Heading>
               <Divider
                 mt={2}
-                w="64"
                 borderWidth={2}
+                w={{ base: 36, xl: 64 }}
                 borderColor="brand.green.200"
               />
               <SocialButtons />
@@ -169,13 +173,8 @@ const Register: FC = () => {
                   iconAction={() => setShow(!show)}
                 />
 
-                <GridItem
-                  d="flex"
-                  mt={{ lg: 5 }}
-                  flexDir="column"
-                  alignItems="center"
-                >
-                  <Text fontSize={12}>
+                <GridItem d="flex" mt={5} flexDir="column" alignItems="center">
+                  <Text fontSize={{ base: 10, xl: 12 }} textAlign="center">
                     <Text as="span" fontWeight={500}>
                       By clicking on Sign up, you agree to our
                     </Text>{' '}
@@ -187,7 +186,7 @@ const Register: FC = () => {
                       Terms & Conditions
                     </Link>
                   </Text>
-                  <Box mt={{ lg: 5 }} />
+                  <Box mt={5} />
                   <FilledButton
                     w={36}
                     type="submit"
