@@ -48,8 +48,8 @@ const Layout: FC<{ menus: INavMenu[] }> = ({ menus }) => {
       align="center"
       h={{ md: 16, lg: 24 }}
       justify="space-between"
-      d={{ base: 'none', xl: 'flex' }}
       px={{ lg: 10, xl: 28 }}
+      d={{ base: 'none', xl: 'flex' }}
     >
       <Box as="picture">
         <source srcSet={`${Logo2x}`} />
