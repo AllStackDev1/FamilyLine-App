@@ -1,5 +1,7 @@
 import { useEffect, Suspense } from 'react'
+import { AnimatePresence, motion } from 'framer-motion'
 import { useRoutes, useNavigate, useLocation } from 'react-router-dom'
+
 import { Splash } from 'Components/Shared/Loading'
 import { Views } from 'Views'
 
@@ -16,27 +18,15 @@ function Router() {
   const element = useRoutes([
     {
       path: '/login',
-      element: (
-        <Suspense fallback={<Splash text="opening login..." />}>
-          <Views.Login />
-        </Suspense>
-      )
+      element: <Views.Login />
     },
     {
       path: '/register',
-      element: (
-        <Suspense fallback={<Splash text="opening register..." />}>
-          <Views.Register />
-        </Suspense>
-      )
+      element: <Views.Register />
     },
     {
-      path: '/dashboard',
-      element: (
-        <Suspense fallback={<Splash text="opening dashboard..." />}>
-          <Views.Login />
-        </Suspense>
-      )
+      path: '/Profile',
+      element: <Views.Profile />
     },
     {
       path: '/logout',
@@ -48,7 +38,28 @@ function Router() {
     }
   ])
 
-  return element
+  return (
+    <Suspense fallback={<Splash text="opening..." />}>
+      <AnimatePresence exitBeforeEnter>
+        <motion.div
+          key={pathname.split('/')[1]}
+          initial="pageInitial"
+          animate="pageAnimate"
+          variants={{
+            pageInitial: {
+              opacity: 0
+            },
+            pageAnimate: {
+              opacity: 1,
+              transition: { duration: 0.5, ease: 'linear' }
+            }
+          }}
+        >
+          {element}
+        </motion.div>
+      </AnimatePresence>
+    </Suspense>
+  )
 }
 
 export default Router

@@ -1,8 +1,10 @@
 import { FC } from 'react'
 import { BrowserRouter } from 'react-router-dom'
-import { QueryClient, QueryClientProvider } from 'react-query'
 import { ChakraProvider } from '@chakra-ui/react'
+import { QueryClient, QueryClientProvider } from 'react-query'
+
 import { AuthContextProvider } from 'Utils/Providers/AuthContextProvider'
+
 // import { ColorModeSwitcher } from './ColorModeSwitcher'
 import { theme } from 'Utils/Theme'
 import Router from 'Routes'

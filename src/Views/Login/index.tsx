@@ -38,7 +38,7 @@ const Login: FC = () => {
   })
 
   return (
-    <Wrapper>
+    <Wrapper isAuth>
       <Grid
         my={{ xl: 10 }}
         shadow={{ xl: 'xl' }}
