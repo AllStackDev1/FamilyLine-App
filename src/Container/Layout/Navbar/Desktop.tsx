@@ -12,19 +12,11 @@ interface IAuthLink {
   text: string
   disable?: any
   id?: number
-  activeId?: number
 }
 
-const AuthLink: FC<IAuthLink> = ({ to, text, disable, id, activeId }) => (
+const AuthLink: FC<IAuthLink> = ({ to, text, disable }) => (
   <Link
     display={disable}
-    {...(id === activeId
-      ? {
-          color: 'white',
-          background: 'linear-gradient(to left, #02993E, #00BF4D)',
-          filter: 'drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25))'
-        }
-      : '')}
     _activeLink={{
       color: 'white',
       background: 'linear-gradient(to left, #02993E, #00BF4D)',
@@ -42,9 +34,9 @@ const AuthLink: FC<IAuthLink> = ({ to, text, disable, id, activeId }) => (
   </Link>
 )
 
-const Layout: FC<{ menus: INavMenu[]; active: number }> = ({
+const Layout: FC<{ menus: INavMenu[]; isAuth?: boolean }> = ({
   menus,
-  active
+  isAuth
 }) => {
   return (
     <Flex
@@ -74,17 +66,20 @@ const Layout: FC<{ menus: INavMenu[]; active: number }> = ({
             disable={m.disable || ''}
             text={m.title}
             id={m.id}
-            activeId={active}
             to={m.link ?? `/${m.title.toLowerCase()}`}
           />
         ))}
       </Flex>
 
-      <Flex align="center">
-        <AuthLink to="/login" text="Log in" id={6} activeId={active} />
-        <Box mx={2} />
-        <AuthLink to="/register" text="Sign up" id={7} activeId={active} />
-      </Flex>
+      {isAuth ? (
+        <Flex align="center">
+          <AuthLink to="/login" text="Log in" id={6} />
+          <Box mx={2} />
+          <AuthLink to="/register" text="Sign up" id={7} />
+        </Flex>
+      ) : (
+        <Box />
+      )}
     </Flex>
   )
 }

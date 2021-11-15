@@ -33,7 +33,6 @@ const FormSelect: FC<IFormSelect & IOptions<any>> = ({
   required,
   placeholder,
   fontSize,
-  placeHolderFont,
   setFieldValue,
   setFieldTouched
 }) => {
@@ -43,7 +42,7 @@ const FormSelect: FC<IFormSelect & IOptions<any>> = ({
       isRequired={required}
       onMouseLeave={() => isTouched && setFieldTouched(id, true)}
     >
-      <FormLabel fontSize={fontSize} color="gray.500">
+      <FormLabel fontSize={fontSize} fontWeight={600} color="gray.700">
         {label}
       </FormLabel>
       <Listbox
@@ -53,11 +52,7 @@ const FormSelect: FC<IFormSelect & IOptions<any>> = ({
         onChange={e => setFieldValue(id, e)}
       >
         <Box mt={1} pos="relative">
-          <ListBoxButton
-            selected={value}
-            placeholder={placeholder}
-            placeHolderFont={placeHolderFont}
-          />
+          <ListBoxButton selected={value} placeholder={placeholder} />
           <ListBoxOptions options={options} />
         </Box>
       </Listbox>

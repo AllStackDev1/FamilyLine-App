@@ -3,16 +3,16 @@ import { Box } from '@chakra-ui/react'
 import Wrapper from 'Container/Layout'
 import AddMemberForm from 'Components/AddMemberForm'
 
-const Profile: FC = () => {
-  document.title = 'Family Line | Profile'
+const MyFamily: FC = () => {
+  document.title = 'Family Line | My Family'
 
   return (
     <Wrapper>
       <Box my={{ xl: 20 }} width={{ xl: '80%' }}>
-        <AddMemberForm />
+        <AddMemberForm isAdd />
       </Box>
     </Wrapper>
   )
 }
 
-export default Profile
+export default MyFamily

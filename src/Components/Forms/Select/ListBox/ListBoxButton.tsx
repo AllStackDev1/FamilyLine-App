@@ -8,13 +8,11 @@ import { IOption } from 'Interfaces/forms.interface'
 interface IListBoxButton {
   selected?: IOption
   placeholder: string
-  placeHolderFont?: any
 }
 
 const ListBoxButton: React.FC<IListBoxButton & Record<string, any>> = ({
   selected,
   placeholder,
-  placeHolderFont,
   ...rest
 }) => {
   return (
@@ -26,19 +24,20 @@ const ListBoxButton: React.FC<IListBoxButton & Record<string, any>> = ({
       w="full"
       rounded="md"
       pos="relative"
-      h={{ lg: 24 }}
-      justify="center"
+      h={{ base: 10, lg: 12 }}
+      borderWidth={0}
+      bgColor="white"
+      shadow="md"
       align="center"
-      borderWidth={1}
       cursor="pointer"
       _focus={{ boxShadow: '0 0 0 1px #3182ce', borderColor: '#3182ce' }}
       {...rest}
     >
-      <Text as="span" isTruncated fontSize="lg">
+      <Text as="span" isTruncated fontSize={{ base: 12, xl: 14 }}>
         {selected ? (
           selected?.name || selected
         ) : (
-          <Text color="gray.300" fontSize={placeHolderFont}>
+          <Text color="gray.300" fontSize={{ base: 12, xl: 14 }}>
             {placeholder}
           </Text>
         )}

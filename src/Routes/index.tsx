@@ -25,8 +25,12 @@ function Router() {
       element: <Views.Register />
     },
     {
-      path: '/Profile',
+      path: '/profile',
       element: <Views.Profile />
+    },
+    {
+      path: '/my-family',
+      element: <Views.MyFamily />
     },
     {
       path: '/logout',

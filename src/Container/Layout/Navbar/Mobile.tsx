@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { FC, useState, useEffect } from 'react'
 import { NavLink as ReachRouter } from 'react-router-dom'
 import {
   Box,
@@ -18,22 +18,31 @@ import Logo2x from 'Assets/Images/logo@2x.png'
 import { INavMenu } from 'Interfaces/mics.interface'
 import { FiMenu, FiX } from 'react-icons/fi'
 
-const Layout: FC<{ menus: INavMenu[] }> = ({ menus }) => {
+const Layout: FC<{ menus: INavMenu[]; isAuth?: boolean }> = ({
+  menus,
+  isAuth
+}) => {
   const { isOpen, onToggle } = useDisclosure()
+  const [_menus, setMenus] = useState(menus)
 
-  const _menus = [
-    ...menus,
-    {
-      title: 'Login',
-      disable: 'block',
-      id: 6
-    },
-    {
-      link: '/register',
-      title: 'Sign Up',
-      id: 7
+  useEffect(() => {
+    if (isAuth) {
+      setMenus(e => [
+        ...e,
+        {
+          title: 'Login',
+          id: 6
+        },
+        {
+          link: '/register',
+          title: 'Sign Up',
+          id: 7
+        }
+      ])
+    } else {
+      setMenus(menus)
     }
-  ]
+  }, [isAuth, menus])
 
   return (
     <Flex

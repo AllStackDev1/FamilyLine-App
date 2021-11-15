@@ -1,39 +1,28 @@
 import { FC } from 'react'
-import { Flex, Grid, GridItem, Box, Text, Icon } from '@chakra-ui/react'
+import { IoIosArrowDown } from 'react-icons/io'
+import { Flex, Grid, GridItem, Box, Text, Icon, Avatar } from '@chakra-ui/react'
 
 import DesktopNav from './Navbar/Desktop'
 import MobileNav from './Navbar/Mobile'
-import useAuth from 'Utils/Providers/AuthContextProvider'
 import Sidebar from './Sidebar'
-import { IoIosArrowDown } from 'react-icons/io'
-const Wrapper: FC<{ isAuth?: boolean; active: number }> = ({
-  children,
-  isAuth,
-  active
-}) => {
-  const { token } = useAuth()
 
+const Wrapper: FC<{ isAuth?: boolean }> = ({ children, isAuth }) => {
   const menus = [
     {
       title: 'Home',
       id: 1
     },
     {
-      title: 'Account',
-      disable: token ? 'block' : 'none',
+      title: 'Blog',
       id: 2
     },
     {
-      title: 'Blog',
+      title: 'Privacy',
       id: 3
     },
     {
-      title: 'Privacy',
-      id: 4
-    },
-    {
       title: 'Contact',
-      id: 5
+      id: 4
     }
   ]
 
@@ -46,8 +35,8 @@ const Wrapper: FC<{ isAuth?: boolean; active: number }> = ({
       flexDir="column"
       bg="brand.bg.200"
     >
-      <DesktopNav menus={menus} active={active} />
-      <MobileNav menus={menus} />
+      <DesktopNav menus={menus} isAuth={isAuth} />
+      <MobileNav menus={menus} isAuth={isAuth} />
       <Grid
         templateColumns={
           isAuth
@@ -73,14 +62,15 @@ const Wrapper: FC<{ isAuth?: boolean; active: number }> = ({
             d={{ base: 'none', md: 'block' }}
             pr={{ md: 4, lg: 3, xl: 4, '2xl': 5 }}
           >
-            <Flex justify="center" align="center" mb={12}>
-              <Flex direction="column" align="center">
-                <Box bg={'gray.400'} w={28} h={28} rounded="full"></Box>
-                <Text fontWeight="medium" mt={3}>
-                  Henry Gates
-                  <Icon ml={6} as={IoIosArrowDown} boxSize={6} />
-                </Text>
-              </Flex>
+            <Flex direction="column" align="center" mb={12}>
+              <Avatar
+                name="Dan Abrahmov"
+                size="xl"
+                src="https://bit.ly/dan-abramov"
+              />
+              <Text fontWeight="medium" mt={3}>
+                Henry Gates
+              </Text>
             </Flex>
             <Sidebar />
           </GridItem>
