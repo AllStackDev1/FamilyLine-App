@@ -35,7 +35,7 @@ const AuthLink: FC<IAuthLink> = ({ to, text, disable, id, activeId }) => (
     as={ReachRouter}
     py={{ md: 3 }}
     px={{ md: 6 }}
-    rounded="2xl"
+    rounded="full"
     to={to}
   >
     <Text fontWeight={700}>{text}</Text>

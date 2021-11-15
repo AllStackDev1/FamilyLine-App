@@ -1,7 +1,12 @@
 import { FC } from 'react'
 import { List } from '@chakra-ui/react'
 import SidebarItem from './SidebarItem'
-import { ProfileIcon } from 'Utils/Theme/custom-icon'
+import {
+  ProfileIcon,
+  FamilyIcon,
+  EventsIcon,
+  MemoryIcon
+} from 'Utils/Theme/custom-icon'
 
 const Sidebar: FC = (): JSX.Element => {
   const menu = [
@@ -11,11 +16,11 @@ const Sidebar: FC = (): JSX.Element => {
     },
     {
       title: 'My Family',
-      icon: ''
+      icon: FamilyIcon
     },
     {
       title: 'Memories',
-      icon: ''
+      icon: MemoryIcon
     },
     {
       title: 'Notifications',
@@ -23,7 +28,7 @@ const Sidebar: FC = (): JSX.Element => {
     },
     {
       title: 'Events',
-      icon: ''
+      icon: EventsIcon
     }
   ]
 

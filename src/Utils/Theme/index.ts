@@ -42,7 +42,7 @@ export const theme = extendTheme({
         200: '#FCFCFC'
       },
       green: {
-        200: '#52E33C'
+        200: ' rgba(0, 191, 77, 1)'
       }
     },
     brandGreen: {
