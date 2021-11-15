@@ -15,7 +15,7 @@ import Wrapper from 'Container/Layout'
 const Dashboard: FC = () => {
   document.title = 'Family Line | Login'
 
-  return <Wrapper active={1}></Wrapper>
+  return <Wrapper active={2}></Wrapper>
 }
 
 export default Dashboard

@@ -9,8 +9,8 @@ const Profile = lazy(() => import('./Profile'))
 
 export const Views = {
   Login,
-  NotFound,
   // Logout,
-  Register,
-  Profile
+  Profile,
+  NotFound,
+  Register
 }

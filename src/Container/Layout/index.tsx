@@ -1,18 +1,19 @@
-import { FC, ReactNode } from 'react'
-import { Flex } from '@chakra-ui/react'
+import { FC } from 'react'
+import { Flex, Grid, GridItem } from '@chakra-ui/react'
 
-import { INavMenu } from 'Interfaces/mics.interface'
 import DesktopNav from './Navbar/Desktop'
 import MobileNav from './Navbar/Mobile'
 import useAuth from 'Utils/Providers/AuthContextProvider'
+import Sidebar from './Sidebar'
 
-const Wrapper: FC<{ children?: ReactNode; active: number }> = ({
-  active,
-  children
+const Wrapper: FC<{ isAuth?: boolean; active: number }> = ({
+  children,
+  isAuth,
+  active
 }) => {
   const { token } = useAuth()
 
-  const menus: INavMenu[] = [
+  const menus = [
     {
       title: 'Home',
       id: 1
@@ -47,9 +48,38 @@ const Wrapper: FC<{ children?: ReactNode; active: number }> = ({
     >
       <DesktopNav menus={menus} active={active} />
       <MobileNav menus={menus} />
-      <Flex mt={{ md: 16, lg: 24 }} w="full" justify="center">
-        {children}
-      </Flex>
+      <Grid
+        templateColumns={
+          isAuth
+            ? {}
+            : {
+                md: '30% 70%',
+                lg: '25% 75%',
+                xl: '20% 80%',
+                '5xl': '15% 85%'
+              }
+        }
+        w="full"
+        pos="relative"
+      >
+        {!isAuth && (
+          <GridItem
+            bg="white"
+            minH="80vh"
+            shadow="lg"
+            roundedRight="xl"
+            mt={{ md: 20, lg: 32 }}
+            py={{ md: 24, lg: 32 }}
+            d={{ base: 'none', md: 'block' }}
+            pr={{ md: 4, lg: 3, xl: 4, '2xl': 5 }}
+          >
+            <Sidebar />
+          </GridItem>
+        )}
+        <GridItem d="flex" mt={{ md: 16, lg: 24 }} justifyContent="center">
+          {children}
+        </GridItem>
+      </Grid>
     </Flex>
   )
 }
