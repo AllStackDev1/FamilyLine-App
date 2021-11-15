@@ -2,8 +2,8 @@ import { FC, ReactNode } from 'react'
 import { Flex } from '@chakra-ui/react'
 
 import { INavMenu } from 'Interfaces/mics.interface'
-import Desktop from './Navbar/Desktop'
-import Mobile from './Navbar/Mobile'
+import DesktopNav from './Navbar/Desktop'
+import MobileNav from './Navbar/Mobile'
 import useAuth from 'Utils/Providers/AuthContextProvider'
 
 const Wrapper: FC<{ children?: ReactNode; active: number }> = ({
@@ -45,8 +45,8 @@ const Wrapper: FC<{ children?: ReactNode; active: number }> = ({
       flexDir="column"
       bg="brand.bg.200"
     >
-      <Desktop menus={menus} active={active} />
-      <Mobile menus={menus} />
+      <DesktopNav menus={menus} active={active} />
+      <MobileNav menus={menus} />
       <Flex mt={{ md: 16, lg: 24 }} w="full" justify="center">
         {children}
       </Flex>
