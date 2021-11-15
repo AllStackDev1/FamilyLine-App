@@ -5,7 +5,8 @@ import {
   ProfileIcon,
   FamilyIcon,
   EventsIcon,
-  MemoryIcon
+  MemoryIcon,
+  BellIcon
 } from 'Utils/Theme/custom-icon'
 
 const Sidebar: FC = (): JSX.Element => {
@@ -24,7 +25,7 @@ const Sidebar: FC = (): JSX.Element => {
     },
     {
       title: 'Notifications',
-      icon: ''
+      icon: BellIcon
     },
     {
       title: 'Events',

@@ -1,11 +1,11 @@
 import { FC } from 'react'
-import { Flex, Grid, GridItem } from '@chakra-ui/react'
+import { Flex, Grid, GridItem, Box, Text, Icon } from '@chakra-ui/react'
 
 import DesktopNav from './Navbar/Desktop'
 import MobileNav from './Navbar/Mobile'
 import useAuth from 'Utils/Providers/AuthContextProvider'
 import Sidebar from './Sidebar'
-
+import { IoIosArrowDown } from 'react-icons/io'
 const Wrapper: FC<{ isAuth?: boolean; active: number }> = ({
   children,
   isAuth,
@@ -66,13 +66,22 @@ const Wrapper: FC<{ isAuth?: boolean; active: number }> = ({
           <GridItem
             bg="white"
             minH="80vh"
-            shadow="lg"
+            shadow="0 4px 50px 0 rgba(0,0,0,0.1)"
             roundedRight="xl"
             mt={{ md: 20, lg: 32 }}
-            py={{ md: 24, lg: 32 }}
+            py={{ md: 24, lg: 6 }}
             d={{ base: 'none', md: 'block' }}
             pr={{ md: 4, lg: 3, xl: 4, '2xl': 5 }}
           >
+            <Flex justify="center" align="center" mb={12}>
+              <Flex direction="column" align="center">
+                <Box bg={'gray.400'} w={28} h={28} rounded="full"></Box>
+                <Text fontWeight="medium" mt={3}>
+                  Henry Gates
+                  <Icon ml={6} as={IoIosArrowDown} boxSize={6} />
+                </Text>
+              </Flex>
+            </Flex>
             <Sidebar />
           </GridItem>
         )}

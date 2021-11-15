@@ -18,23 +18,22 @@ const SidebarItem: React.FC<ISidebarItem> = ({ icon, title }) => {
       <Link d="flex" as={NavLink} justifyItems="center" to={to}>
         <Box
           _groupHover={{
-            ml: 2,
             borderLeftWidth: 4,
             borderLeftColor: 'brand.green.200',
             boxShadow: '0px 0px 45px 3px #efefef'
           }}
-          ml={pathname === to ? 2 : 0}
+          ml={1}
           borderLeftWidth={pathname === to ? 4 : 0}
           borderLeftColor={pathname === to ? 'brand.green.200' : 'inherit'}
         />
 
         <Flex
           alignItems="center"
-          px={{ md: 6, lg: 4, xl: 6 }}
-          py={{ md: 2, lg: 4, xl: 2 }}
+          px={{ md: 6, lg: 4, xl: 10 }}
+          py={{ md: 2, lg: 4, xl: 4 }}
         >
-          <Icon as={icon} boxSize={10} />
-          <Box as="span" ml={3}>
+          <Icon as={icon} boxSize={7} />
+          <Box as="span" ml={6}>
             <Text color="gray.700" fontSize={{ md: 'md' }} fontWeight={600}>
               {title}
             </Text>
