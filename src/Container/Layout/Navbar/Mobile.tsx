@@ -24,11 +24,14 @@ const Layout: FC<{ menus: INavMenu[] }> = ({ menus }) => {
   const _menus = [
     ...menus,
     {
-      title: 'Login'
+      title: 'Login',
+      disable: 'block',
+      id: 6
     },
     {
       link: '/register',
-      title: 'Sign Up'
+      title: 'Sign Up',
+      id: 7
     }
   ]
 
@@ -72,7 +75,7 @@ const Layout: FC<{ menus: INavMenu[] }> = ({ menus }) => {
               >
                 <Box py={2}>
                   {_menus.map((m, idx) => (
-                    <Box display={m?.disable === 'hidden' ? 'none' : ''}>
+                    <Box display={m?.disable}>
                       <Flex justify="end" pr={5} py={3} key={idx}>
                         <Link
                           as={ReachRouter}

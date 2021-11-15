@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { FC, ReactNode } from 'react'
 import { Flex } from '@chakra-ui/react'
 
 import { INavMenu } from 'Interfaces/mics.interface'
@@ -6,22 +6,33 @@ import Desktop from './Navbar/Desktop'
 import Mobile from './Navbar/Mobile'
 import useAuth from 'Utils/Providers/AuthContextProvider'
 
-const Wrapper: FC = ({ children }) => {
+const Wrapper: FC<{ children?: ReactNode; active: number }> = ({
+  active,
+  children
+}) => {
   const { token } = useAuth()
 
   const menus: INavMenu[] = [
     {
-      title: 'Profile',
-      disable: token ? '' : 'hidden'
+      title: 'Home',
+      id: 1
     },
     {
-      title: 'Blog'
+      title: 'Account',
+      disable: token ? 'block' : 'none',
+      id: 2
     },
     {
-      title: 'Privacy'
+      title: 'Blog',
+      id: 3
     },
     {
-      title: 'Contact'
+      title: 'Privacy',
+      id: 4
+    },
+    {
+      title: 'Contact',
+      id: 5
     }
   ]
 
@@ -34,7 +45,7 @@ const Wrapper: FC = ({ children }) => {
       flexDir="column"
       bg="brand.bg.200"
     >
-      <Desktop menus={menus} />
+      <Desktop menus={menus} active={active} />
       <Mobile menus={menus} />
       <Flex mt={{ md: 16, lg: 24 }} w="full" justify="center">
         {children}

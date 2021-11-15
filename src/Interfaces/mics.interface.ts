@@ -11,6 +11,7 @@ export interface IModalProps {
 
 export interface INavMenu {
   title: string
+  id: number
   link?: string
   disable?: any
 }

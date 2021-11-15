@@ -31,6 +31,14 @@ function Router() {
       )
     },
     {
+      path: '/dashboard/profile',
+      element: (
+        <Suspense fallback={<Splash text="opening dashboard..." />}>
+          <Views.Profile />
+        </Suspense>
+      )
+    },
+    {
       path: '/dashboard',
       element: (
         <Suspense fallback={<Splash text="opening dashboard..." />}>

@@ -12,10 +12,10 @@ import { FC } from 'react'
 
 import Wrapper from 'Container/Layout'
 
-const Dashboard: FC = () => {
+const Profile: FC = () => {
   document.title = 'Family Line | Login'
 
   return <Wrapper active={1}></Wrapper>
 }
 
-export default Dashboard
+export default Profile

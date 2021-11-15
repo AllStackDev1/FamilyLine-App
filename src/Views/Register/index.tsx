@@ -41,7 +41,7 @@ const Register: FC = () => {
   })
 
   return (
-    <Wrapper>
+    <Wrapper active={7}>
       <Grid
         my={{ xl: 10 }}
         shadow={{ xl: 'xl' }}
