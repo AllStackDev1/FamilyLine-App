@@ -7,6 +7,8 @@ const Login = lazy(() => import('./Login'))
 const Register = lazy(() => import('./Register'))
 const Profile = lazy(() => import('./Profile'))
 const MyFamily = lazy(() => import('./MyFamily'))
+const Memories = lazy(() => import('./Memories'))
+const Events = lazy(() => import('./Events'))
 
 export const Views = {
   Login,
@@ -14,5 +16,7 @@ export const Views = {
   Profile,
   NotFound,
   Register,
-  MyFamily
+  MyFamily,
+  Events,
+  Memories
 }

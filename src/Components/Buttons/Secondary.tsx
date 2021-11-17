@@ -5,14 +5,14 @@ interface IProps extends ButtonProps {
   title: string
 }
 
-const Filled: FC<IProps> = ({ title, ...rest }) => {
+const Secondary: FC<IProps> = ({ title, ...rest }) => {
   return (
     <Button
-      filter="drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25))"
-      bgGradient="linear(to-l,  #02993E, #00BF4D)"
+      filter="drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.1))"
+      bg="white"
       colorScheme="brandGreen"
       fontWeight={700}
-      color="white"
+      color="#02993E"
       rounded="xl"
       py={6}
       px={8}
@@ -23,4 +23,4 @@ const Filled: FC<IProps> = ({ title, ...rest }) => {
   )
 }
 
-export default Filled
+export default Secondary

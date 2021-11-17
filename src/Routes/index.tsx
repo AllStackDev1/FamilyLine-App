@@ -33,6 +33,14 @@ function Router() {
       element: <Views.MyFamily />
     },
     {
+      path: '/memories',
+      element: <Views.Memories />
+    },
+    {
+      path: '/events',
+      element: <Views.Events />
+    },
+    {
       path: '/logout',
       element: <Views.NotFound />
     },
