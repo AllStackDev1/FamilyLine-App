@@ -18,8 +18,8 @@ export const ProfileIcon = createIcon({
           y2="20"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#00BF4D" />
-          <stop offset="1" stop-color="#02993E" />
+          <stop stopColor="#00BF4D" />
+          <stop offset="1" stopColor="#02993E" />
         </linearGradient>
       </defs>
     </>
@@ -44,8 +44,8 @@ export const EventsIcon = createIcon({
           y2="22"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#00BF4D" />
-          <stop offset="1" stop-color="#02993E" />
+          <stop stopColor="#00BF4D" />
+          <stop offset="1" stopColor="#02993E" />
         </linearGradient>
       </defs>
     </>
@@ -70,8 +70,8 @@ export const FamilyIcon = createIcon({
           y2="20.1"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#00BF4D" />
-          <stop offset="1" stop-color="#02993E" />
+          <stop stopColor="#00BF4D" />
+          <stop offset="1" stopColor="#02993E" />
         </linearGradient>
       </defs>
     </>
@@ -96,8 +96,8 @@ export const MemoryIcon = createIcon({
           y2="20"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#00BF4D" />
-          <stop offset="1" stop-color="#02993E" />
+          <stop stopColor="#00BF4D" />
+          <stop offset="1" stopColor="#02993E" />
         </linearGradient>
       </defs>
     </>
@@ -112,8 +112,8 @@ export const BellIcon = createIcon({
       <g id="Icon/Outline/bell">
         <path
           id="Mask"
-          fill-rule="evenodd"
-          clip-rule="evenodd"
+          fillRule="evenodd"
+          clipRule="evenodd"
           d="M5.28082 14.3662L6.28386 13.3143C6.60517 12.9779 6.78198 12.5311 6.78198 12.0559V7.89362C6.78198 6.68596 7.2835 5.5317 8.15903 4.72896C9.04137 3.91911 10.1651 3.56313 11.3356 3.72421C13.3136 3.99921 14.8054 5.87166 14.8054 8.0805V12.0559C14.8054 12.5311 14.9823 12.9779 15.3027 13.3134L16.3066 14.3662H5.28082ZM12.4934 16.4496C12.4934 17.2496 11.7147 17.926 10.7933 17.926C9.87185 17.926 9.09322 17.2496 9.09322 16.4496V16.1461H12.4934V16.4496ZM18.0364 13.6614L16.5055 12.0559V8.0805C16.5055 4.9826 14.3787 2.35103 11.5583 1.96034C9.92455 1.73251 8.27549 2.25491 7.03869 3.39048C5.79424 4.5314 5.08191 6.17246 5.08191 7.89362L5.08106 12.0559L3.55015 13.6614C3.15149 14.0796 3.03333 14.7017 3.24924 15.2472C3.466 15.7937 3.97007 16.1461 4.53449 16.1461H7.39315V16.4496C7.39315 18.2455 8.91811 19.7059 10.7933 19.7059C12.6685 19.7059 14.1934 18.2455 14.1934 16.4496V16.1461H17.0521C17.6165 16.1461 18.1197 15.7937 18.3356 15.2481C18.5524 14.7017 18.4351 14.0787 18.0364 13.6614Z"
           fill="#231F20"
         />
@@ -128,8 +128,8 @@ export const BellIcon = createIcon({
         >
           <path
             id="Mask_2"
-            fill-rule="evenodd"
-            clip-rule="evenodd"
+            fillRule="evenodd"
+            clipRule="evenodd"
             d="M5.28082 14.3662L6.28386 13.3143C6.60517 12.9779 6.78198 12.5311 6.78198 12.0559V7.89362C6.78198 6.68596 7.2835 5.5317 8.15903 4.72896C9.04137 3.91911 10.1651 3.56313 11.3356 3.72421C13.3136 3.99921 14.8054 5.87166 14.8054 8.0805V12.0559C14.8054 12.5311 14.9823 12.9779 15.3027 13.3134L16.3066 14.3662H5.28082ZM12.4934 16.4496C12.4934 17.2496 11.7147 17.926 10.7933 17.926C9.87185 17.926 9.09322 17.2496 9.09322 16.4496V16.1461H12.4934V16.4496ZM18.0364 13.6614L16.5055 12.0559V8.0805C16.5055 4.9826 14.3787 2.35103 11.5583 1.96034C9.92455 1.73251 8.27549 2.25491 7.03869 3.39048C5.79424 4.5314 5.08191 6.17246 5.08191 7.89362L5.08106 12.0559L3.55015 13.6614C3.15149 14.0796 3.03333 14.7017 3.24924 15.2472C3.466 15.7937 3.97007 16.1461 4.53449 16.1461H7.39315V16.4496C7.39315 18.2455 8.91811 19.7059 10.7933 19.7059C12.6685 19.7059 14.1934 18.2455 14.1934 16.4496V16.1461H17.0521C17.6165 16.1461 18.1197 15.7937 18.3356 15.2481C18.5524 14.7017 18.4351 14.0787 18.0364 13.6614Z"
             fill="white"
           />
@@ -156,8 +156,8 @@ export const BellIcon = createIcon({
           y2="21.4858"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#00BF4D" />
-          <stop offset="1" stop-color="#02993E" />
+          <stop stopColor="#00BF4D" />
+          <stop offset="1" stopColor="#02993E" />
         </linearGradient>
       </defs>
     </>
