@@ -1,5 +1,5 @@
 import { FC, useState, useEffect } from 'react'
-import { NavLink as ReachRouter } from 'react-router-dom'
+import { NavLink as ReachRouter, useLocation } from 'react-router-dom'
 import {
   Box,
   Link,
@@ -24,6 +24,8 @@ const Layout: FC<{ menus: INavMenu[]; isAuth?: boolean }> = ({
 }) => {
   const { isOpen, onToggle } = useDisclosure()
   const [_menus, setMenus] = useState(menus)
+  const location = useLocation()
+  const path = location.pathname
 
   useEffect(() => {
     if (isAuth) {
@@ -59,6 +61,9 @@ const Layout: FC<{ menus: INavMenu[]; isAuth?: boolean }> = ({
       <Box as="picture">
         <source srcSet={`${Logo2x}`} />
         <Image src={`${Logo}`} alt="logo" h={12} />
+      </Box>
+      <Box textTransform="capitalize" fontSize={20} fontWeight="bold">
+        {path.replace('/', '').replace('-', ' ')}
       </Box>
 
       <Box>

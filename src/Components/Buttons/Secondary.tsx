@@ -15,7 +15,7 @@ const Secondary: FC<IProps> = ({ title, ...rest }) => {
       color="#02993E"
       rounded="xl"
       py={6}
-      px={8}
+      px={6}
       {...rest}
     >
       {title}

@@ -1,14 +1,12 @@
 import { FC } from 'react'
 import { Box, Flex, Grid, Image, Text, Icon } from '@chakra-ui/react'
 import { FilledButton, SecondaryButton } from 'Components/Buttons'
-import { FaPlay } from 'react-icons/fa'
+import { FaShareAlt } from 'react-icons/fa'
 
-import FamilyDinner from 'Assets/Images/family-dinner.png'
-import Party from 'Assets/Images/party.png'
-import Wedding from 'Assets/Images/wedding.png'
-import People from 'Assets/Images/people.png'
-import Birthday from 'Assets/Images/birthday.png'
-import Dinner from 'Assets/Images/dinner.png'
+import Birthday from 'Assets/Images/Happybirthday.png'
+import Funeral from 'Assets/Images/funeral.png'
+import Shower from 'Assets/Images/wedding.png'
+import Hangout from 'Assets/Images/Hangout.png'
 
 interface IEvents {
   thumb: string
@@ -16,25 +14,25 @@ interface IEvents {
 }
 const EventsData: IEvents[] = [
   {
-    thumb: String(FamilyDinner),
+    thumb: String(Birthday),
     title: 'My Son’s 15th Birthday'
   },
   {
-    thumb: String(Party),
+    thumb: String(Funeral),
     title: "Mom's funeral"
   },
   {
-    thumb: String(People),
+    thumb: String(Shower),
     title: 'Shereens Baby Shower'
   },
   {
-    thumb: String(Wedding),
+    thumb: String(Hangout),
     title: 'Family Beach Hangout'
   }
 ]
 const Events: FC = () => {
   return (
-    <Box>
+    <Box p={6}>
       <Grid
         templateColumns={{ base: 'repeat(2,1fr)', xl: 'repeat(3, 1fr)' }}
         gap={10}
@@ -42,10 +40,9 @@ const Events: FC = () => {
         {EventsData.map(item => (
           <Box>
             <Box
-              h={48}
+              h={'auto'}
               rounded={'3xl'}
               w="full"
-              bg="gray.200"
               pos="relative"
               overflow="hidden"
             >
@@ -60,7 +57,10 @@ const Events: FC = () => {
       <Flex mt={24} align="center" justify="center">
         <Box>
           <SecondaryButton title="Add Event" mr={4} />
-          <FilledButton title="Share Events" />
+          <FilledButton
+            title="Share Events"
+            rightIcon={<Icon as={FaShareAlt} color="white" />}
+          />
         </Box>
       </Flex>
     </Box>
