@@ -15,7 +15,7 @@ const Filled: FC<IProps> = ({ title, ...rest }) => {
       color="white"
       rounded="xl"
       py={6}
-      px={8}
+      px={6}
       {...rest}
     >
       {title}
