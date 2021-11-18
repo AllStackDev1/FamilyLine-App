@@ -187,13 +187,17 @@ const Register: FC = () => {
                     </Link>
                   </Text>
                   <Box mt={5} />
-                  <FilledButton
+                  {/* <FilledButton
                     w={36}
                     type="submit"
                     title="Sign Up"
                     isLoading={isLoading}
                     isDisabled={isLoading || !(formik.dirty && formik.isValid)}
-                  />
+                  /> */}
+
+                  <Link href="/profile">
+                    <FilledButton w={36} type="button" title="Sign Up" />
+                  </Link>
                 </GridItem>
               </Grid>
             </form>

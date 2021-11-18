@@ -145,8 +145,8 @@ const Login: FC = () => {
                     isLoading={isLoading}
                     isDisabled={isLoading || !(formik.dirty && formik.isValid)}
                   /> */}
-                  <Link to="/profile">
-                    <FilledButton w={36} type="submit" title="Login" />
+                  <Link href="/profile">
+                    <FilledButton w={36} type="button" title="Login" />
                   </Link>
                 </GridItem>
               </Grid>
