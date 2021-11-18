@@ -138,13 +138,16 @@ const Login: FC = () => {
                     </Link>
                   </Text>
                   <Box mt={5} />
-                  <FilledButton
+                  {/* <FilledButton
                     w={36}
                     type="submit"
                     title="Login"
                     isLoading={isLoading}
                     isDisabled={isLoading || !(formik.dirty && formik.isValid)}
-                  />
+                  /> */}
+                  <Link to="/profile">
+                    <FilledButton w={36} type="submit" title="Login" />
+                  </Link>
                 </GridItem>
               </Grid>
             </form>

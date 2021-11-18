@@ -17,18 +17,12 @@ interface IAuthLink {
 const AuthLink: FC<IAuthLink> = ({ to, text, disable }) => (
   <Link
     display={disable}
-    _activeLink={{
-      color: 'white',
-      background: 'linear-gradient(to left, #02993E, #00BF4D)',
-      filter: 'drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25))'
-    }}
     _hover={{ textDecor: 'none' }}
     transition="box-shadow 1s"
-    as={ReachRouter}
     py={{ md: 3 }}
     px={{ md: 6 }}
     rounded="full"
-    to={to}
+    href={to}
   >
     <Text fontWeight={700}>{text}</Text>
   </Link>
@@ -73,9 +67,39 @@ const Layout: FC<{ menus: INavMenu[]; isAuth?: boolean }> = ({
 
       {isAuth ? (
         <Flex align="center">
-          <AuthLink to="/login" text="Log in" id={6} />
+          <Link
+            _activeLink={{
+              color: 'white',
+              background: 'linear-gradient(to left, #02993E, #00BF4D)',
+              filter: 'drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25))'
+            }}
+            _hover={{ textDecor: 'none' }}
+            transition="box-shadow 1s"
+            as={ReachRouter}
+            py={{ md: 3 }}
+            px={{ md: 6 }}
+            rounded="full"
+            to={'/login'}
+          >
+            <Text fontWeight={700}>Log in</Text>
+          </Link>
           <Box mx={2} />
-          <AuthLink to="/register" text="Sign up" id={7} />
+          <Link
+            _activeLink={{
+              color: 'white',
+              background: 'linear-gradient(to left, #02993E, #00BF4D)',
+              filter: 'drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25))'
+            }}
+            _hover={{ textDecor: 'none' }}
+            transition="box-shadow 1s"
+            as={ReachRouter}
+            py={{ md: 3 }}
+            px={{ md: 6 }}
+            rounded="full"
+            to={'/register'}
+          >
+            <Text fontWeight={700}>Sign up</Text>
+          </Link>
         </Flex>
       ) : (
         <Box />

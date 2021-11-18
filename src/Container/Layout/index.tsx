@@ -1,6 +1,5 @@
 import { FC } from 'react'
-import { IoIosArrowDown } from 'react-icons/io'
-import { Flex, Grid, GridItem, Box, Text, Icon, Avatar } from '@chakra-ui/react'
+import { Flex, Grid, GridItem, Text, Avatar } from '@chakra-ui/react'
 
 import DesktopNav from './Navbar/Desktop'
 import MobileNav from './Navbar/Mobile'
@@ -10,18 +9,22 @@ const Wrapper: FC<{ isAuth?: boolean }> = ({ children, isAuth }) => {
   const menus = [
     {
       title: 'Home',
+      link: 'https://familyline.netlify.app/',
       id: 1
     },
     {
       title: 'Blog',
+      link: 'https://familyline.netlify.app/blog',
       id: 2
     },
     {
       title: 'Privacy',
+      link: 'https://familyline.netlify.app/privacy',
       id: 3
     },
     {
       title: 'Contact',
+      link: 'https://familyline.netlify.app/contact',
       id: 4
     }
   ]
