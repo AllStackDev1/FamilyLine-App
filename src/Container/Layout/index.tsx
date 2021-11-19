@@ -4,27 +4,28 @@ import { Flex, Grid, GridItem, Text, Avatar } from '@chakra-ui/react'
 import DesktopNav from './Navbar/Desktop'
 import MobileNav from './Navbar/Mobile'
 import Sidebar from './Sidebar'
+import { WEBSITE_URL } from 'Utils/variables'
 
 const Wrapper: FC<{ isAuth?: boolean }> = ({ children, isAuth }) => {
   const menus = [
     {
       title: 'Home',
-      link: 'https://familyline.netlify.app/',
+      link: `${WEBSITE_URL}/`,
       id: 1
     },
     {
       title: 'Blog',
-      link: 'https://familyline.netlify.app/blog',
+      link: `${WEBSITE_URL}/blog`,
       id: 2
     },
     {
       title: 'Privacy',
-      link: 'https://familyline.netlify.app/privacy',
+      link: `${WEBSITE_URL}/privacy`,
       id: 3
     },
     {
       title: 'Contact',
-      link: 'https://familyline.netlify.app/contact',
+      link: `${WEBSITE_URL}/contact-us`,
       id: 4
     }
   ]
