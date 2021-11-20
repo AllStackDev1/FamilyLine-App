@@ -1,13 +1,25 @@
 import { FC } from 'react'
 import { useFormik } from 'formik'
-import { Box, Grid, Flex, GridItem } from '@chakra-ui/react'
+import { Box, Icon, Grid, Flex, GridItem } from '@chakra-ui/react'
 import { FilledButton } from 'Components/Buttons'
-import { Input, Select } from 'Components/Forms'
-import { IUser } from 'Interfaces/auth.interface'
+import { FileUpload, Input, Select } from 'Components/Forms'
+import { Views } from 'Views/MyFamily'
 import useAuth from 'Utils/Providers/AuthContextProvider'
 
-const AddMemberForm: FC<{ isAdd?: boolean }> = ({ isAdd }) => {
+import { IUser } from 'Interfaces/auth.interface'
+import Thumb from 'Components/Thumb'
+import { authStore } from 'Stores/auth.store'
+
+import Avatar from 'Assets/Images/avatar.png'
+import { FiEdit2 } from 'react-icons/fi'
+
+const AddMemberForm: FC<{ isAdd?: boolean; toggle?: (e: Views) => void }> = ({
+  isAdd,
+  toggle
+}) => {
   const { isLoading, login } = useAuth()
+
+  const user = authStore(state => state.user)
 
   interface IForm extends Partial<IUser> {
     relationship: string
@@ -15,6 +27,7 @@ const AddMemberForm: FC<{ isAdd?: boolean }> = ({ isAdd }) => {
 
   const formik = useFormik<IForm>({
     initialValues: {
+      avatar: undefined,
       firstName: '',
       lastName: '',
       password: '',
@@ -35,6 +48,42 @@ const AddMemberForm: FC<{ isAdd?: boolean }> = ({ isAdd }) => {
 
   return (
     <form onSubmit={formik.handleSubmit}>
+      <Flex
+        w="full"
+        pos="relative"
+        flexDir="column"
+        align="center"
+        mb={{ lg: 10 }}
+      >
+        <Box pos="relative" w={32} h={32}>
+          <Thumb
+            w={32}
+            h={32}
+            top={0}
+            left={0}
+            pos="absolute"
+            src={isAdd ? `${Avatar}` : user?.avatar}
+            alt={formik.values.firstName + ' ' + formik.values.lastName}
+            imageFile={formik.values.avatar}
+          />
+          <FileUpload
+            w={32}
+            h={32}
+            top={0}
+            left={0}
+            id="avatar"
+            zIndex={40}
+            opacity={0}
+            pos="absolute"
+            cursor="pointer"
+            setFieldValue={formik.setFieldValue}
+          />
+
+          <Flex top={2} right={2} opacity={0.8} pos="absolute" justify="center">
+            <Icon as={FiEdit2} boxSize={8} color="brand.green.200" />
+          </Flex>
+        </Box>
+      </Flex>
       <Grid rowGap={10} columnGap={10} templateColumns={{ xl: '50% 50%' }}>
         <GridItem
           as={Input}
@@ -219,19 +268,18 @@ const AddMemberForm: FC<{ isAdd?: boolean }> = ({ isAdd }) => {
             <FilledButton
               w={44}
               type="submit"
-              title="Update & View"
+              title="Submit"
               isLoading={isLoading}
               isDisabled={isLoading || !(formik.dirty && formik.isValid)}
             />
             <Box mx={2} />
-            <FilledButton
-              w={44}
-              type="submit"
-              bgColor="white"
-              title="Add Family"
-              isLoading={isLoading}
-              isDisabled={isLoading || !(formik.dirty && formik.isValid)}
-            />
+            {toggle && (
+              <FilledButton
+                w={44}
+                title="View Tree"
+                onClick={() => toggle('chart')}
+              />
+            )}
           </>
         ) : (
           <FilledButton

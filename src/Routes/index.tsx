@@ -41,6 +41,10 @@ function Router() {
       element: <Views.Events />
     },
     {
+      path: '/notifications',
+      element: <Views.Notifications />
+    },
+    {
       path: '/logout',
       element: <Views.NotFound />
     },

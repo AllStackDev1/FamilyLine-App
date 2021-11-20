@@ -4,9 +4,10 @@ import Wrapper from 'Container/Layout'
 import AddMemberForm from 'Components/AddMemberForm'
 import FamilyChart from 'Components/FamilyChart'
 
+export type Views = 'add' | 'chart'
+
 const MyFamily: FC = () => {
   document.title = 'Family Line | My Family'
-  type Views = 'add' | 'chart'
 
   const [view, setView] = useState<Views>('add')
 
@@ -15,8 +16,8 @@ const MyFamily: FC = () => {
   return (
     <Wrapper>
       <Box my={{ xl: 20 }} width={{ xl: '80%' }}>
-        {view === 'add' && <AddMemberForm isAdd />}
-        {view === 'chart' && <FamilyChart />}
+        {view === 'add' && <AddMemberForm isAdd toggle={toggle} />}
+        {view === 'chart' && <FamilyChart toggle={toggle} />}
       </Box>
     </Wrapper>
   )

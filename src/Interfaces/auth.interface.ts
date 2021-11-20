@@ -1,4 +1,5 @@
 export interface IUser {
+  avatar: any
   email: string
   firstName: string
   lastName: string
