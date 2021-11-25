@@ -16,7 +16,7 @@ import {
 
 import { authStore } from 'Stores/auth.store'
 
-import Family from 'assets/images/family.png'
+import Family from 'Assets/Images/family.png'
 
 import useAuth from 'Utils/Providers/AuthContextProvider'
 import { IUser } from 'Interfaces/auth.interface'

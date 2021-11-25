@@ -1,6 +1,6 @@
 import { FC } from 'react'
 import { Box, Flex, Text, Icon } from '@chakra-ui/react'
-import Wrapper from 'container/Layout'
+import Wrapper from 'Container/Layout'
 import { FcGoogle } from 'react-icons/fc'
 
 const Notification: FC = () => {

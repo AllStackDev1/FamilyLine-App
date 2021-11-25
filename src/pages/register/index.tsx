@@ -21,7 +21,7 @@ import { Input, InputWithIcon } from 'Components/Forms'
 import { IUser } from 'Interfaces/auth.interface'
 import { FilledButton } from 'Components/Buttons'
 
-import MomDaughter from 'assets/images/mom-daughter.png'
+import MomDaughter from 'Assets/Images/mom-daughter.png'
 import SocialButtons from 'Components/SocialButtons'
 
 import { authStore } from 'Stores/auth.store'

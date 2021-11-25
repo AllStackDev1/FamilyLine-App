@@ -9,7 +9,7 @@ import { IUser } from 'Interfaces/auth.interface'
 import Thumb from 'Components/Thumb'
 import { authStore } from 'Stores/auth.store'
 
-import Avatar from 'assets/images/avatar.png'
+import Avatar from 'Assets/Images/avatar.png'
 import { FiEdit2 } from 'react-icons/fi'
 
 const AddMemberForm: FC<{ isAdd?: boolean; toggle?: (e: Views) => void }> = ({

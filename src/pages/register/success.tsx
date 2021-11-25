@@ -2,7 +2,7 @@ import { FC } from 'react'
 
 import { Text, Flex, Heading } from '@chakra-ui/react'
 
-import Wrapper from 'container/Layout'
+import Wrapper from 'Container/Layout'
 
 const AccountSuccess: FC = () => {
   document.title = 'Family Line | Congratulations 🚀🚀🚀'
