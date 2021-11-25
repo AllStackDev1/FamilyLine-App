@@ -4,6 +4,7 @@ import { FilledButton, SecondaryButton } from 'Components/Buttons'
 import { FaPlay } from 'react-icons/fa'
 import { useDisclosure } from '@chakra-ui/react'
 
+import { Views } from 'Views/Memories'
 import FamilyDinner from 'Assets/Images/family-dinner.png'
 import Party from 'Assets/Images/party.png'
 import Wedding from 'Assets/Images/wedding.png'
@@ -45,7 +46,9 @@ const MemoriesData: IMemories[] = [
     type: 'pic'
   }
 ]
-const Memories: FC = () => {
+const Memories: FC<{ isAdd?: boolean; toggle: (e: Views) => void }> = ({
+  toggle
+}) => {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const [selectedItem, setSelectedItem] = useState<IMemories | undefined>()
   return (
@@ -106,7 +109,11 @@ const Memories: FC = () => {
       </Grid>
       <Flex mt={12} align="center" justify="center">
         <Box>
-          <SecondaryButton title="Add Memory" mr={4} />
+          <SecondaryButton
+            title="Add Memory"
+            mr={4}
+            onClick={() => toggle('add')}
+          />
           <FilledButton title="Share Memories" />
         </Box>
       </Flex>

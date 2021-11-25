@@ -20,8 +20,23 @@ const FormTextArea: FC<IFormProps & TextareaProps> = ({
 }) => {
   return (
     <FormControl id={rest.id || rest.name} isRequired={required}>
-      <FormLabel color="gray.500">{label}</FormLabel>
-      <Textarea size="lg" {...rest} resize="none" />
+      <FormLabel
+        fontWeight={600}
+        fontSize={{ base: 12, xl: 14 }}
+        color="gray.700"
+      >
+        {label}
+      </FormLabel>
+      <Textarea
+        size="lg"
+        {...rest}
+        resize="none"
+        fontSize={{ base: 12, xl: 14 }}
+        h={{ base: 10, lg: 12 }}
+        borderWidth={0}
+        bgColor="white"
+        shadow="md"
+      />
       <FormErrorHandler
         error={error}
         touched={touched}
