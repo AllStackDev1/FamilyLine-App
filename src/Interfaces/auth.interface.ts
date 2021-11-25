@@ -1,10 +1,10 @@
 export interface IUser {
-  avatar: any
+  avatar?: string
   email: string
-  firstName: string
-  lastName: string
+  firstname: string
+  lastname: string
   password?: string
-  phoneNumber: string
+  phonenumber: string
   gender?: string
   address?: string
   occupation?: string
@@ -22,11 +22,7 @@ export interface IAuthData {
 
 export interface IAuthContext {
   show: boolean
-  token: string
   isAccepted: boolean
-  isLoading?: boolean
-  login: (p: Partial<IUser>) => Promise<void>
-  register: (p: Partial<IUser>) => Promise<void>
   setShow: React.Dispatch<React.SetStateAction<boolean>>
   setAccepted: React.Dispatch<React.SetStateAction<boolean>>
 }

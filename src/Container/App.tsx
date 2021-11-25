@@ -3,14 +3,14 @@ import { BrowserRouter } from 'react-router-dom'
 import { ChakraProvider } from '@chakra-ui/react'
 import { QueryClient, QueryClientProvider } from 'react-query'
 
-import { AuthContextProvider } from 'Utils/Providers/AuthContextProvider'
+import { AuthContextProvider } from 'utils/Providers/AuthContextProvider'
 
 // import { ColorModeSwitcher } from './ColorModeSwitcher'
-import { theme } from 'Utils/Theme'
-import Router from 'Routes'
+import { theme } from 'utils/Theme'
+import Router from 'routes'
 
-import 'Assets/Styles/index.css'
-import 'Assets/Fonts/fonts.css'
+import 'assets/styles/index.css'
+import 'assets/fonts/fonts.css'
 
 const queryClient = new QueryClient()
 

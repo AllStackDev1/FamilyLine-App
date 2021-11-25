@@ -4,7 +4,7 @@ import { Flex, Grid, GridItem, Text, Avatar } from '@chakra-ui/react'
 import DesktopNav from './Navbar/Desktop'
 import MobileNav from './Navbar/Mobile'
 import Sidebar from './Sidebar'
-import { WEBSITE_URL } from 'Utils/variables'
+import { WEBSITE_URL } from 'utils/variables'
 
 const Wrapper: FC<{ isAuth?: boolean }> = ({ children, isAuth }) => {
   const menus = [

@@ -7,7 +7,7 @@ import {
   EventsIcon,
   MemoryIcon,
   BellIcon
-} from 'Utils/Theme/custom-icon'
+} from 'utils/Theme/custom-icon'
 
 const Sidebar: FC = (): JSX.Element => {
   const menu = [

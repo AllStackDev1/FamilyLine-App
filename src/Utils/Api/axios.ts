@@ -1,7 +1,7 @@
 import axios from 'axios'
 import QueryString from 'query-string'
-import { API_URL } from 'Utils/variables'
-import { IDelete, IGet, IPatch, IPost, IPut } from 'Interfaces/axios.interface'
+import { API_URL } from 'utils/variables'
+import { IDelete, IGet, IPatch, IPost, IPut } from 'interfaces/axios.interface'
 
 class HttpFacade {
   private http
@@ -13,7 +13,7 @@ class HttpFacade {
 
     this.http.interceptors.request.use(
       config => {
-        const token = window.sessionStorage.getItem('_fl_ut_')
+        const token = localStorage.getItem('_fl_u_T')
         if (token && config.headers) {
           config.headers.Authorization = 'Bearer ' + token
         }

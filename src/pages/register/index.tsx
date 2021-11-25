@@ -1,5 +1,6 @@
-import { FC } from 'react'
+import { FC, useEffect } from 'react'
 import { useFormik } from 'formik'
+import { useNavigate } from 'react-router-dom'
 import { FiEye, FiEyeOff } from 'react-icons/fi'
 import {
   Box,
@@ -9,29 +10,35 @@ import {
   Link,
   Heading,
   Divider,
-  GridItem
+  GridItem,
+  useToast
 } from '@chakra-ui/react'
 
-import useAuth from 'Utils/Providers/AuthContextProvider'
-import Wrapper from 'Container/Layout'
+import useAuth from 'utils/Providers/AuthContextProvider'
+import Wrapper from 'container/Layout'
 
-import { Input, InputWithIcon } from 'Components/Forms'
-import { IUser } from 'Interfaces/auth.interface'
-import { FilledButton } from 'Components/Buttons'
+import { Input, InputWithIcon } from 'components/Forms'
+import { IUser } from 'interfaces/auth.interface'
+import { FilledButton } from 'components/Buttons'
 
-import MomDaughter from 'Assets/Images/mom-daughter.png'
-import SocialButtons from 'Components/SocialButtons'
+import MomDaughter from 'assets/images/mom-daughter.png'
+import SocialButtons from 'components/SocialButtons'
+
+import { authStore } from 'stores/auth.store'
 
 const Register: FC = () => {
-  document.title = 'Family Line | Login'
+  document.title = 'Family Line | Register'
 
-  const { show, setShow, isLoading, register } = useAuth()
+  const { show, setShow } = useAuth()
+  const { error, user, message, isLoading, register } = authStore(
+    state => state
+  )
 
   const formik = useFormik<Partial<IUser>>({
     initialValues: {
-      firstName: '',
-      lastName: '',
-      phoneNumber: '',
+      firstname: '',
+      lastname: '',
+      phonenumber: '',
       email: '',
       password: ''
     },
@@ -39,6 +46,30 @@ const Register: FC = () => {
       await register(values)
     }
   })
+
+  const toast = useToast()
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    if (error) {
+      toast({
+        duration: 8000,
+        isClosable: true,
+        position: 'top-right',
+        description: error,
+        status: 'error',
+        title: 'An error occurred'
+      })
+    }
+
+    if (user) {
+      navigate('/register/success')
+    }
+
+    return () => {
+      authStore.setState({ error: null, message: null })
+    }
+  }, [error, message, user])
 
   return (
     <Wrapper isAuth>
@@ -100,14 +131,14 @@ const Register: FC = () => {
                   as={Input}
                   required
                   type="text"
-                  id="firstName"
+                  id="firstname"
                   label="First Name"
                   placeholder="Joh"
                   onBlur={formik.handleBlur}
                   onChange={formik.handleChange}
-                  value={formik.values.firstName}
-                  error={formik.errors.firstName}
-                  touched={formik.touched.firstName}
+                  value={formik.values.firstname}
+                  error={formik.errors.firstname}
+                  touched={formik.touched.firstname}
                   setFieldTouched={formik.setFieldTouched}
                 />
 
@@ -115,14 +146,14 @@ const Register: FC = () => {
                   as={Input}
                   required
                   type="text"
-                  id="lastName"
+                  id="lastname"
                   label="Last Name"
                   placeholder="Joh"
                   onBlur={formik.handleBlur}
                   onChange={formik.handleChange}
-                  value={formik.values.lastName}
-                  error={formik.errors.lastName}
-                  touched={formik.touched.lastName}
+                  value={formik.values.lastname}
+                  error={formik.errors.lastname}
+                  touched={formik.touched.lastname}
                   setFieldTouched={formik.setFieldTouched}
                 />
 
@@ -145,12 +176,12 @@ const Register: FC = () => {
                   as={Input}
                   required
                   type="text"
-                  id="phoneNumber"
+                  id="phonenumber"
                   label="Phone Number"
                   onBlur={formik.handleBlur}
-                  value={formik.values.phoneNumber}
-                  error={formik.errors.phoneNumber}
-                  touched={formik.touched.phoneNumber}
+                  value={formik.values.phonenumber}
+                  error={formik.errors.phonenumber}
+                  touched={formik.touched.phonenumber}
                   onChange={formik.handleChange}
                   setFieldTouched={formik.setFieldTouched}
                   placeholder="0237200000"
@@ -187,17 +218,13 @@ const Register: FC = () => {
                     </Link>
                   </Text>
                   <Box mt={5} />
-                  {/* <FilledButton
+                  <FilledButton
                     w={36}
                     type="submit"
                     title="Sign Up"
                     isLoading={isLoading}
                     isDisabled={isLoading || !(formik.dirty && formik.isValid)}
-                  /> */}
-
-                  <Link href="/profile">
-                    <FilledButton w={36} type="button" title="Sign Up" />
-                  </Link>
+                  />
                 </GridItem>
               </Grid>
             </form>

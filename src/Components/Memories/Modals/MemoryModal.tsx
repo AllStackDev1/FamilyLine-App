@@ -1,5 +1,4 @@
-import React, { FC } from 'react'
-import PropTypes from 'prop-types'
+import { FC } from 'react'
 import {
   Box,
   Modal,
@@ -16,8 +15,8 @@ import {
   shareIcon,
   dots,
   fullScreen
-} from 'Utils/Theme/custom-icon'
-import { IMemories } from 'Interfaces/Index.interface'
+} from 'utils/Theme/custom-icon'
+import { IMemories } from 'interfaces/Index.interface'
 interface IProps {
   isOpen: boolean
   onClose(): void

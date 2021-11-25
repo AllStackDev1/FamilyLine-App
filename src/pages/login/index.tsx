@@ -1,5 +1,6 @@
-import { FC } from 'react'
+import { FC, useEffect } from 'react'
 import { useFormik } from 'formik'
+import { useNavigate } from 'react-router-dom'
 import { FiEye, FiEyeOff } from 'react-icons/fi'
 import {
   Box,
@@ -9,23 +10,27 @@ import {
   Flex,
   GridItem,
   Heading,
-  Divider
+  Divider,
+  useToast
 } from '@chakra-ui/react'
 
-import useAuth from 'Utils/Providers/AuthContextProvider'
-import Wrapper from 'Container/Layout'
+import { authStore } from 'stores/auth.store'
 
-import { Input, InputWithIcon } from 'Components/Forms'
-import { IUser } from 'Interfaces/auth.interface'
-import { FilledButton } from 'Components/Buttons'
+import Family from 'assets/images/family.png'
 
-import Family from 'Assets/Images/family.png'
-import SocialButtons from 'Components/SocialButtons'
+import useAuth from 'utils/Providers/AuthContextProvider'
+import { IUser } from 'interfaces/auth.interface'
+
+import Wrapper from 'container/Layout'
+import { FilledButton } from 'components/Buttons'
+import { Input, InputWithIcon } from 'components/Forms'
+import SocialButtons from 'components/SocialButtons'
 
 const Login: FC = () => {
   document.title = 'Family Line | Login'
+  const { error, access, message, isLoading, login } = authStore(state => state)
 
-  const { show, setShow, isLoading, login } = useAuth()
+  const { show, setShow } = useAuth()
 
   const formik = useFormik<Partial<IUser>>({
     initialValues: {
@@ -36,6 +41,32 @@ const Login: FC = () => {
       await login(values)
     }
   })
+
+  const toast = useToast()
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    if (error) {
+      toast({
+        duration: 8000,
+        isClosable: true,
+        position: 'top-right',
+        description: error,
+        status: 'error',
+        title: 'An error occurred'
+      })
+    }
+
+    if (access) {
+      setTimeout(() => {
+        navigate('/profile')
+      }, 500)
+    }
+
+    return () => {
+      authStore.setState({ error: null, message: null })
+    }
+  }, [error, message, access])
 
   return (
     <Wrapper isAuth>
@@ -138,16 +169,13 @@ const Login: FC = () => {
                     </Link>
                   </Text>
                   <Box mt={5} />
-                  {/* <FilledButton
+                  <FilledButton
                     w={36}
                     type="submit"
                     title="Login"
                     isLoading={isLoading}
                     isDisabled={isLoading || !(formik.dirty && formik.isValid)}
-                  /> */}
-                  <Link href="/profile">
-                    <FilledButton w={36} type="button" title="Login" />
-                  </Link>
+                  />
                 </GridItem>
               </Grid>
             </form>
