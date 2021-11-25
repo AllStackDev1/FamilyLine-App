@@ -8,7 +8,7 @@ import {
 } from '@chakra-ui/react'
 
 import FormErrorHandler from './FormErrorHandler'
-import { IFormProps } from 'Interfaces/forms.interface'
+import { IFormProps } from 'interfaces/forms.interface'
 
 const FormTextArea: FC<IFormProps & TextareaProps> = ({
   label,

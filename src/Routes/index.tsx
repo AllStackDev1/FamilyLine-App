@@ -3,7 +3,9 @@ import { AnimatePresence, motion } from 'framer-motion'
 import { useRoutes, useNavigate, useLocation } from 'react-router-dom'
 
 import { Splash } from 'Components/Shared/Loading'
-import { Views } from 'Views'
+import { Views } from 'pages'
+
+import RequireAuth from 'Routes/guard'
 
 function Router() {
   const { pathname } = useLocation()
@@ -25,24 +27,48 @@ function Router() {
       element: <Views.Register />
     },
     {
+      path: '/register/success',
+      element: <Views.AccountSuccess />
+    },
+    {
       path: '/profile',
-      element: <Views.Profile />
+      element: (
+        <RequireAuth>
+          <Views.Profile />
+        </RequireAuth>
+      )
     },
     {
       path: '/my-family',
-      element: <Views.MyFamily />
+      element: (
+        <RequireAuth>
+          <Views.MyFamily />
+        </RequireAuth>
+      )
     },
     {
       path: '/memories',
-      element: <Views.Memories />
+      element: (
+        <RequireAuth>
+          <Views.Memories />
+        </RequireAuth>
+      )
     },
     {
       path: '/events',
-      element: <Views.Events />
+      element: (
+        <RequireAuth>
+          <Views.Events />
+        </RequireAuth>
+      )
     },
     {
       path: '/notifications',
-      element: <Views.Notifications />
+      element: (
+        <RequireAuth>
+          <Views.Notifications />
+        </RequireAuth>
+      )
     },
     {
       path: '/logout',

@@ -1,15 +1,15 @@
-import { ReactNode } from 'react'
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Navigate } from 'react-router-dom'
 import { authStore } from 'Stores/auth.store'
 
 interface IProps {
-  children?: ReactNode
+  children: any
 }
 
 const RequireAuth = ({ children }: IProps) => {
-  const { token } = authStore()
+  const { access } = authStore()
 
-  return token ? children : <Navigate to="/login" />
+  return access ? children : <Navigate to="/login" />
 }
 
 export default RequireAuth

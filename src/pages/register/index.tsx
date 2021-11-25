@@ -1,15 +1,17 @@
-import { FC } from 'react'
+import { FC, useEffect } from 'react'
 import { useFormik } from 'formik'
+import { useNavigate } from 'react-router-dom'
 import { FiEye, FiEyeOff } from 'react-icons/fi'
 import {
   Box,
   Text,
-  Link,
   Grid,
   Flex,
-  GridItem,
+  Link,
   Heading,
-  Divider
+  Divider,
+  GridItem,
+  useToast
 } from '@chakra-ui/react'
 
 import useAuth from 'Utils/Providers/AuthContextProvider'
@@ -19,23 +21,55 @@ import { Input, InputWithIcon } from 'Components/Forms'
 import { IUser } from 'Interfaces/auth.interface'
 import { FilledButton } from 'Components/Buttons'
 
-import Family from 'Assets/Images/family.png'
+import MomDaughter from 'assets/images/mom-daughter.png'
 import SocialButtons from 'Components/SocialButtons'
 
-const Login: FC = () => {
-  document.title = 'Family Line | Login'
+import { authStore } from 'Stores/auth.store'
 
-  const { show, setShow, isLoading, login } = useAuth()
+const Register: FC = () => {
+  document.title = 'Family Line | Register'
+
+  const { show, setShow } = useAuth()
+  const { error, user, message, isLoading, register } = authStore(
+    state => state
+  )
 
   const formik = useFormik<Partial<IUser>>({
     initialValues: {
+      firstname: '',
+      lastname: '',
+      phonenumber: '',
       email: '',
       password: ''
     },
     onSubmit: async values => {
-      await login(values)
+      await register(values)
     }
   })
+
+  const toast = useToast()
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    if (error) {
+      toast({
+        duration: 8000,
+        isClosable: true,
+        position: 'top-right',
+        description: error,
+        status: 'error',
+        title: 'An error occurred'
+      })
+    }
+
+    if (user) {
+      navigate('/register/success')
+    }
+
+    return () => {
+      authStore.setState({ error: null, message: null })
+    }
+  }, [error, message, user])
 
   return (
     <Wrapper isAuth>
@@ -53,7 +87,7 @@ const Login: FC = () => {
           bgPos="center"
           bgRepeat="no-repeat"
           borderLeftRadius="xl"
-          bgImage={`${Family}`}
+          bgImage={`${MomDaughter}`}
           d={{ base: 'none', xl: 'unset' }}
         >
           <Flex
@@ -69,7 +103,7 @@ const Login: FC = () => {
           >
             <Box w="90%" textAlign="center">
               <Heading fontWeight={600} fontSize="6xl">
-                Welcome Back!
+                Hello Welcome!
               </Heading>
               <Text mt={{ lg: 4 }} fontWeight={500} fontSize="2xl">
                 Stay connected with your generation on one single platform
@@ -78,10 +112,10 @@ const Login: FC = () => {
           </Flex>
         </GridItem>
         <GridItem w="full" bg="brand.bg.100" borderRightRadius={{ xl: 'xl' }}>
-          <Box px={8} pt={{ base: 8, lg: 20 }} pb={{ lg: 24 }}>
+          <Box p={8}>
             <Flex mb={{ base: 5, lg: 8 }} flexDir="column" align="center">
               <Heading fontSize={{ base: 'xl', xl: '4xl' }}>
-                Log Into Your Account
+                Create An Account
               </Heading>
               <Divider
                 mt={2}
@@ -96,6 +130,36 @@ const Login: FC = () => {
                 <GridItem
                   as={Input}
                   required
+                  type="text"
+                  id="firstname"
+                  label="First Name"
+                  placeholder="Joh"
+                  onBlur={formik.handleBlur}
+                  onChange={formik.handleChange}
+                  value={formik.values.firstname}
+                  error={formik.errors.firstname}
+                  touched={formik.touched.firstname}
+                  setFieldTouched={formik.setFieldTouched}
+                />
+
+                <GridItem
+                  as={Input}
+                  required
+                  type="text"
+                  id="lastname"
+                  label="Last Name"
+                  placeholder="Joh"
+                  onBlur={formik.handleBlur}
+                  onChange={formik.handleChange}
+                  value={formik.values.lastname}
+                  error={formik.errors.lastname}
+                  touched={formik.touched.lastname}
+                  setFieldTouched={formik.setFieldTouched}
+                />
+
+                <GridItem
+                  as={Input}
+                  required
                   id="email"
                   type="email"
                   label="Email"
@@ -106,6 +170,21 @@ const Login: FC = () => {
                   onChange={formik.handleChange}
                   setFieldTouched={formik.setFieldTouched}
                   placeholder="abc@test.com"
+                />
+
+                <GridItem
+                  as={Input}
+                  required
+                  type="text"
+                  id="phonenumber"
+                  label="Phone Number"
+                  onBlur={formik.handleBlur}
+                  value={formik.values.phonenumber}
+                  error={formik.errors.phonenumber}
+                  touched={formik.touched.phonenumber}
+                  onChange={formik.handleChange}
+                  setFieldTouched={formik.setFieldTouched}
+                  placeholder="0237200000"
                 />
 
                 <GridItem
@@ -124,6 +203,7 @@ const Login: FC = () => {
                   setFieldTouched={formik.setFieldTouched}
                   iconAction={() => setShow(!show)}
                 />
+
                 <GridItem d="flex" mt={5} flexDir="column" alignItems="center">
                   <Text fontSize={{ base: 10, xl: 12 }} textAlign="center">
                     <Text as="span" fontWeight={500}>
@@ -138,16 +218,13 @@ const Login: FC = () => {
                     </Link>
                   </Text>
                   <Box mt={5} />
-                  {/* <FilledButton
+                  <FilledButton
                     w={36}
                     type="submit"
-                    title="Login"
+                    title="Sign Up"
                     isLoading={isLoading}
                     isDisabled={isLoading || !(formik.dirty && formik.isValid)}
-                  /> */}
-                  <Link href="/profile">
-                    <FilledButton w={36} type="button" title="Login" />
-                  </Link>
+                  />
                 </GridItem>
               </Grid>
             </form>
@@ -158,4 +235,4 @@ const Login: FC = () => {
   )
 }
 
-export default Login
+export default Register

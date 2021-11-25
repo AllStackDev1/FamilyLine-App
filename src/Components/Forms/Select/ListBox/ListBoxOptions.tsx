@@ -2,7 +2,7 @@
 import React from 'react'
 import { Box } from '@chakra-ui/react'
 import { Listbox } from '@headlessui/react'
-import { IOptions } from 'Interfaces/forms.interface'
+import { IOptions } from 'interfaces/forms.interface'
 import ListBoxOption from './ListBoxOption'
 import { motion } from 'framer-motion'
 

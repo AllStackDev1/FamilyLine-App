@@ -1,7 +1,7 @@
 import { FC } from 'react'
 import { Box } from '@chakra-ui/react'
-import Wrapper from 'Container/Layout'
-import Events from 'Components/Events'
+import Wrapper from 'container/Layout'
+import Events from 'components/Events'
 
 const Profile: FC = () => {
   document.title = 'Family Line | Profile'

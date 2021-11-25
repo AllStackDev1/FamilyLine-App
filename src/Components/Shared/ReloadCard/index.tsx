@@ -1,7 +1,7 @@
 import React from 'react'
 import { Flex, FlexProps } from '@chakra-ui/react'
-import { Splash } from 'Components/Shared/Loading'
-import ErrorReloadButton from 'Components/Shared/ErrorButton'
+import { Splash } from 'components/Shared/Loading'
+import ErrorReloadButton from 'components/Shared/ErrorButton'
 
 interface Props extends FlexProps {
   text?: string

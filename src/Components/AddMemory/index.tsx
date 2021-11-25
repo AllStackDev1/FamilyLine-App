@@ -1,23 +1,18 @@
 import { FC } from 'react'
 import { useFormik } from 'formik'
-import { Box, Icon, Grid, Flex, GridItem } from '@chakra-ui/react'
+import { Box, Grid, Flex, GridItem } from '@chakra-ui/react'
 import { FilledButton } from 'Components/Buttons'
-import { FileUpload, Input, TextArea } from 'Components/Forms'
-import { Views } from 'Views/Memories'
+import { Input, TextArea } from 'Components/Forms'
+import { Views } from 'pages/memories'
 import useAuth from 'Utils/Providers/AuthContextProvider'
 
-import { IUser } from 'Interfaces/auth.interface'
-import Thumb from 'Components/Thumb'
 import { authStore } from 'Stores/auth.store'
-
-import Avatar from 'Assets/Images/avatar.png'
-import { FiEdit2 } from 'react-icons/fi'
 
 const AddMemory: FC<{ isAdd?: boolean; toggle?: (e: Views) => void }> = ({
   isAdd,
   toggle
 }) => {
-  const { isLoading, login } = useAuth()
+  const { isLoading } = useAuth()
 
   const user = authStore(state => state.user)
 

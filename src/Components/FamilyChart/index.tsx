@@ -4,7 +4,7 @@ import f3 from 'family-chart'
 
 import data from './data.json'
 import { FilledButton } from 'Components/Buttons'
-import { Views } from 'Views/MyFamily'
+import { Views } from 'pages/my-family'
 
 const FamilyChart: FC<{ toggle: (e: Views) => void }> = ({ toggle }) => {
   const cont = useRef<HTMLDivElement>(null)

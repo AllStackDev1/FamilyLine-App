@@ -8,8 +8,9 @@ import {
   FormControl,
   InputRightElement
 } from '@chakra-ui/react'
-import { IFormProps } from 'Interfaces/forms.interface'
+import { IFormProps } from 'interfaces/forms.interface'
 import { IconType } from 'react-icons/lib'
+import FormErrorHandler from './FormErrorHandler'
 
 interface IProps extends InputProps {
   icon: IconType
@@ -17,15 +18,22 @@ interface IProps extends InputProps {
 }
 
 const FormInputWithIcon: React.FC<IFormProps & IProps> = ({
+  error,
+  touched,
   label,
   icon,
   required,
   iconAction,
+  setFieldTouched,
   ...rest
 }) => {
   return (
     <FormControl isRequired={required}>
-      <FormLabel fontSize={{ base: 12, xl: 14 }} color="gray.700">
+      <FormLabel
+        fontWeight={600}
+        fontSize={{ base: 12, xl: 14 }}
+        color="gray.700"
+      >
         {label}
       </FormLabel>
       <InputGroup size="sm">
@@ -54,6 +62,11 @@ const FormInputWithIcon: React.FC<IFormProps & IProps> = ({
           children={<Icon as={icon} boxSize={5} mr={5} />}
         />
       </InputGroup>
+      <FormErrorHandler
+        error={error}
+        touched={touched}
+        onClear={() => setFieldTouched(rest.id || rest.name || '', false)}
+      />
     </FormControl>
   )
 }

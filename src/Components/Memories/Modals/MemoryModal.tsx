@@ -1,5 +1,4 @@
-import React, { FC } from 'react'
-import PropTypes from 'prop-types'
+import { FC } from 'react'
 import {
   Box,
   Modal,

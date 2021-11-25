@@ -4,7 +4,7 @@ import { FilledButton, SecondaryButton } from 'Components/Buttons'
 import { FaPlay } from 'react-icons/fa'
 import { useDisclosure } from '@chakra-ui/react'
 
-import { Views } from 'Views/Memories'
+import { Views } from 'pages/memories'
 import FamilyDinner from 'Assets/Images/family-dinner.png'
 import Party from 'Assets/Images/party.png'
 import Wedding from 'Assets/Images/wedding.png'

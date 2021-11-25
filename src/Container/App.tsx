@@ -9,8 +9,8 @@ import { AuthContextProvider } from 'Utils/Providers/AuthContextProvider'
 import { theme } from 'Utils/Theme'
 import Router from 'Routes'
 
-import 'Assets/Styles/index.css'
-import 'Assets/Fonts/fonts.css'
+import 'assets/styles/index.css'
+import 'assets/fonts/fonts.css'
 
 const queryClient = new QueryClient()
 

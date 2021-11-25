@@ -3,23 +3,20 @@ import { useFormik } from 'formik'
 import { Box, Icon, Grid, Flex, GridItem } from '@chakra-ui/react'
 import { FilledButton } from 'Components/Buttons'
 import { FileUpload, Input, Select } from 'Components/Forms'
-import { Views } from 'Views/MyFamily'
-import useAuth from 'Utils/Providers/AuthContextProvider'
+import { Views } from 'pages/my-family'
 
 import { IUser } from 'Interfaces/auth.interface'
 import Thumb from 'Components/Thumb'
 import { authStore } from 'Stores/auth.store'
 
-import Avatar from 'Assets/Images/avatar.png'
+import Avatar from 'assets/images/avatar.png'
 import { FiEdit2 } from 'react-icons/fi'
 
 const AddMemberForm: FC<{ isAdd?: boolean; toggle?: (e: Views) => void }> = ({
   isAdd,
   toggle
 }) => {
-  const { isLoading, login } = useAuth()
-
-  const user = authStore(state => state.user)
+  const { user, isLoading, login } = authStore(state => state)
 
   interface IForm extends Partial<IUser> {
     relationship: string
@@ -28,8 +25,8 @@ const AddMemberForm: FC<{ isAdd?: boolean; toggle?: (e: Views) => void }> = ({
   const formik = useFormik<IForm>({
     initialValues: {
       avatar: undefined,
-      firstName: '',
-      lastName: '',
+      firstname: '',
+      lastname: '',
       password: '',
       gender: '',
       address: '',
@@ -62,8 +59,8 @@ const AddMemberForm: FC<{ isAdd?: boolean; toggle?: (e: Views) => void }> = ({
             top={0}
             left={0}
             pos="absolute"
-            src={isAdd ? `${Avatar}` : user?.avatar}
-            alt={formik.values.firstName + ' ' + formik.values.lastName}
+            src={isAdd ? `${Avatar}` : user?.avatar || `${Avatar}`}
+            alt={formik.values.firstname + ' ' + formik.values.lastname}
             imageFile={formik.values.avatar}
           />
           <FileUpload
@@ -89,13 +86,13 @@ const AddMemberForm: FC<{ isAdd?: boolean; toggle?: (e: Views) => void }> = ({
           as={Input}
           required
           type="text"
-          id="firstName"
+          id="firstname"
           label="First Name"
           onBlur={formik.handleBlur}
           placeholder="Enter first name"
-          value={formik.values.firstName}
-          error={formik.errors.firstName}
-          touched={formik.touched.firstName}
+          value={formik.values.firstname}
+          error={formik.errors.firstname}
+          touched={formik.touched.firstname}
           onChange={formik.handleChange}
           setFieldTouched={formik.setFieldTouched}
         />
@@ -104,13 +101,13 @@ const AddMemberForm: FC<{ isAdd?: boolean; toggle?: (e: Views) => void }> = ({
           as={Input}
           required
           type="text"
-          id="lastName"
+          id="lastname"
           label="Last Name"
           onBlur={formik.handleBlur}
           placeholder="Enter last name"
-          value={formik.values.lastName}
-          error={formik.errors.lastName}
-          touched={formik.touched.lastName}
+          value={formik.values.lastname}
+          error={formik.errors.lastname}
+          touched={formik.touched.lastname}
           onChange={formik.handleChange}
           setFieldTouched={formik.setFieldTouched}
         />
