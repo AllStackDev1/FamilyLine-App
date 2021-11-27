@@ -2,7 +2,7 @@ import { FC } from 'react'
 import { Box, Flex, Grid, Image, Text, Icon } from '@chakra-ui/react'
 import { FilledButton, SecondaryButton } from 'Components/Buttons'
 import { FaShareAlt } from 'react-icons/fa'
-
+import { Views } from 'pages/memories'
 import Birthday from 'Assets/Images/Happybirthday.png'
 import Funeral from 'Assets/Images/funeral.png'
 import Shower from 'Assets/Images/wedding.png'
@@ -30,7 +30,9 @@ const EventsData: IEvents[] = [
     title: 'Family Beach Hangout'
   }
 ]
-const Events: FC = () => {
+const Events: FC<{ isAdd?: boolean; toggle: (e: Views) => void }> = ({
+  toggle
+}) => {
   return (
     <Box p={6}>
       <Grid
@@ -56,7 +58,11 @@ const Events: FC = () => {
       </Grid>
       <Flex mt={24} align="center" justify="center">
         <Box>
-          <SecondaryButton title="Add Event" mr={4} />
+          <SecondaryButton
+            title="Add Event"
+            mr={4}
+            onClick={() => toggle('add')}
+          />
           <FilledButton
             title="Share Events"
             rightIcon={<Icon as={FaShareAlt} color="white" />}
