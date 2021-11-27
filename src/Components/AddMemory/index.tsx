@@ -25,23 +25,6 @@ const AddMemory: FC<{ isAdd?: boolean; toggle?: (e: Views) => void }> = ({
 
   const user = authStore(state => state.user)
 
-  interface IUser {
-    avatar: any
-    email: string
-    firstName: string
-    lastName: string
-    password?: string
-    phoneNumber: string
-    gender?: string
-    address?: string
-    occupation?: string
-    dob?: string
-    race?: string
-    country?: string
-    tribe?: string
-    religion?: string
-  }
-
   interface IMemory {
     name: string
     location: string
