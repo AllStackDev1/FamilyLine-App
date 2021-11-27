@@ -12,8 +12,6 @@ const Profile: FC = () => {
 
   const { data } = useQuery('profile', () => profile())
 
-  console.log(data)
-
   // useEffect(() => {
   //   authStore.setState({user: data})
   // }, [data])

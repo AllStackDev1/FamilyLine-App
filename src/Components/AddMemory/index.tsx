@@ -1,10 +1,19 @@
 import { FC } from 'react'
 import { useFormik } from 'formik'
-import { Box, Grid, Flex, GridItem } from '@chakra-ui/react'
+import {
+  Box,
+  Grid,
+  Flex,
+  GridItem,
+  Text,
+  Icon,
+  Textarea
+} from '@chakra-ui/react'
 import { FilledButton } from 'Components/Buttons'
-import { Input, TextArea } from 'Components/Forms'
+import { Input, TextArea, FileUpload } from 'Components/Forms'
 import { Views } from 'pages/memories'
 import useAuth from 'Utils/Providers/AuthContextProvider'
+import { fileDoc } from 'Utils/Theme/custom-icon'
 
 import { authStore } from 'Stores/auth.store'
 
@@ -117,33 +126,39 @@ const AddMemory: FC<{ isAdd?: boolean; toggle?: (e: Views) => void }> = ({
           setFieldTouched={formik.setFieldTouched}
         />
 
-        <GridItem
-          as={Input}
-          required
-          type="text"
-          id="file"
-          label="Add file"
-          placeholder="add file"
-          onBlur={formik.handleBlur}
-          value={formik.values.file}
-          error={formik.errors.file}
-          touched={formik.touched.file}
-          onChange={formik.handleChange}
-          setFieldTouched={formik.setFieldTouched}
-        />
+        <GridItem>
+          <Text fontSize={14} fontWeight={'bold'} pb={2}>
+            Add File
+          </Text>
+          <Flex
+            w={40}
+            h={28}
+            shadow="md"
+            rounded="lg"
+            bg="#fff"
+            justify={'center'}
+            align={'center'}
+          >
+            <Icon as={fileDoc} boxSize={16} />
+          </Flex>
+          <Text color={' rgba(0, 191, 77, 1)'} mt={2} fontSize={14}>
+            Supported FIles (PNG, JPG, MP4, PDF, DOC)
+          </Text>
+        </GridItem>
 
-        <GridItem
-          as={TextArea}
-          required
-          id="note"
-          label="Add Note"
-          onBlur={formik.handleBlur}
-          value={formik.values.note}
-          error={formik.errors.note}
-          touched={formik.touched.note}
-          onChange={formik.handleChange}
-          setFieldTouched={formik.setFieldTouched}
-        />
+        <GridItem>
+          <Textarea
+            required
+            id="note"
+            label="Add Note"
+            onBlur={formik.handleBlur}
+            value={formik.values.note}
+            error={formik.errors.note}
+            touched={formik.touched.note}
+            onChange={formik.handleChange}
+            setFieldTouched={formik.setFieldTouched}
+          />
+        </GridItem>
       </Grid>
 
       <Flex mt={16} w="full" justify="center">
