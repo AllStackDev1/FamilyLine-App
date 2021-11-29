@@ -1,18 +1,18 @@
 import { FC, useState } from 'react'
 import { Box, Flex, Grid, Image, Text, Icon } from '@chakra-ui/react'
-import { FilledButton, SecondaryButton } from 'Components/Buttons'
+import { FilledButton, SecondaryButton } from 'components/Buttons'
 import { FaPlay } from 'react-icons/fa'
 import { useDisclosure } from '@chakra-ui/react'
 
 import { Views } from 'pages/memories'
-import FamilyDinner from 'Assets/Images/family-dinner.png'
-import Party from 'Assets/Images/party.png'
-import Wedding from 'Assets/Images/wedding.png'
-import People from 'Assets/Images/people.png'
-import Birthday from 'Assets/Images/birthday.png'
-import Dinner from 'Assets/Images/dinner.png'
+import FamilyDinner from 'Assets/images/family-dinner.png'
+import Party from 'Assets/images/party.png'
+import Wedding from 'Assets/images/wedding.png'
+import People from 'Assets/images/people.png'
+import Birthday from 'Assets/images/birthday.png'
+import Dinner from 'Assets/images/dinner.png'
 import MemoryModal from './Modals/MemoryModal'
-import { IMemories } from 'Interfaces/Index.interface'
+import { IMemories } from 'interfaces/Index.interface'
 
 const MemoriesData: IMemories[] = [
   {

@@ -16,7 +16,7 @@ import {
   dots,
   fullScreen
 } from 'Utils/Theme/custom-icon'
-import { IMemories } from 'Interfaces/Index.interface'
+import { IMemories } from 'interfaces/Index.interface'
 interface IProps {
   isOpen: boolean
   onClose(): void

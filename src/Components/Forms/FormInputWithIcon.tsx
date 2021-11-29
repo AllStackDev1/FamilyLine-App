@@ -8,7 +8,7 @@ import {
   FormControl,
   InputRightElement
 } from '@chakra-ui/react'
-import { IFormProps } from 'Interfaces/forms.interface'
+import { IFormProps } from 'interfaces/forms.interface'
 import { IconType } from 'react-icons/lib'
 import FormErrorHandler from './FormErrorHandler'
 

@@ -4,8 +4,8 @@ import { useQuery } from 'react-query'
 
 import { profile } from 'Utils/Api/services'
 
-import Wrapper from 'Container/Layout'
-import AddMemberForm from 'Components/AddMemberForm'
+import Wrapper from 'container/Layout'
+import AddMemberForm from 'components/AddMemberForm'
 
 const Profile: FC = () => {
   document.title = 'Family Line | Profile'

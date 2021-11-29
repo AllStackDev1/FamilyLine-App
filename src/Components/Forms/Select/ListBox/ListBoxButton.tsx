@@ -3,7 +3,7 @@ import React from 'react'
 import { Flex, Icon, Text } from '@chakra-ui/react'
 import { FiChevronDown } from 'react-icons/fi'
 import { Listbox } from '@headlessui/react'
-import { IOption } from 'Interfaces/forms.interface'
+import { IOption } from 'interfaces/forms.interface'
 
 interface IListBoxButton {
   selected?: IOption

@@ -1,7 +1,7 @@
 import axios from 'axios'
 import QueryString from 'query-string'
-import { API_URL } from 'Utils/variables'
-import { IDelete, IGet, IPatch, IPost, IPut } from 'Interfaces/axios.interface'
+import { API_URL } from 'utils/variables'
+import { IDelete, IGet, IPatch, IPost, IPut } from 'interfaces/axios.interface'
 
 class HttpFacade {
   private http

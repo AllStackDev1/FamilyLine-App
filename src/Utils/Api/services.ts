@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import axios from './axios'
 // import { IResponse } from 'interfaces/mics.interface'
-import { IUser } from 'Interfaces/auth.interface'
+import { IUser } from 'interfaces/auth.interface'
 
 export const register = async (payload: Partial<IUser>): Promise<any> =>
   await axios.post({

@@ -14,17 +14,18 @@ import {
   useToast
 } from '@chakra-ui/react'
 
-import useAuth from 'Utils/Providers/AuthContextProvider'
-import Wrapper from 'Container/Layout'
+import useAuth from 'utils/Providers/AuthContextProvider'
 
-import { Input, InputWithIcon } from 'Components/Forms'
-import { IUser } from 'Interfaces/auth.interface'
-import { FilledButton } from 'Components/Buttons'
+import Wrapper from 'container/Layout'
 
-import MomDaughter from 'Assets/Images/mom-daughter.png'
-import SocialButtons from 'Components/SocialButtons'
+import { Input, InputWithIcon } from 'components/Forms'
+import { FilledButton } from 'components/Buttons'
+import { IUser } from 'interfaces/auth.interface'
 
-import { authStore } from 'Stores/auth.store'
+import MomDaughter from 'assets/images/mom-daughter.png'
+import SocialButtons from 'components/SocialButtons'
+
+import { authStore } from 'stores/auth.store'
 
 const Register: FC = () => {
   document.title = 'Family Line | Register'

@@ -3,7 +3,7 @@ import { Box } from '@chakra-ui/react'
 import f3 from 'family-chart'
 
 import data from './data.json'
-import { FilledButton } from 'Components/Buttons'
+import { FilledButton } from 'components/Buttons'
 import { Views } from 'pages/my-family'
 
 const FamilyChart: FC<{ toggle: (e: Views) => void }> = ({ toggle }) => {

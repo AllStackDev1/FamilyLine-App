@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types'
-import { IApiContext } from 'Interfaces/api.interface'
+import { IApiContext } from 'interfaces/api.interface'
 import { FC, useState, createContext, useContext } from 'react'
 
 const APIContext = createContext({})

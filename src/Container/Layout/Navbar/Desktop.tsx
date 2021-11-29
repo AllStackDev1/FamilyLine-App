@@ -3,9 +3,9 @@ import { FC } from 'react'
 import { NavLink as ReachRouter } from 'react-router-dom'
 import { Box, Text, Flex, Link, Image } from '@chakra-ui/react'
 
-import Logo from 'Assets/Images/logo.png'
-import Logo2x from 'Assets/Images/logo@2x.png'
-import { INavMenu } from 'Interfaces/mics.interface'
+import Logo from 'Assets/images/logo.png'
+import Logo2x from 'Assets/images/logo@2x.png'
+import { INavMenu } from 'interfaces/mics.interface'
 
 interface IAuthLink {
   to: string
