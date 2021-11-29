@@ -4,6 +4,7 @@ import { ChakraProvider } from '@chakra-ui/react'
 import { QueryClient, QueryClientProvider } from 'react-query'
 
 import { AuthContextProvider } from 'Utils/Providers/AuthContextProvider'
+import { ApiContextProvider } from 'Utils/Providers/APIContextProvider'
 
 // import { ColorModeSwitcher } from './ColorModeSwitcher'
 import { theme } from 'Utils/Theme'
@@ -19,9 +20,11 @@ export const App: FC = () => (
     <QueryClientProvider client={queryClient}>
       {/* <ColorModeSwitcher justifySelf="flex-end" /> */}
       <AuthContextProvider>
-        <BrowserRouter>
-          <Router />
-        </BrowserRouter>
+        <ApiContextProvider>
+          <BrowserRouter>
+            <Router />
+          </BrowserRouter>
+        </ApiContextProvider>
       </AuthContextProvider>
     </QueryClientProvider>
   </ChakraProvider>
