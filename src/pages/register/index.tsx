@@ -14,7 +14,7 @@ import {
   useToast
 } from '@chakra-ui/react'
 
-import useAuth from 'utils/Providers/AuthContextProvider'
+import useAuth from 'utils/providers/AuthContextProvider'
 
 import Wrapper from 'container/Layout'
 

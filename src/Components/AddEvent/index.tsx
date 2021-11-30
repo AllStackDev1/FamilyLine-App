@@ -1,13 +1,15 @@
 import { FC } from 'react'
 import { useFormik } from 'formik'
 import { Box, Grid, Flex, GridItem, Text, Icon } from '@chakra-ui/react'
+
 import { FilledButton } from 'components/Buttons'
 import { Input, TextArea, FileUpload } from 'components/Forms'
-import { Views } from 'pages/memories'
-import useAuth from 'Utils/Providers/AuthContextProvider'
-import { fileDoc } from 'Utils/Theme/custom-icon'
 
-import { authStore } from 'Stores/auth.store'
+import { Views } from 'pages/memories'
+import useAuth from 'utils/providers/AuthContextProvider'
+import { fileDoc } from 'utils/theme/custom-icon'
+
+import { authStore } from 'stores/auth.store'
 
 const AddEvent: FC<{ isAdd?: boolean; toggle?: (e: Views) => void }> = ({
   isAdd,

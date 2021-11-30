@@ -12,8 +12,8 @@ import {
   Divider
 } from '@chakra-ui/react'
 
-import Logo from 'Assets/images/logo.png'
-import Logo2x from 'Assets/images/logo@2x.png'
+import Logo from 'assets/images/logo.png'
+import Logo2x from 'assets/images/logo@2x.png'
 
 import { INavMenu } from 'interfaces/mics.interface'
 import { FiMenu, FiX } from 'react-icons/fi'

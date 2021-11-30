@@ -46,8 +46,21 @@ declare module 'family-chart' {
   }
 
   const value: {
-    createStore: (c: ICreateStore) => any
+    createStore: (c: Partial<ICreateStore>) => any
     d3AnimationView: (c: any) => any
+    elements: {
+      Card: (c: any) => any
+    }
+    handlers: {
+      AddRelative: (c: any) => any
+    }
+    CalculateTree: (c: {
+      data_stash: any
+      main_id?: any
+      is_vertical?: boolean
+      node_separation?: number
+      level_separation?: number
+    }) => any
   }
   export default value
 }

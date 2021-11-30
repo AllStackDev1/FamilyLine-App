@@ -6095,10 +6095,10 @@ extglob@^2.0.4:
     snapdragon "^0.8.1"
     to-regex "^3.0.1"
 
-family-chart@^0.0.0-alpha-7:
-  version "0.0.0-alpha-7"
-  resolved "https://registry.yarnpkg.com/family-chart/-/family-chart-0.0.0-alpha-7.tgz#d615a4da7c15b5e779851fbe17d77b888b5dc82f"
-  integrity sha512-x2mB6CH2xVw/raaXca5CoAkOowGc8S8zFpRR5GaNkpXXOEvyi14y4NwtDAAdu4q/ivuWP5o+dSPAJNuuBM7NCw==
+family-chart@^0.0.0-beta-1:
+  version "0.0.0-beta-1"
+  resolved "https://registry.yarnpkg.com/family-chart/-/family-chart-0.0.0-beta-1.tgz#0faf3d5446d02f430e8a4c62609455cb9c8f0aad"
+  integrity sha512-3YqXXum40xQBPagXan4Hpg71cO09FB5BVm2S/AUOggvF1x6/4PDlwRkZTDJ6OkbZNlR7GnyD2zphUgTfE2FTVg==
   dependencies:
     d3 "6"
 
@@ -8430,6 +8430,11 @@ match-sorter@^6.0.2:
     "@babel/runtime" "^7.12.5"
     remove-accents "0.4.2"
 
+materialize-css@^1.0.0-rc.2:
+  version "1.0.0-rc.2"
+  resolved "https://registry.yarnpkg.com/materialize-css/-/materialize-css-1.0.0-rc.2.tgz#b9e6b18f698c6ef77bb6b628d59147faf131eff5"
+  integrity sha512-FuQmSyq4Qv0ov7A2qXw0E6/jbQzSWx2P1pg2/XQDYTkkSc/GyiFAxu3fw9zgShwuTvyumEiw5jkxQWT9siqMBQ==
+
 md5.js@^1.3.4:
   version "1.3.5"
   resolved "https://registry.yarnpkg.com/md5.js/-/md5.js-1.3.5.tgz#b5d07b8e3216e3e27cd728d72f70d1e6a342005f"
@@ -10561,6 +10566,11 @@ react-router@6.0.2:
   integrity sha512-8/Wm3Ed8t7TuedXjAvV39+c8j0vwrI5qVsYqjFr5WkJjsJpEvNSoLRUbtqSEYzqaTUj1IV+sbPJxvO+accvU0Q==
   dependencies:
     history "^5.1.0"
+
+react-script-hook@^1.5.0:
+  version "1.5.0"
+  resolved "https://registry.yarnpkg.com/react-script-hook/-/react-script-hook-1.5.0.tgz#7d7eb189c92e01cf0a8d1796113947ef8e08eed5"
+  integrity sha512-LzWXi5rxT4xz+zLwCt7nTmMuFyFs04c5m6lHCs8Ps9U8J8zHQNp+E9IcLFSFzkn4WZMiNPt2DQUVeBHLy2Ix0w==
 
 react-scripts@^4.0.3:
   version "4.0.3"

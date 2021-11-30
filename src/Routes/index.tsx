@@ -41,9 +41,9 @@ function Router() {
     {
       path: '/my-family',
       element: (
-        <RequireAuth>
-          <Views.MyFamily />
-        </RequireAuth>
+        // <RequireAuth>
+        <Views.MyFamily />
+        // </RequireAuth>
       )
     },
     {

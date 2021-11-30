@@ -3,10 +3,10 @@ import { Box, Flex, Grid, Image, Text, Icon } from '@chakra-ui/react'
 import { FilledButton, SecondaryButton } from 'components/Buttons'
 import { FaShareAlt } from 'react-icons/fa'
 import { Views } from 'pages/memories'
-import Birthday from 'Assets/images/Happybirthday.png'
-import Funeral from 'Assets/images/funeral.png'
-import Shower from 'Assets/images/wedding.png'
-import Hangout from 'Assets/images/Hangout.png'
+import Birthday from 'assets/images/Happybirthday.png'
+import Funeral from 'assets/images/funeral.png'
+import Shower from 'assets/images/wedding.png'
+import Hangout from 'assets/images/Hangout.png'
 
 interface IEvents {
   thumb: string

@@ -1,16 +1,18 @@
 import { FC } from 'react'
 import { useFormik } from 'formik'
+import { FiEdit2 } from 'react-icons/fi'
 import { Box, Icon, Grid, Flex, GridItem } from '@chakra-ui/react'
+
 import { FilledButton } from 'components/Buttons'
 import { FileUpload, Input, Select } from 'components/Forms'
-import { Views } from 'pages/my-family'
-
-import { IUser } from 'interfaces/auth.interface'
 import Thumb from 'components/Thumb'
+
 import { authStore } from 'stores/auth.store'
 
-import Avatar from 'Assets/images/avatar.png'
-import { FiEdit2 } from 'react-icons/fi'
+import { Views } from 'pages/my-family'
+import { IUser } from 'interfaces/auth.interface'
+
+import Avatar from 'assets/images/avatar.png'
 
 const AddMemberForm: FC<{ isAdd?: boolean; toggle?: (e: Views) => void }> = ({
   isAdd,

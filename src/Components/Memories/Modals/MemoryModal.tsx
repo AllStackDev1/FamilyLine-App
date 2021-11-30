@@ -15,7 +15,7 @@ import {
   shareIcon,
   dots,
   fullScreen
-} from 'Utils/Theme/custom-icon'
+} from 'utils/theme/custom-icon'
 import { IMemories } from 'interfaces/Index.interface'
 interface IProps {
   isOpen: boolean

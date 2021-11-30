@@ -3,11 +3,11 @@ import { Box, Flex, Text, Image, Grid, GridItem } from '@chakra-ui/react'
 import Wrapper from 'container/Layout'
 import { FcGoogle } from 'react-icons/fc'
 
-import GM from 'Assets/images/gmail.png'
-import Person from 'Assets/images/person.png'
-import FB from 'Assets/images/fb.png'
-import Smile from 'Assets/images/smile.png'
-import Family1 from 'Assets/images/family1.png'
+import GM from 'assets/images/gmail.png'
+import Person from 'assets/images/person.png'
+import FB from 'assets/images/fb.png'
+import Smile from 'assets/images/smile.png'
+import Family1 from 'assets/images/family1.png'
 
 const notifications = [
   {

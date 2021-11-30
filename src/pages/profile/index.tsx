@@ -2,7 +2,7 @@ import { FC } from 'react'
 import { Box } from '@chakra-ui/react'
 import { useQuery } from 'react-query'
 
-import { profile } from 'Utils/Api/services'
+import { profile } from 'utils/api/services'
 
 import Wrapper from 'container/Layout'
 import AddMemberForm from 'components/AddMemberForm'

@@ -18,7 +18,7 @@ import { authStore } from 'stores/auth.store'
 
 import Family from 'assets/images/family.png'
 
-import useAuth from 'utils/Providers/AuthContextProvider'
+import useAuth from 'utils/providers/AuthContextProvider'
 import { IUser } from 'interfaces/auth.interface'
 
 import Wrapper from 'container/Layout'

@@ -5,13 +5,14 @@ import { FaPlay } from 'react-icons/fa'
 import { useDisclosure } from '@chakra-ui/react'
 
 import { Views } from 'pages/memories'
-import FamilyDinner from 'Assets/images/family-dinner.png'
-import Party from 'Assets/images/party.png'
-import Wedding from 'Assets/images/wedding.png'
-import People from 'Assets/images/people.png'
-import Birthday from 'Assets/images/birthday.png'
-import Dinner from 'Assets/images/dinner.png'
+import FamilyDinner from 'assets/images/family-dinner.png'
+import Party from 'assets/images/party.png'
+import Wedding from 'assets/images/wedding.png'
+import People from 'assets/images/people.png'
+import Birthday from 'assets/images/birthday.png'
+import Dinner from 'assets/images/dinner.png'
 import MemoryModal from './Modals/MemoryModal'
+
 import { IMemories } from 'interfaces/Index.interface'
 
 const MemoriesData: IMemories[] = [

@@ -12,7 +12,7 @@ import {
 import { FilledButton } from 'components/Buttons'
 import { Input, TextArea, FileUpload } from 'components/Forms'
 import { Views } from 'pages/memories'
-import useAuth from 'utils/Providers/AuthContextProvider'
+import useAuth from 'utils/providers/AuthContextProvider'
 import { fileDoc } from 'utils/theme/custom-icon'
 
 import { authStore } from 'stores/auth.store'
