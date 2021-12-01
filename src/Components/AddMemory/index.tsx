@@ -9,13 +9,13 @@ import {
   Icon,
   Textarea
 } from '@chakra-ui/react'
-import { FilledButton } from 'components/Buttons'
-import { Input, TextArea, FileUpload } from 'components/Forms'
+import { FilledButton } from 'Components/Buttons'
+import { Input, TextArea, FileUpload } from 'Components/Forms'
 import { Views } from 'pages/memories'
-import useAuth from 'utils/providers/AuthContextProvider'
-import { fileDoc } from 'utils/theme/custom-icon'
+import useAuth from 'Utils/Providers/AuthContextProvider'
+import { fileDoc } from 'Utils/Theme/custom-icon'
 
-import { authStore } from 'stores/auth.store'
+import { authStore } from 'Stores/auth.store'
 
 const AddMemory: FC<{ isAdd?: boolean; toggle?: (e: Views) => void }> = ({
   isAdd,

@@ -3,10 +3,10 @@ import { FC, useState } from 'react'
 import { Listbox } from '@headlessui/react'
 import { Box, FormControl, FormLabel } from '@chakra-ui/react'
 
-import { IOption, IOptions } from 'interfaces/forms.interface'
-import ListBoxButton from './ListBox/ListBoxButton'
-import ListBoxOptions from './ListBox/ListBoxOptions'
-import FormErrorHandler from '../FormErrorHandler'
+import { IOption, IOptions } from 'Interfaces/forms.interface'
+import ListBoxButton from 'Components/Forms/Select/ListBox/ListBoxButton'
+import ListBoxOptions from 'Components/Forms/Select/ListBox/ListBoxOptions'
+import FormErrorHandler from 'Components/Forms/FormErrorHandler'
 
 interface IFormSelect {
   id: string

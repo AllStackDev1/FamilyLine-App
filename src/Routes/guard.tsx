@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Navigate } from 'react-router-dom'
-import { authStore } from 'stores/auth.store'
+import { authStore } from 'Stores/auth.store'
 
 interface IProps {
   children: any

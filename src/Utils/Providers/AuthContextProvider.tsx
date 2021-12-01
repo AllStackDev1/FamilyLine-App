@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types'
-import { IAuthContext } from 'interfaces/auth.interface'
+import { IAuthContext } from 'Interfaces/auth.interface'
 import { FC, useState, createContext, useContext } from 'react'
 
 const AuthContext = createContext({})

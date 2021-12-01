@@ -12,10 +12,10 @@ import {
   Divider
 } from '@chakra-ui/react'
 
-import Logo from 'assets/images/logo.png'
-import Logo2x from 'assets/images/logo@2x.png'
+import Logo from 'Assets/Images/logo.png'
+import Logo2x from 'Assets/Images/logo@2x.png'
 
-import { INavMenu } from 'interfaces/mics.interface'
+import { INavMenu } from 'Interfaces/mics.interface'
 import { FiMenu, FiX } from 'react-icons/fi'
 
 const Layout: FC<{ menus: INavMenu[]; isAuth?: boolean }> = ({

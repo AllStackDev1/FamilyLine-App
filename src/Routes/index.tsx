@@ -2,10 +2,10 @@ import { useEffect, Suspense } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { useRoutes, useNavigate, useLocation } from 'react-router-dom'
 
-import { Splash } from 'components/Shared/Loading'
+import { Splash } from 'Components/Shared/Loading'
 import { Views } from 'pages'
 
-import RequireAuth from 'routes/guard'
+import RequireAuth from 'Routes/guard'
 
 function Router() {
   const { pathname } = useLocation()

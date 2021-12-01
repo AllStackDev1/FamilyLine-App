@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import http from './http'
+import http from 'Utils/Api/http'
 // import { IResponse } from 'interfaces/mics.interface'
 import { IUser } from 'interfaces/auth.interface'
 

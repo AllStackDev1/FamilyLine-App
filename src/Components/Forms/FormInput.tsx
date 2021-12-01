@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React from 'react'
 import { Input, FormLabel, FormControl, InputProps } from '@chakra-ui/react'
-import FormErrorHandler from './FormErrorHandler'
-import { IFormProps } from 'interfaces/forms.interface'
+import FormErrorHandler from 'Components/Forms/FormErrorHandler'
+import { IFormProps } from 'Interfaces/forms.interface'
 
 const FormInput: React.FC<IFormProps & InputProps> = ({
   label,

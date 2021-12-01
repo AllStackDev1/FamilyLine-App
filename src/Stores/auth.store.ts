@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import create from 'zustand'
-import { login, register } from 'utils/api/services'
+import { login, register } from 'Utils/Api/services'
 import { IUser } from 'interfaces/auth.interface'
 
 interface IAuthStore {

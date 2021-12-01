@@ -10,7 +10,7 @@ import {
   FACEBOOK_CLIENT_ID,
   LINKEDIN_CLIENT_ID,
   LINKEDIN_STATE
-} from 'utils/variables'
+} from 'Utils/variables'
 
 const SocialButtons: FC = (): JSX.Element => {
   const googleParams = queryString.stringify({

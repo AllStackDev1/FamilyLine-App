@@ -1,13 +1,13 @@
 import { FC } from 'react'
 import { List } from '@chakra-ui/react'
-import SidebarItem from './SidebarItem'
+import SidebarItem from 'Container/Layout/Sidebar/SidebarItem'
 import {
   ProfileIcon,
   FamilyIcon,
   EventsIcon,
   MemoryIcon,
   BellIcon
-} from 'utils/theme/custom-icon'
+} from 'Utils/Theme/custom-icon'
 
 const Sidebar: FC = (): JSX.Element => {
   const menu = [

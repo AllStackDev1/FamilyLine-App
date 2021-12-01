@@ -2,9 +2,9 @@ import { FC, useRef, useEffect } from 'react'
 import { Box } from '@chakra-ui/react'
 import f3 from 'family-chart'
 
-import { Form } from './Form'
+import { Form } from 'Components/FamilyChart/Form'
 import { Views } from 'pages/my-family'
-import { FilledButton } from 'components/Buttons'
+import { FilledButton } from 'Components/Buttons'
 
 import M from 'materialize-css'
 

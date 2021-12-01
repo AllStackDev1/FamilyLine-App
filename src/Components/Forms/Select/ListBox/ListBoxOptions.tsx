@@ -2,8 +2,8 @@
 import React from 'react'
 import { Box } from '@chakra-ui/react'
 import { Listbox } from '@headlessui/react'
-import { IOptions } from 'interfaces/forms.interface'
-import ListBoxOption from './ListBoxOption'
+import { IOptions } from 'Interfaces/forms.interface'
+import ListBoxOption from 'Components/Forms/Select/ListBox/ListBoxOption'
 import { motion } from 'framer-motion'
 
 const MotionBox = motion(Box)

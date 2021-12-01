@@ -1,8 +1,8 @@
 import { FC, useState } from 'react'
 import { Box } from '@chakra-ui/react'
-import Wrapper from 'container/Layout'
-import Events from 'components/Events'
-import AddEvent from 'components/AddEvent'
+import Wrapper from 'Container/Layout'
+import Events from 'Components/Events'
+import AddEvent from 'Components/AddEvent'
 
 export type Views = 'add' | 'view'
 
