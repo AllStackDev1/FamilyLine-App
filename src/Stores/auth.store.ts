@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import create from 'zustand'
 import { login, register } from 'Utils/Api/services'
-import { IUser } from 'interfaces/auth.interface'
+import { IUser, IFamily } from 'Interfaces/auth.interface'
 
 interface IAuthStore {
   isLoading: boolean
@@ -11,7 +11,7 @@ interface IAuthStore {
   error?: string | null
   message?: string | null
   login: (p: Partial<IUser>) => Promise<void>
-  register: (p: Partial<IUser>) => Promise<void>
+  register: (p: IFamily) => Promise<void>
 }
 
 export const authStore = create<IAuthStore>(set => ({

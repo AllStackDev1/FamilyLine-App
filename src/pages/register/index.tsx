@@ -20,7 +20,7 @@ import Wrapper from 'Container/Layout'
 
 import { Input, InputWithIcon } from 'Components/Forms'
 import { FilledButton } from 'Components/Buttons'
-import { IUser } from 'interfaces/auth.interface'
+import { IFamily } from 'Interfaces/auth.interface'
 
 import MomDaughter from 'Assets/Images/mom-daughter.png'
 import SocialButtons from 'Components/SocialButtons'
@@ -35,10 +35,9 @@ const Register: FC = () => {
     state => state
   )
 
-  const formik = useFormik<Partial<IUser>>({
+  const formik = useFormik<IFamily>({
     initialValues: {
-      firstname: '',
-      lastname: '',
+      family_name: '',
       phonenumber: '',
       email: '',
       password: ''
@@ -64,7 +63,15 @@ const Register: FC = () => {
     }
 
     if (user) {
-      navigate('/register/success')
+      toast({
+        duration: 8000,
+        isClosable: true,
+        position: 'top-right',
+        description: 'Account created successfully',
+        status: 'success',
+        title: 'Success'
+      })
+      navigate('/login')
     }
 
     return () => {
@@ -132,29 +139,14 @@ const Register: FC = () => {
                   as={Input}
                   required
                   type="text"
-                  id="firstname"
-                  label="First Name"
-                  placeholder="Joh"
+                  id="family_name"
+                  label="Family Name"
+                  placeholder=""
                   onBlur={formik.handleBlur}
                   onChange={formik.handleChange}
-                  value={formik.values.firstname}
-                  error={formik.errors.firstname}
-                  touched={formik.touched.firstname}
-                  setFieldTouched={formik.setFieldTouched}
-                />
-
-                <GridItem
-                  as={Input}
-                  required
-                  type="text"
-                  id="lastname"
-                  label="Last Name"
-                  placeholder="Joh"
-                  onBlur={formik.handleBlur}
-                  onChange={formik.handleChange}
-                  value={formik.values.lastname}
-                  error={formik.errors.lastname}
-                  touched={formik.touched.lastname}
+                  value={formik.values.family_name}
+                  error={formik.errors.family_name}
+                  touched={formik.touched.family_name}
                   setFieldTouched={formik.setFieldTouched}
                 />
 

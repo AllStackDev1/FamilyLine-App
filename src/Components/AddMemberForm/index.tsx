@@ -10,7 +10,7 @@ import Thumb from 'Components/Thumb'
 import { authStore } from 'Stores/auth.store'
 
 import { Views } from 'pages/my-family'
-import { IUser } from 'interfaces/auth.interface'
+import { IUser } from 'Interfaces/auth.interface'
 
 import Avatar from 'Assets/Images/avatar.png'
 

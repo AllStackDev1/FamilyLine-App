@@ -48,7 +48,7 @@ const ListBoxButton: React.FC<ListBoxButtonProps> = ({
           mt={1}
           rounded="md"
           color="white"
-          bg="brand.blue.100"
+          bg="brand.green.200"
           key={item}
           fontSize={{ md: 'sm' }}
         >
@@ -57,7 +57,7 @@ const ListBoxButton: React.FC<ListBoxButtonProps> = ({
             align="center"
             justify="center"
             ml={1}
-            bg="brand.blue.200"
+            color="white"
             rounded="full"
             cursor="pointer"
             w={4}

@@ -19,7 +19,7 @@ import { authStore } from 'Stores/auth.store'
 import Family from 'Assets/Images/family.png'
 
 import useAuth from 'Utils/Providers/AuthContextProvider'
-import { IUser } from 'interfaces/auth.interface'
+import { IUser } from 'Interfaces/auth.interface'
 
 import Wrapper from 'Container/Layout'
 import { FilledButton } from 'Components/Buttons'

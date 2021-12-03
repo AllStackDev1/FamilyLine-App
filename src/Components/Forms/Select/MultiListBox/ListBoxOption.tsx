@@ -21,7 +21,7 @@ const ListBoxOption: React.FC<MultiListBoxOption> = ({ selected, item }) => {
           align="center"
           cursor="pointer"
           userSelect="none"
-          bg={active ? 'brand.green.100' : ''}
+          bg={active ? 'brand.green.200' : ''}
           color={active ? 'white' : 'brand.green.200'}
         >
           <Text

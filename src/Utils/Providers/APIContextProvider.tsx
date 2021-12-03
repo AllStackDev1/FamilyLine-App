@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types'
+import http from 'Utils/Api/http'
 import { IApiContext } from 'Interfaces/api.interface'
 import { FC, useState, createContext, useContext } from 'react'
 

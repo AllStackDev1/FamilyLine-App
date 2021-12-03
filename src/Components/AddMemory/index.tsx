@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { FC, useState } from 'react'
 import { useFormik } from 'formik'
 import {
   Box,
@@ -7,29 +7,32 @@ import {
   GridItem,
   Text,
   Icon,
-  Textarea
+  useToast
 } from '@chakra-ui/react'
-import { FilledButton } from 'Components/Buttons'
-import { Input, TextArea, FileUpload } from 'Components/Forms'
-import { Views } from 'pages/memories'
 import useAuth from 'Utils/Providers/AuthContextProvider'
-import { fileDoc } from 'Utils/Theme/custom-icon'
 
-import { authStore } from 'Stores/auth.store'
+import { saveMemory } from 'Utils/Api/services'
+import { FilledButton } from 'Components/Buttons'
+import { Input, MultiSelect, TextArea, FileUpload } from 'Components/Forms'
+import { useQuery } from 'react-query'
+import { familyMembers } from 'Utils/Api/services'
+import { Views } from 'pages/memories'
+import { fileDoc } from 'Utils/Theme/custom-icon'
 
 const AddMemory: FC<{ isAdd?: boolean; toggle?: (e: Views) => void }> = ({
   isAdd,
   toggle
 }) => {
-  const { isLoading } = useAuth()
-
-  const user = authStore(state => state.user)
+  const members = ['Kofi', 'Ama', 'Efua', 'Yaw']
+  const { data } = useQuery('family-members', () => familyMembers())
+  const toast = useToast()
+  const [isLoading, setLoading] = useState(false)
 
   interface IMemory {
     name: string
     location: string
     date: string
-    member: string
+    members: any[]
     file: string
     note: ''
   }
@@ -39,12 +42,42 @@ const AddMemory: FC<{ isAdd?: boolean; toggle?: (e: Views) => void }> = ({
       name: '',
       location: '',
       date: '',
-      member: '',
+      members: [],
       file: '',
       note: ''
     },
     onSubmit: async values => {
-      //   await login(values)
+      try {
+        setLoading(true)
+        const formData = new FormData()
+        Object.keys(values).forEach(key => formData.append(key, values[key]))
+
+        const res = await saveMemory(formData)
+        if (res) {
+          setLoading(false)
+          toast({
+            duration: 8000,
+            isClosable: true,
+            position: 'top-right',
+            status: 'success',
+            title: 'Memory recorded successfully'
+          })
+        }
+      } catch (error: any) {
+        setLoading(false)
+        if (error?.data) {
+          error?.data?.memories?.map(item => {
+            toast({
+              duration: 8000,
+              isClosable: true,
+              position: 'top-right',
+              description: item,
+              status: 'error',
+              title: 'An error occurred'
+            })
+          })
+        }
+      }
     }
   })
 
@@ -95,42 +128,45 @@ const AddMemory: FC<{ isAdd?: boolean; toggle?: (e: Views) => void }> = ({
           setFieldTouched={formik.setFieldTouched}
         />
 
-        <GridItem
-          as={Input}
-          required
-          id="members"
-          type="text"
-          label="Members"
-          onBlur={formik.handleBlur}
-          value={formik.values.member}
-          error={formik.errors.member}
-          touched={formik.touched.member}
-          onChange={formik.handleChange}
-          setFieldTouched={formik.setFieldTouched}
-        />
+        <GridItem>
+          <MultiSelect
+            required
+            options={members}
+            id="members"
+            label="Members"
+            placeholder="Select family members present"
+            setFieldValue={formik.setFieldValue}
+            value={formik.values.members}
+            error={formik.errors.members}
+            setFieldTouched={formik.setFieldTouched}
+          />
+        </GridItem>
 
         <GridItem>
           <Text fontSize={14} fontWeight={'bold'} pb={2}>
             Add File
           </Text>
-          <Flex
-            w={40}
-            h={28}
-            shadow="md"
-            rounded="lg"
-            bg="#fff"
-            justify={'center'}
-            align={'center'}
-          >
-            <Icon as={fileDoc} boxSize={16} />
-          </Flex>
+          <FileUpload id="file" setFieldValue={formik.setFieldValue}>
+            <Flex
+              w={40}
+              h={28}
+              shadow="md"
+              rounded="lg"
+              bg="#fff"
+              justify={'center'}
+              align={'center'}
+            >
+              <Icon as={fileDoc} boxSize={16} />
+            </Flex>
+          </FileUpload>
+
           <Text color={' rgba(0, 191, 77, 1)'} mt={2} fontSize={14}>
             Supported FIles (PNG, JPG, MP4, PDF, DOC)
           </Text>
         </GridItem>
 
         <GridItem>
-          <Textarea
+          <TextArea
             required
             id="note"
             label="Add Note"

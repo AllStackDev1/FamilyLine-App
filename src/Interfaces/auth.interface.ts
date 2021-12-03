@@ -15,6 +15,13 @@ export interface IUser {
   religion?: string
 }
 
+export interface IFamily {
+  family_name: string
+  email: string
+  password: string
+  phonenumber: string
+}
+
 export interface IAuthData {
   token: string
   user: IUser

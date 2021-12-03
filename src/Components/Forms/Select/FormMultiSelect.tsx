@@ -57,12 +57,16 @@ const FormMultiSelect: FC<FormMultiSelectProps> = ({
       isRequired={required}
       onMouseLeave={() => isTouched && setFieldTouched(id, true)}
     >
-      <FormLabel color="gray.500">{label}</FormLabel>
+      <FormLabel color="black" fontWeight={600} fontSize={14}>
+        {label}
+      </FormLabel>
       <Listbox
         as={Box}
         value={value}
         onChange={handleSelection}
         onClick={() => setTouched(true)}
+        shadow="md"
+        rounded="lg"
       >
         {({ open }) => (
           <Box pos="relative">
