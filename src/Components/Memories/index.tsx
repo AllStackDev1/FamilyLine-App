@@ -3,8 +3,10 @@ import { Box, Flex, Grid, Image, Text, Icon } from '@chakra-ui/react'
 import { FilledButton, SecondaryButton } from 'Components/Buttons'
 import { FaPlay } from 'react-icons/fa'
 import { useDisclosure } from '@chakra-ui/react'
-
+import { useQuery } from 'react-query'
 import { Views } from 'pages/memories'
+import { getMemories } from 'Utils/Api/services'
+
 import FamilyDinner from 'Assets/Images/family-dinner.png'
 import Party from 'Assets/Images/party.png'
 import Wedding from 'Assets/Images/wedding.png'
@@ -52,6 +54,9 @@ const Memories: FC<{ isAdd?: boolean; toggle: (e: Views) => void }> = ({
 }) => {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const [selectedItem, setSelectedItem] = useState<IMemories | undefined>()
+  const { data } = useQuery('family_memories', () => getMemories())
+
+  console.log(data)
   return (
     <Box p={6}>
       <MemoryModal isOpen={isOpen} onClose={onClose} item={selectedItem} />

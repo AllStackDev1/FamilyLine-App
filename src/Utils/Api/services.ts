@@ -20,6 +20,9 @@ export const familyMembers = async (): Promise<any> =>
     url: '/user/family/'
   })
 
+export const getMemories = async (): Promise<any> =>
+  await http.get({ url: '/memories/memories/' })
+
 export const saveMemory = async (payload: any): Promise<any> =>
   await http.post({
     url: '/memories/memories/',
