@@ -29,7 +29,7 @@ const FileUpload: FC<IProps & InputProps> = ({
     <FormLabel for={id} cursor="pointer">
       <Input
         type="file"
-        accept="image/jpeg, image/png"
+        accept="image/jpeg, image/png, video/*"
         onChange={e => {
           setFileUploaded(e.target.files?.[0])
           return setFieldValue(e.target.id, e.target.files?.[0])

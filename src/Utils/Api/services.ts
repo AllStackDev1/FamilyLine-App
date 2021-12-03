@@ -23,7 +23,7 @@ export const familyMembers = async (): Promise<any> =>
 export const saveMemory = async (payload: any): Promise<any> =>
   await http.post({
     url: '/memories/memories/',
-    body: JSON.stringify(payload)
+    body: payload
   })
 
 export const profile = async (): Promise<any> =>

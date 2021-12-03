@@ -31,8 +31,8 @@ const AddMemory: FC<{ isAdd?: boolean; toggle?: (e: Views) => void }> = ({
   interface IMemory {
     name: string
     location: string
-    date: string
-    members: any[]
+    memories_date: string
+    memories: any[] | any
     file: string
     note: ''
   }
@@ -41,16 +41,24 @@ const AddMemory: FC<{ isAdd?: boolean; toggle?: (e: Views) => void }> = ({
     initialValues: {
       name: '',
       location: '',
-      date: '',
-      members: [],
+      memories_date: '',
+      memories: [],
       file: '',
       note: ''
     },
     onSubmit: async values => {
       try {
+        const payload = { ...values }
         setLoading(true)
+        const memories = payload.memories.map(item => {
+          return { members: item }
+        })
+
+        payload.memories = JSON.stringify(memories)
         const formData = new FormData()
-        Object.keys(values).forEach(key => formData.append(key, values[key]))
+        Object.keys(payload).forEach(key => formData.append(key, payload[key]))
+
+        console.log('Hello accra ', payload)
 
         const res = await saveMemory(formData)
         if (res) {
@@ -118,12 +126,12 @@ const AddMemory: FC<{ isAdd?: boolean; toggle?: (e: Views) => void }> = ({
           as={Input}
           required
           type="date"
-          id="date"
+          id="memories_date"
           label="date"
           onBlur={formik.handleBlur}
-          value={formik.values.date}
-          error={formik.errors.date}
-          touched={formik.touched.date}
+          value={formik.values.memories_date}
+          error={formik.errors.memories_date}
+          touched={formik.touched.memories_date}
           onChange={formik.handleChange}
           setFieldTouched={formik.setFieldTouched}
         />
@@ -132,12 +140,12 @@ const AddMemory: FC<{ isAdd?: boolean; toggle?: (e: Views) => void }> = ({
           <MultiSelect
             required
             options={members}
-            id="members"
+            id="memories"
             label="Members"
             placeholder="Select family members present"
             setFieldValue={formik.setFieldValue}
-            value={formik.values.members}
-            error={formik.errors.members}
+            value={formik.values.memories}
+            error={formik.errors.memories}
             setFieldTouched={formik.setFieldTouched}
           />
         </GridItem>
