@@ -1,8 +1,8 @@
 import { FC, useState } from 'react'
 import { Box } from '@chakra-ui/react'
-import Wrapper from 'Container/Layout'
-import AddMemberForm from 'Components/AddMemberForm'
-import FamilyChart from 'Components/FamilyChart'
+import Wrapper from 'container/Layout'
+import AddMemberForm from 'components/AddMemberForm'
+import FamilyChart from 'components/FamilyChart'
 
 export type Views = 'add' | 'chart'
 
