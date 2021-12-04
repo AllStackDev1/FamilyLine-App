@@ -21,5 +21,14 @@ export const getMemories = async (): Promise<any> =>
 export const saveMemory = async (payload: any): Promise<any> =>
   await http.post({ url: '/memories/memories/', body: payload })
 
+export const getEvents = async (): Promise<any> =>
+  await http.get({ url: '/user/events/' })
+
+export const saveEvents = async (payload: any): Promise<any> =>
+  await http.post({
+    url: '/user/events/',
+    body: payload
+  })
+
 export const profile = async (): Promise<any> =>
   await http.get({ url: '/user/profile/' })

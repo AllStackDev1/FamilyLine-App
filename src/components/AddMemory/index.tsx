@@ -9,7 +9,6 @@ import {
   Icon,
   useToast
 } from '@chakra-ui/react'
-import useAuth from 'utils/providers/AuthContextProvider'
 
 import { saveMemory, familyMembers } from 'utils/api/services'
 import { FilledButton } from 'components/Buttons'
