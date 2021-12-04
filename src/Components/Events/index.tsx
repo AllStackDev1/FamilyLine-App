@@ -3,6 +3,9 @@ import { Box, Flex, Grid, Image, Text, Icon } from '@chakra-ui/react'
 import { FilledButton, SecondaryButton } from 'Components/Buttons'
 import { FaShareAlt } from 'react-icons/fa'
 import { Views } from 'pages/memories'
+import { useQuery } from 'react-query'
+import { getEvents } from 'Utils/Api/services'
+
 import Birthday from 'Assets/Images/Happybirthday.png'
 import Funeral from 'Assets/Images/funeral.png'
 import Shower from 'Assets/Images/wedding.png'
@@ -33,43 +36,56 @@ const EventsData: IEvents[] = [
 const Events: FC<{ isAdd?: boolean; toggle: (e: Views) => void }> = ({
   toggle
 }) => {
+  const { data } = useQuery('family_memories', () => getEvents())
+
+  console.log(data)
   return (
-    <Box p={6}>
-      <Grid
-        templateColumns={{ base: 'repeat(2,1fr)', xl: 'repeat(3, 1fr)' }}
-        gap={10}
-      >
-        {EventsData.map(item => (
-          <Box>
-            <Box
-              h={'auto'}
-              rounded={'3xl'}
-              w="full"
-              pos="relative"
-              overflow="hidden"
-            >
-              <Image src={item.thumb} w="full" />
+    <>
+      {data ? (
+        <Box p={6}>
+          <Grid
+            templateColumns={{ base: 'repeat(2,1fr)', xl: 'repeat(3, 1fr)' }}
+            gap={10}
+          >
+            {data.map(item => (
+              <Box>
+                <Box
+                  h={'auto'}
+                  rounded={'3xl'}
+                  w="full"
+                  pos="relative"
+                  overflow="hidden"
+                  bg="gray.300"
+                  minH={60}
+                >
+                  <Image src={item.event_file} w="full" />
+                </Box>
+                <Text textAlign="center" mt={2} fontWeight="bold">
+                  {item.event_name}
+                </Text>
+              </Box>
+            ))}
+          </Grid>
+          <Flex mt={24} align="center" justify="center">
+            <Box>
+              <SecondaryButton
+                title="Add Event"
+                mr={4}
+                onClick={() => toggle('add')}
+              />
+              <FilledButton
+                title="Share Events"
+                rightIcon={<Icon as={FaShareAlt} color="white" />}
+              />
             </Box>
-            <Text textAlign="center" mt={2} fontWeight="bold">
-              {item.title}
-            </Text>
-          </Box>
-        ))}
-      </Grid>
-      <Flex mt={24} align="center" justify="center">
-        <Box>
-          <SecondaryButton
-            title="Add Event"
-            mr={4}
-            onClick={() => toggle('add')}
-          />
-          <FilledButton
-            title="Share Events"
-            rightIcon={<Icon as={FaShareAlt} color="white" />}
-          />
+          </Flex>
         </Box>
-      </Flex>
-    </Box>
+      ) : (
+        <Flex h="100%" w="100%" align="center" justify="center">
+          Loading
+        </Flex>
+      )}
+    </>
   )
 }
 
