@@ -1,8 +1,8 @@
 import { FC, useState } from 'react'
 import { Box } from '@chakra-ui/react'
-import Wrapper from 'Container/Layout'
-import Memories from 'Components/Memories'
-import AddMemories from 'Components/AddMemory'
+import Wrapper from 'container/Layout'
+import Memories from 'components/Memories'
+import AddMemories from 'components/AddMemory'
 
 export type Views = 'add' | 'view'
 
