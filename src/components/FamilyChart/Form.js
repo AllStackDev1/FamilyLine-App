@@ -89,8 +89,8 @@ export function Form({
   function getEditFields(card_edit) {
     return card_edit
       .map(d =>
-        d.type === 'text'
-          ? `<input type="text" name="${d.key}" placeholder="${
+        d.type !== 'textarea'
+          ? `<input type=${d.type} name="${d.key}" placeholder="${
               d.placeholder
             }" value="${datum.data[d.key] || ''}">`
           : d.type === 'textarea'

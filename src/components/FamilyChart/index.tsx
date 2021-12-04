@@ -1,15 +1,16 @@
 import { FC, useRef, useEffect } from 'react'
 import { Box } from '@chakra-ui/react'
 import f3 from 'family-chart'
-
-import { Form } from 'components/FamilyChart/Form'
-import { Views } from 'pages/my-family'
-import { FilledButton } from 'components/Buttons'
-
 import M from 'materialize-css'
 
-const FamilyChart: FC<{ toggle: (e: Views) => void }> = ({ toggle }) => {
+import { Form } from 'components/FamilyChart/Form'
+import { familyStore } from 'stores/member.store'
+
+const FamilyChart: FC = () => {
   const cont = useRef<HTMLDivElement>(null)
+  const { error, message, isLoading, addFamilyMembers } = familyStore(
+    state => state
+  )
 
   useEffect(() => {
     if (!cont.current) return
@@ -31,12 +32,12 @@ const FamilyChart: FC<{ toggle: (e: Views) => void }> = ({ toggle }) => {
     const store = f3.createStore({
       data: [
         {
-          id: '0',
+          id: '1',
           rels: {},
           data: {
-            'first name': 'Name',
-            'last name': 'Surname',
-            birthday: 1970,
+            first_name: 'Name',
+            last_name: 'Surname',
+            date_birth: 1970,
             avatar:
               'https://static8.depositphotos.com/1009634/988/v/950/depositphotos_9883921-stock-illustration-no-user-profile-picture.jpg',
             gender: 'M'
@@ -78,27 +79,44 @@ const FamilyChart: FC<{ toggle: (e: Views) => void }> = ({ toggle }) => {
 
     function cardDisplay() {
       const d1 = d =>
-          `${d.data['first name'] || ''} ${d.data['last name'] || ''}`,
-        d2 = d => `${d.data['birthday'] || ''}`
-      d1.create_form = '{first name} {last name}'
-      d2.create_form = '{birthday}'
+          `${d.data['first_name'] || ''} ${d.data['last_name'] || ''}`,
+        d2 = d => `${d.data['date_birth'] || ''}`
+      d1.create_form = '{first_name} {last_name}'
+      d2.create_form = '{date_birth}'
 
       return [d1, d2]
     }
 
     function cardEditParams() {
       return [
-        { type: 'text', placeholder: 'first name', key: 'first name' },
-        { type: 'text', placeholder: 'last name', key: 'last name' },
-        { type: 'text', placeholder: 'birthday', key: 'birthday' },
-        { type: 'text', placeholder: 'avatar', key: 'avatar' }
+        { type: 'text', placeholder: 'first_name', key: 'first_name' },
+        { type: 'text', placeholder: 'last_name', key: 'last_name' },
+        { type: 'text', placeholder: 'occupation', key: 'occupation' },
+        { type: 'text', placeholder: 'race', key: 'race' },
+        { type: 'text', placeholder: 'country', key: 'country' },
+        { type: 'text', placeholder: 'tribe', key: 'tribe' },
+        { type: 'text', placeholder: 'religion', key: 'religion' },
+        { type: 'textarea', placeholder: 'address', key: 'address' },
+        { type: 'date', placeholder: 'date_birth', key: 'date_birth' },
+        { type: 'file', placeholder: 'avatar', key: 'avatar' }
+        // relationship: '',
       ]
     }
 
     function cardEditForm(props) {
       const postSubmit = props.postSubmit
-      props.postSubmit = ps_props => {
+      props.postSubmit = async ps_props => {
         postSubmit(ps_props)
+        const stored_data = store.getData()
+        const values = stored_data[stored_data.length - 1]
+        const fd = new FormData()
+
+        Object.entries(values.data).forEach((d: any[]) => {
+          fd.append(`data.${d[0]}`, d[1])
+        })
+        fd.append('main', values.main)
+        fd.append('rels', JSON.stringify(values.rels))
+        await addFamilyMembers(fd)
       }
       const el = document.querySelector('#form_modal')
       const modal = M.Modal.init(el)
@@ -122,15 +140,6 @@ const FamilyChart: FC<{ toggle: (e: Views) => void }> = ({ toggle }) => {
     <>
       <div id="form_modal" className="modal" />
       <Box maxH="calc(100vh - 80px)" h="2xl" pos="relative" ref={cont} />
-      <Box textAlign="right" mt={10}>
-        <FilledButton
-          w={44}
-          title="Add Family"
-          onClick={() => {
-            toggle('add')
-          }}
-        />
-      </Box>
     </>
   )
 }
