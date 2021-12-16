@@ -4,7 +4,7 @@ export interface IDelete {
 }
 
 export interface IPost extends IDelete {
-  body?: string
+  body?: string | FormData
 }
 
 export type IPatch = IPost

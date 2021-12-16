@@ -32,7 +32,7 @@ const SidebarItem: React.FC<ISidebarItem> = ({ icon, title }) => {
           px={{ md: 6, lg: 4, xl: 10 }}
           py={{ md: 2, lg: 4, xl: 4 }}
         >
-          <Icon as={icon} boxSize={7} />
+          <Icon as={icon} color="rgb(0, 175, 70)" boxSize={7} />
           <Box as="span" ml={6}>
             <Text color="gray.700" fontSize={{ md: 'md' }} fontWeight={600}>
               {title}

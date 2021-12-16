@@ -59,7 +59,7 @@ const Login: FC = () => {
 
     if (access) {
       setTimeout(() => {
-        navigate('/profile')
+        navigate('/tree')
       }, 500)
     }
 

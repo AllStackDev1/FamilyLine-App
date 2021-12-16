@@ -35,7 +35,6 @@ const FileUpload: FC<IProps & InputProps> = ({
           return setFieldValue(e.target.id, e.target.files?.[0])
         }}
         {...rest}
-        d="none"
         id={id}
       />
       {fileUploaded === null ? children : <UploadRenderer />}

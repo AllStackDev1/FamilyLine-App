@@ -1,21 +1,21 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import create from 'zustand'
-import { login, register } from 'utils/api/services'
-import { IUser, IFamily } from 'interfaces/auth.interface'
+import { login, register, updateProfile } from 'utils/api/services'
+import { IFamily } from 'interfaces/auth.interface'
 
 interface IAuthStore {
   isLoading: boolean
-  user?: IUser | null
+  family?: IFamily | null
   access?: string | null
   refresh?: string | null
   error?: string | null
   message?: string | null
-  login: (p: Partial<IUser>) => Promise<void>
+  login: (p: Partial<{ email: string; password: string }>) => Promise<void>
   register: (p: IFamily) => Promise<void>
+  updateProfile: (p: any) => Promise<void>
 }
 
 export const authStore = create<IAuthStore>(set => ({
-  user: JSON.parse(localStorage.getItem('_fl_u_U') || 'null'),
   access: localStorage.getItem('_fl_u_T'),
   refresh: localStorage.getItem('_fl_u_R'),
   error: null,
@@ -44,8 +44,26 @@ export const authStore = create<IAuthStore>(set => ({
   register: async payload => {
     try {
       set(() => ({ isLoading: true, error: null, message: null }))
-      const user = await register(payload)
-      set(() => ({ isLoading: false, user }))
+      const family = await register(payload)
+      set(() => ({ isLoading: false, family }))
+    } catch (err: any) {
+      let error = 'Unexpected network error.'
+      if (err.status === 500) {
+        error = err?.message
+      }
+      if (err.status === 400 && err?.data) {
+        error = Object.values(err.data)
+          .map((e: any) => e[0])
+          .join(' <br /> ')
+      }
+      set(() => ({ isLoading: false, error }))
+    }
+  },
+  updateProfile: async payload => {
+    try {
+      set(() => ({ isLoading: true, error: null, message: null }))
+      const family = await updateProfile(payload)
+      set(() => ({ isLoading: false, family: family[0] }))
     } catch (err: any) {
       let error = 'Unexpected network error.'
       if (err.status === 500) {

@@ -15,7 +15,7 @@ function Router() {
     if (pathname === '/') {
       navigate('/login')
     }
-  }, [])
+  }, [pathname])
 
   const element = useRoutes([
     {
@@ -31,19 +31,11 @@ function Router() {
       element: <Views.AccountSuccess />
     },
     {
-      path: '/profile',
+      path: '/tree',
       element: (
         <RequireAuth>
-          <Views.Profile />
+          <Views.Tree />
         </RequireAuth>
-      )
-    },
-    {
-      path: '/my-family',
-      element: (
-        // <RequireAuth>
-        <Views.MyFamily />
-        // </RequireAuth>
       )
     },
     {

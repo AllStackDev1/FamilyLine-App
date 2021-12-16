@@ -17,6 +17,7 @@ export interface IUser {
 
 export interface IFamily {
   family_name: string
+  avatar?: string
   email: string
   password: string
   phonenumber: string

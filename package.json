@@ -18,6 +18,7 @@
     "family-chart": "^0.0.0-beta-1",
     "formik": "^2.2.9",
     "framer-motion": "^4",
+    "lodash": "^4.17.21",
     "materialize-css": "^1.0.0-rc.2",
     "query-string": "^7.0.1",
     "react": "^17.0.2",

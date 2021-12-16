@@ -10,7 +10,7 @@ import {
   useToast
 } from '@chakra-ui/react'
 
-import { saveMemory, familyMembers } from 'utils/api/services'
+import { saveMemory, getFamilyMembers } from 'utils/api/services'
 import { FilledButton } from 'components/Buttons'
 import { Input, MultiSelect, TextArea, FileUpload } from 'components/Forms'
 import { useQuery } from 'react-query'
@@ -22,7 +22,7 @@ const AddMemory: FC<{ isAdd?: boolean; toggle?: (e: Views) => void }> = ({
   toggle
 }) => {
   const members = ['Kofi', 'Ama', 'Efua', 'Yaw']
-  const { data } = useQuery('family-members', () => familyMembers())
+  const { data } = useQuery('family-members', () => getFamilyMembers())
   const toast = useToast()
   const [isLoading, setLoading] = useState(false)
 

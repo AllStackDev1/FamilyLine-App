@@ -8,7 +8,7 @@ interface IProps extends ButtonProps {
 const Outlined: FC<IProps> = ({ title, ...rest }) => {
   return (
     <Button
-      colorScheme="blackAlpha"
+      colorScheme="brandGreen"
       fontWeight={400}
       variant="outline"
       {...rest}

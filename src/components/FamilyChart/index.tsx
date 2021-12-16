@@ -6,11 +6,21 @@ import M from 'materialize-css'
 import { Form } from 'components/FamilyChart/Form'
 import { familyStore } from 'stores/member.store'
 
+import { useQuery } from 'react-query'
+import { getFamilyMembers } from 'utils/api/services'
+
 const FamilyChart: FC = () => {
   const cont = useRef<HTMLDivElement>(null)
   const { error, message, isLoading, addFamilyMembers } = familyStore(
     state => state
   )
+
+  const {
+    data,
+    error: _error,
+    isLoading: dataLoading,
+    refetch
+  } = useQuery('family-members', () => getFamilyMembers())
 
   useEffect(() => {
     if (!cont.current) return
@@ -109,14 +119,16 @@ const FamilyChart: FC = () => {
         postSubmit(ps_props)
         const stored_data = store.getData()
         const values = stored_data[stored_data.length - 1]
-        const fd = new FormData()
+        // const fd = new FormData()
 
-        Object.entries(values.data).forEach((d: any[]) => {
-          fd.append(`data.${d[0]}`, d[1])
-        })
-        fd.append('main', values.main)
-        fd.append('rels', JSON.stringify(values.rels))
-        await addFamilyMembers(fd)
+        // Object.entries(values.data).forEach((d: any[]) => {
+        //   fd.append(d[0], d[1])
+        // })
+
+        // Object.entries(values.rels).forEach((d: any[]) => {
+        //   fd.append(d[0], d[1])
+        // })
+        // await addFamilyMembers(fd)
       }
       const el = document.querySelector('#form_modal')
       const modal = M.Modal.init(el)
@@ -134,7 +146,7 @@ const FamilyChart: FC = () => {
     return () => {
       document.head.lastElementChild?.remove()
     }
-  }, [])
+  }, [data])
 
   return (
     <>

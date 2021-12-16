@@ -31,7 +31,7 @@ const Register: FC = () => {
   document.title = 'Family Line | Register'
 
   const { show, setShow } = useAuth()
-  const { error, user, message, isLoading, register } = authStore(
+  const { error, family, message, isLoading, register } = authStore(
     state => state
   )
 
@@ -62,7 +62,7 @@ const Register: FC = () => {
       })
     }
 
-    if (user) {
+    if (family) {
       toast({
         duration: 8000,
         isClosable: true,
@@ -77,7 +77,7 @@ const Register: FC = () => {
     return () => {
       authStore.setState({ error: null, message: null })
     }
-  }, [error, message, user])
+  }, [error, message, family])
 
   return (
     <Wrapper isAuth>

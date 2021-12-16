@@ -1,10 +1,11 @@
 import { FC } from 'react'
-import { Flex, Grid, GridItem, Text, Avatar } from '@chakra-ui/react'
+import { Flex, Grid, GridItem } from '@chakra-ui/react'
 
 import DesktopNav from 'container/Layout/Navbar/Desktop'
 import MobileNav from 'container/Layout/Navbar/Mobile'
 import Sidebar from 'container/Layout/Sidebar'
 import { WEBSITE_URL } from 'utils/variables'
+import ProfileForm from 'components/ProfileForm'
 
 const Wrapper: FC<{ isAuth?: boolean }> = ({ children, isAuth }) => {
   const menus = [
@@ -67,14 +68,7 @@ const Wrapper: FC<{ isAuth?: boolean }> = ({ children, isAuth }) => {
             pr={{ md: 4, lg: 3, xl: 4, '2xl': 5 }}
           >
             <Flex direction="column" align="center" mb={12}>
-              <Avatar
-                name="Dan Abrahmov"
-                size="xl"
-                src="https://bit.ly/dan-abramov"
-              />
-              <Text fontWeight="medium" mt={3}>
-                Henry Gates
-              </Text>
+              <ProfileForm />
             </Flex>
             <Sidebar />
           </GridItem>

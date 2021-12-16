@@ -6,21 +6,19 @@ const Login = lazy(() => import('./login'))
 // const Logout = lazy(() => import('./Logout'))
 const Register = lazy(() => import('./register'))
 const AccountSuccess = lazy(() => import('./register/success'))
-const Profile = lazy(() => import('./profile'))
-const MyFamily = lazy(() => import('./my-family'))
+const Tree = lazy(() => import('./tree'))
 const Memories = lazy(() => import('./memories'))
 const Events = lazy(() => import('./events'))
 const Notifications = lazy(() => import('./notifications'))
 
 export const Views = {
   Login,
-  // Logout,
+  Tree,
   Events,
-  Profile,
   NotFound,
   Register,
-  MyFamily,
   Memories,
+  // Logout,
   Notifications,
   AccountSuccess
 }

@@ -9,8 +9,8 @@ import Thumb from 'components/Thumb'
 
 import { authStore } from 'stores/auth.store'
 
-import { Views } from 'pages/my-family'
 import { IUser } from 'interfaces/auth.interface'
+import { Views } from 'pages/tree'
 
 import Avatar from 'assets/images/avatar.png'
 
@@ -18,7 +18,7 @@ const AddMemberForm: FC<{ isAdd?: boolean; toggle?: (e: Views) => void }> = ({
   isAdd,
   toggle
 }) => {
-  const { user, isLoading, login } = authStore(state => state)
+  const { family, isLoading, login } = authStore(state => state)
 
   interface IForm extends Partial<IUser> {
     relationship: string
@@ -61,7 +61,7 @@ const AddMemberForm: FC<{ isAdd?: boolean; toggle?: (e: Views) => void }> = ({
             top={0}
             left={0}
             pos="absolute"
-            src={isAdd ? `${Avatar}` : user?.avatar || `${Avatar}`}
+            src={`${Avatar}`}
             alt={formik.values.firstname + ' ' + formik.values.lastname}
             imageFile={formik.values.avatar}
           />

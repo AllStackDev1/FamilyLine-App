@@ -9,7 +9,7 @@ export const register = async (payload: IFamily): Promise<any> =>
 export const login = async (payload: Partial<IUser>): Promise<any> =>
   await http.post({ url: '/user/login/', body: JSON.stringify(payload) })
 
-export const familyMembers = async (): Promise<any> =>
+export const getFamilyMembers = async (): Promise<any> =>
   await http.get({ url: '/user/family/' })
 
 export const addFamilyMembers = async (body): Promise<any> =>
@@ -30,5 +30,8 @@ export const saveEvents = async (payload: any): Promise<any> =>
     body: payload
   })
 
-export const profile = async (): Promise<any> =>
+export const profile = async (): Promise<IFamily[]> =>
   await http.get({ url: '/user/profile/' })
+
+export const updateProfile = async (payload: FormData): Promise<IFamily[]> =>
+  await http.put({ url: '/user/profile/', body: payload })

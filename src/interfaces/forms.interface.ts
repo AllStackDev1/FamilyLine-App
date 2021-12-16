@@ -9,7 +9,7 @@ export interface IOptions<T> {
 }
 
 export interface IFormProps {
-  label: string
+  label?: string
   value?: any
   error?: string
   touched?: boolean
