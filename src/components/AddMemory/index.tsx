@@ -56,8 +56,6 @@ const AddMemory: FC<{ isAdd?: boolean; toggle?: (e: Views) => void }> = ({
         const formData = new FormData()
         Object.keys(payload).forEach(key => formData.append(key, payload[key]))
 
-        console.log('Hello accra ', payload)
-
         const res = await saveMemory(formData)
         if (res) {
           setLoading(false)
