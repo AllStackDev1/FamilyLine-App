@@ -24,7 +24,7 @@ import { IUser } from 'interfaces/auth.interface'
 import Wrapper from 'container/Layout'
 import { FilledButton } from 'components/Buttons'
 import { Input, InputWithIcon } from 'components/Forms'
-import SocialButtons from 'components/SocialButtons'
+// import SocialButtons from 'components/SocialButtons'
 
 const Login: FC = () => {
   document.title = 'Family Line | Login'
@@ -120,7 +120,7 @@ const Login: FC = () => {
                 w={{ base: 36, xl: 64 }}
                 borderColor="brand.green.200"
               />
-              <SocialButtons />
+              {/* <SocialButtons /> */}
             </Flex>
             <form onSubmit={formik.handleSubmit}>
               <Grid gap={4}>

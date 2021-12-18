@@ -23,7 +23,7 @@ import { FilledButton } from 'components/Buttons'
 import { IFamily } from 'interfaces/auth.interface'
 
 import MomDaughter from 'assets/images/mom-daughter.png'
-import SocialButtons from 'components/SocialButtons'
+// import SocialButtons from 'components/SocialButtons'
 
 import { authStore } from 'stores/auth.store'
 
@@ -131,7 +131,7 @@ const Register: FC = () => {
                 w={{ base: 36, xl: 64 }}
                 borderColor="brand.green.200"
               />
-              <SocialButtons />
+              {/* <SocialButtons /> */}
             </Flex>
             <form onSubmit={formik.handleSubmit}>
               <Grid gap={4}>
