@@ -74,9 +74,9 @@ export function Form({
 
   function submitFormChanges(e) {
     e.preventDefault()
-    const form_data = new FormData(e.target)
-    form_data.forEach((v, k) => (datum.data[k] = v))
-
+    // const form_data = new FormData(e.target)
+    // form_data.forEach((v, k) => (datum.data[k] = v))
+    // console.log(...form_data)
     close()
     postSubmit()
   }

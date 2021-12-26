@@ -31,6 +31,14 @@ function Router() {
       element: <Views.AccountSuccess />
     },
     {
+      path: '/add-member',
+      element: (
+        <RequireAuth>
+          <Views.AddMember />
+        </RequireAuth>
+      )
+    },
+    {
       path: '/tree',
       element: (
         <RequireAuth>

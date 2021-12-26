@@ -14,7 +14,7 @@ interface IFormSelect {
   error: any
   label: string
   touched?: boolean
-  required: boolean
+  required?: boolean
   fontSize?: any
   setFieldValue: any
   placeHolderFont?: any

@@ -109,7 +109,6 @@ const FamilyChart: FC = () => {
         { type: 'textarea', placeholder: 'address', key: 'address' },
         { type: 'date', placeholder: 'date_birth', key: 'date_birth' },
         { type: 'file', placeholder: 'avatar', key: 'avatar' }
-        // relationship: '',
       ]
     }
 
@@ -118,7 +117,12 @@ const FamilyChart: FC = () => {
       props.postSubmit = async ps_props => {
         postSubmit(ps_props)
         const stored_data = store.getData()
-        const values = stored_data[stored_data.length - 1]
+        const value = stored_data[stored_data.length - 1]
+        // const data = value.data
+        // delete value.data
+        // if(value.id)
+        // const x = Object.assign({}, data, value)
+        console.log(stored_data)
         // const fd = new FormData()
 
         // Object.entries(values.data).forEach((d: any[]) => {

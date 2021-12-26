@@ -19,7 +19,7 @@ import { authStore } from 'stores/auth.store'
 import Family from 'assets/images/family.png'
 
 import useAuth from 'utils/providers/AuthContextProvider'
-import { IUser } from 'interfaces/auth.interface'
+import { IFamily } from 'interfaces/auth.interface'
 
 import Wrapper from 'container/Layout'
 import { FilledButton } from 'components/Buttons'
@@ -32,7 +32,7 @@ const Login: FC = () => {
 
   const { show, setShow } = useAuth()
 
-  const formik = useFormik<Partial<IUser>>({
+  const formik = useFormik<Partial<IFamily>>({
     initialValues: {
       email: '',
       password: ''

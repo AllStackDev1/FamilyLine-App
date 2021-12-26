@@ -1,31 +1,37 @@
-export interface IUser {
+export interface IMembers {
   avatar?: string
-  email: string
-  firstname: string
-  lastname: string
-  password?: string
+  first_name: string
+  last_name: string
+
+  email?: string
   phonenumber: string
+
+  race?: string
+  main: boolean
+  tribe?: string
+  mother?: string
+  father?: string
   gender?: string
   address?: string
-  occupation?: string
-  dob?: string
-  race?: string
   country?: string
-  tribe?: string
   religion?: string
+  spouses?: string[]
+  children?: string[]
+  occupation?: string
+  date_of_birth?: string
 }
 
 export interface IFamily {
+  phonenumber: string
   family_name: string
+  password: string
   avatar?: string
   email: string
-  password: string
-  phonenumber: string
 }
 
 export interface IAuthData {
   token: string
-  user: IUser
+  user: IFamily
 }
 
 export interface IAuthContext {
