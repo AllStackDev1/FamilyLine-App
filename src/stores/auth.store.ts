@@ -39,7 +39,10 @@ export const authStore = create<IAuthStore>(set => ({
           .map((e: any) => e[0])
           .join(' <br /> ')
       }
-      set(() => ({ isLoading: false, error }))
+      set(() => ({
+        isLoading: false,
+        error: !err.data.statue ? 'Incorrect email or password' : error
+      }))
     }
   },
   register: async payload => {
