@@ -3,23 +3,35 @@ import create from 'zustand'
 import { addFamilyMembers } from 'utils/api/services'
 
 interface IFamilyStore {
+  view: Views
   isLoading: boolean
   error?: string | null
   message?: string | null
-  familyMembers: []
+  selectedData?: {
+    gender: 'Male' | 'Female'
+    mainId: string
+    rel: string
+  }
   addFamilyMembers: (p: any) => Promise<void>
 }
+
+type Views = 'table' | 'tree'
 
 export const familyStore = create<IFamilyStore>(set => ({
   error: null,
   message: null,
+  view: 'table',
   isLoading: false,
-  familyMembers: [],
   addFamilyMembers: async payload => {
     try {
       set(() => ({ isLoading: true, error: null, message: null }))
-      const { members } = await addFamilyMembers(payload)
-      set(() => ({ isLoading: false, familyMembers: members }))
+      const member = await addFamilyMembers(payload)
+      if (member.id) {
+        set(() => ({
+          isLoading: false,
+          message: 'Family member added successfully'
+        }))
+      }
     } catch (err: any) {
       let error = 'Unexpected network error.'
       if (err.status === 500) {
@@ -29,6 +41,10 @@ export const familyStore = create<IFamilyStore>(set => ({
         error = Object.values(err.data)
           .map((e: any) => e[0])
           .join(' <br /> ')
+      }
+      if (err.status === 401) {
+        localStorage.clear()
+        window.location.reload()
       }
       set(() => ({ isLoading: false, error }))
     }

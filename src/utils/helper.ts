@@ -1,3 +1,4 @@
+import { IMember } from 'interfaces/auth.interface'
 import { transform, isObject, isEqual } from 'lodash'
 
 export const objDiff = (object, base) => {
@@ -12,4 +13,23 @@ export const objDiff = (object, base) => {
     })
   }
   return changes(object, base)
+}
+
+export const generateTreeData = (members: IMember[]) => {
+  return members.map(e => ({
+    id: '' + e.id,
+    rels: {
+      father: e.father,
+      mother: e.mother,
+      spouses: e.spouses,
+      children: e.children
+    },
+    data: {
+      first_name: e.first_name,
+      last_name: e.last_name,
+      date_of_birth: e.date_of_birth,
+      avatar: e.avatar,
+      gender: e.gender
+    }
+  }))
 }

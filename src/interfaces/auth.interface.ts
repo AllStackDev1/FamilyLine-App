@@ -1,4 +1,5 @@
-export interface IMembers {
+export interface IMember {
+  id: string
   avatar?: string
   first_name: string
   last_name: string
@@ -22,6 +23,7 @@ export interface IMembers {
 }
 
 export interface IFamily {
+  id: string
   phonenumber: string
   family_name: string
   password: string

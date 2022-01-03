@@ -35,12 +35,12 @@ const Register: FC = () => {
     state => state
   )
 
-  const formik = useFormik<IFamily>({
+  const formik = useFormik<Partial<IFamily>>({
     initialValues: {
-      family_name: '',
-      phonenumber: '',
       email: '',
-      password: ''
+      password: '',
+      family_name: '',
+      phonenumber: ''
     },
     onSubmit: async values => {
       await register(values)

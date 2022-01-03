@@ -7,17 +7,12 @@ import {
   BellIcon,
   FamilyIcon
 } from 'utils/theme/custom-icon'
-
-import { GiFamilyTree } from 'react-icons/gi'
+import { AiOutlinePoweroff } from 'react-icons/ai'
 
 const Sidebar: FC = (): JSX.Element => {
   const menu = [
     {
-      title: 'Tree',
-      icon: GiFamilyTree
-    },
-    {
-      title: 'Add Member',
+      title: 'Members',
       icon: FamilyIcon
     },
     {
@@ -31,6 +26,10 @@ const Sidebar: FC = (): JSX.Element => {
     {
       title: 'Events',
       icon: EventsIcon
+    },
+    {
+      title: 'Logout',
+      icon: AiOutlinePoweroff
     }
   ]
 

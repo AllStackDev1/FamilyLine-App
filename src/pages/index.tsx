@@ -3,22 +3,22 @@ import { lazy } from 'react'
 import NotFound from './404'
 
 const Login = lazy(() => import('./login'))
-const Register = lazy(() => import('./register'))
-const AccountSuccess = lazy(() => import('./register/success'))
-const Tree = lazy(() => import('./tree'))
-const Memories = lazy(() => import('./memories'))
+const Logout = lazy(() => import('./logout'))
 const Events = lazy(() => import('./events'))
-const AddMember = lazy(() => import('./add-member'))
+const Members = lazy(() => import('./members'))
+const Register = lazy(() => import('./register'))
+const Memories = lazy(() => import('./memories'))
 const Notifications = lazy(() => import('./notifications'))
+const AccountSuccess = lazy(() => import('./register/success'))
 
 export const Views = {
   Login,
-  Tree,
+  Logout,
   Events,
+  Members,
   NotFound,
   Register,
   Memories,
-  AddMember,
   Notifications,
   AccountSuccess
 }

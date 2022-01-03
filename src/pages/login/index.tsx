@@ -49,7 +49,7 @@ const Login: FC = () => {
   useEffect(() => {
     if (access) {
       setTimeout(() => {
-        navigate('/tree')
+        navigate('/members')
       }, 500)
     }
   }, [access])

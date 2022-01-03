@@ -1,20 +1,12 @@
 import { FC } from 'react'
-import { Flex, Grid, GridItem, Box, Icon, Text } from '@chakra-ui/react'
+import { Flex, Grid, GridItem } from '@chakra-ui/react'
 import DesktopNav from 'container/Layout/Navbar/Desktop'
 import MobileNav from 'container/Layout/Navbar/Mobile'
 import Sidebar from 'container/Layout/Sidebar'
 import { WEBSITE_URL } from 'utils/variables'
 import ProfileForm from 'components/ProfileForm'
-import { AiOutlinePoweroff } from 'react-icons/ai'
-import { authStore } from 'stores/auth.store'
 
 const Wrapper: FC<{ isAuth?: boolean }> = ({ children, isAuth }) => {
-  const { logout } = authStore(state => state)
-
-  const logoutApp = () => {
-    logout()
-    window.location.reload()
-  }
   const menus = [
     {
       title: 'Home',
@@ -79,27 +71,6 @@ const Wrapper: FC<{ isAuth?: boolean }> = ({ children, isAuth }) => {
               <ProfileForm />
             </Flex>
             <Sidebar />
-            <Flex
-              alignItems="center"
-              px={{ md: 6, lg: 4, xl: 10 }}
-              py={{ md: 2, lg: 4, xl: 4 }}
-              pos={'absolute'}
-              bottom={3}
-              mt={12}
-              cursor={'pointer'}
-              onClick={() => logoutApp()}
-            >
-              <Icon
-                as={AiOutlinePoweroff}
-                color="rgb(0, 175, 70)"
-                boxSize={7}
-              />
-              <Box as="span" ml={6}>
-                <Text color="gray.700" fontSize={{ md: 'md' }} fontWeight={600}>
-                  Logout
-                </Text>
-              </Box>
-            </Flex>
           </GridItem>
         )}
         <GridItem d="flex" mt={{ md: 16, lg: 24 }} justifyContent="center">

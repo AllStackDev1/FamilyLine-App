@@ -11,9 +11,8 @@ interface IAuthStore {
   error?: string | null
   message?: string | null
   login: (p: Partial<{ email: string; password: string }>) => Promise<void>
-  register: (p: IFamily) => Promise<void>
+  register: (p: Partial<IFamily>) => Promise<void>
   updateProfile: (p: any) => Promise<void>
-  logout: () => boolean
 }
 
 export const authStore = create<IAuthStore>(set => ({
@@ -80,10 +79,5 @@ export const authStore = create<IAuthStore>(set => ({
       }
       set(() => ({ isLoading: false, error }))
     }
-  },
-  logout: () => {
-    localStorage.removeItem('_fl_u_T')
-    localStorage.removeItem('_fl_u_R')
-    return true
   }
 }))
