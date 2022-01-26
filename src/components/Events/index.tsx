@@ -8,13 +8,14 @@ import { getEvents } from 'utils/api/services'
 
 import Birthday from 'assets/images/Happybirthday.png'
 import Funeral from 'assets/images/funeral.png'
-import Shower from 'assets/images/wedding.png'
 import Hangout from 'assets/images/Hangout.png'
+import Shower from 'assets/images/wedding.png'
 
 interface IEvents {
   thumb: string
   title: string
 }
+
 const EventsData: IEvents[] = [
   {
     thumb: String(Birthday),
@@ -33,6 +34,7 @@ const EventsData: IEvents[] = [
     title: 'Family Beach Hangout'
   }
 ]
+
 const Events: FC<{ isAdd?: boolean; toggle: (e: Views) => void }> = ({
   toggle
 }) => {

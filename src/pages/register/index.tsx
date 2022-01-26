@@ -31,9 +31,7 @@ const Register: FC = () => {
   document.title = 'Family Line | Register'
 
   const { show, setShow } = useAuth()
-  const { error, family, message, isLoading, register } = authStore(
-    state => state
-  )
+  const { error, message, isLoading, register } = authStore(state => state)
 
   const formik = useFormik<Partial<IFamily>>({
     initialValues: {
@@ -62,12 +60,12 @@ const Register: FC = () => {
       })
     }
 
-    if (family) {
+    if (message) {
       toast({
         duration: 8000,
         isClosable: true,
         position: 'top-right',
-        description: 'Account created successfully',
+        description: message,
         status: 'success',
         title: 'Success'
       })
@@ -77,7 +75,7 @@ const Register: FC = () => {
     return () => {
       authStore.setState({ error: null, message: null })
     }
-  }, [error, message, family])
+  }, [error, message])
 
   return (
     <Wrapper isAuth>

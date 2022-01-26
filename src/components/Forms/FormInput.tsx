@@ -28,6 +28,7 @@ const FormInput: React.FC<IFormProps & InputProps> = ({
         h={{ base: 10, lg: 12 }}
         borderWidth={0}
         bgColor="white"
+        color="gray.700"
         shadow="md"
         {...rest}
       />

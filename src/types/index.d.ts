@@ -25,8 +25,10 @@ declare module '*.jpeg' {
 }
 
 declare module 'family-chart' {
+  import { IGraphData } from 'components/Members/FamilyTree'
+
   interface ICreateStore {
-    data: any[]
+    data: IGraphData[]
     cont: any
     card_display: any[]
     mini_tree: boolean

@@ -16,11 +16,10 @@ interface IAuthStore {
 }
 
 export const authStore = create<IAuthStore>(set => ({
+  isLoading: false,
   access: localStorage.getItem('_fl_u_T'),
   refresh: localStorage.getItem('_fl_u_R'),
-  error: null,
-  message: null,
-  isLoading: false,
+  family: JSON.parse(localStorage.getItem('_fl_u_F') || '{}'),
   login: async payload => {
     try {
       set(() => ({ isLoading: true, error: null, message: null }))
@@ -48,7 +47,11 @@ export const authStore = create<IAuthStore>(set => ({
     try {
       set(() => ({ isLoading: true, error: null, message: null }))
       const family = await register(payload)
-      set(() => ({ isLoading: false, family }))
+      set(() => ({
+        isLoading: false,
+        family,
+        message: 'Account created successfully'
+      }))
     } catch (err: any) {
       let error = 'Unexpected network error.'
       if (err.status === 500) {

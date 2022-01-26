@@ -33,7 +33,12 @@ const ListBoxButton: React.FC<IListBoxButton & Record<string, any>> = ({
       _focus={{ boxShadow: '0 0 0 1px #3182ce', borderColor: '#3182ce' }}
       {...rest}
     >
-      <Text as="span" isTruncated fontSize={{ base: 12, xl: 14 }}>
+      <Text
+        as="span"
+        color="gray.700"
+        isTruncated
+        fontSize={{ base: 12, xl: 14 }}
+      >
         {selected ? (
           selected?.name || selected
         ) : (

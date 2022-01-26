@@ -14,14 +14,14 @@ interface IModal extends ModalProps {
   isOpen: boolean
   onClose: () => void
   title: string
-  headerStyle: StyleProps
+  headerStyle?: StyleProps
 }
 
 const Modal: FC<IModal> = ({ title, headerStyle, children, ...rest }) => {
   return (
     <ChakraModal {...rest}>
       <ModalOverlay />
-      <ModalContent rounded="xl">
+      <ModalContent rounded="xl" bgColor="white">
         <ModalHeader {...headerStyle}>{title}</ModalHeader>
         <ModalCloseButton />
         <ModalBody>{children}</ModalBody>

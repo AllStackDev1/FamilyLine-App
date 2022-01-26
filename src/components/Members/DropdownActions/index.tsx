@@ -3,13 +3,22 @@ import { Box, Flex, Icon, Text } from '@chakra-ui/react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Menu } from '@headlessui/react'
 import { FiChevronDown, FiChevronUp } from 'react-icons/fi'
+import { IMember } from 'interfaces/auth.interface'
+import { IconType } from 'react-icons'
 
 const MotionBox = motion(Box)
 
-const DropdownActions: FC<{ data: any; options: any[] }> = ({
-  data,
-  options
-}) => {
+export interface IDropdownAction {
+  title: string
+  data: IMember
+  options: {
+    name: string
+    icon?: IconType
+    action: (p: any) => void
+  }[]
+}
+
+const DropdownActions: FC<IDropdownAction> = ({ data, title, options }) => {
   return (
     <Menu as={Box} ml={2} userSelect="none" pos="relative">
       {({ open }) => (
@@ -26,7 +35,7 @@ const DropdownActions: FC<{ data: any; options: any[] }> = ({
             _focus={{ outline: 'none' }}
           >
             <Text fontWeight={500} fontSize="xs">
-              Actions
+              {title}
             </Text>
             <Icon ml={2} as={open ? FiChevronUp : FiChevronDown} boxSize={3} />
           </Menu.Button>
@@ -89,7 +98,7 @@ const DropdownActions: FC<{ data: any; options: any[] }> = ({
                           color: 'white',
                           bg: 'brand.green.200'
                         }}
-                        onClick={e => {
+                        onClick={() => {
                           item.action(data)
                         }}
                       >

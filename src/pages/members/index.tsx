@@ -3,17 +3,21 @@ import { useQuery } from 'react-query'
 import { Box, Flex, useDisclosure } from '@chakra-ui/react'
 
 import Wrapper from 'container/Layout'
-import { FamilyTree, FamilyTable, AddMemberForm } from 'components/Members'
+import {
+  FamilyTree,
+  FamilyTable,
+  AddMemberForm,
+  EditMemberForm,
+  AddRelationPrompt
+} from 'components/Members'
 
 import { getFamilyMembers } from 'utils/api/services'
-import { generateTreeData } from 'utils/helper'
 import { familyStore } from 'stores/family.store'
 import { FilledButton } from 'components/Buttons'
 
 const Members: FC = () => {
   document.title = 'Family Line | Members'
-
-  const { view } = familyStore(s => s)
+  const { view, modal } = familyStore(s => s)
   const { isOpen, onClose, onOpen } = useDisclosure()
   const { data } = useQuery('family-members', () => getFamilyMembers(), {
     refetchOnWindowFocus: false,
@@ -29,22 +33,30 @@ const Members: FC = () => {
   return (
     <Wrapper>
       <Box my={{ xl: 10 }} width={{ xl: '80%' }}>
-        <AddMemberForm
-          isOpen={isOpen}
-          onClose={onClose}
-          isMain={data?.length === 0}
-        />
-        {data && (
-          <>
-            {view === 'tree' ? (
-              <FamilyTree data={generateTreeData(data)} />
-            ) : (
-              <FamilyTable members={data} onOpen={onOpen} />
-            )}
-          </>
+        {modal === 'new' && (
+          <AddMemberForm
+            isOpen={isOpen}
+            onClose={onClose}
+            isMain={data?.length === 0}
+          />
         )}
 
-        <Flex mt={5} w="full" justify="flex-end">
+        {modal === 'prompt' && (
+          <AddRelationPrompt
+            isOpen={isOpen}
+            onClose={onClose}
+            onCancel={() => null}
+            onCreateNew={() => {
+              familyStore.setState({ modal: 'new' })
+            }}
+          />
+        )}
+
+        {modal === 'edit' && (
+          <EditMemberForm isOpen={isOpen} onClose={onClose} />
+        )}
+
+        <Flex mb={5} w="full" justify="flex-end">
           <FilledButton
             px={5}
             title={`Switch To ${view === 'tree' ? 'Table' : 'Tree'} View`}
@@ -53,6 +65,16 @@ const Members: FC = () => {
             }
           />
         </Flex>
+
+        {data && (
+          <>
+            {view === 'tree' ? (
+              <FamilyTree data={data} />
+            ) : (
+              <FamilyTable members={data} onOpen={onOpen} />
+            )}
+          </>
+        )}
       </Box>
     </Wrapper>
   )

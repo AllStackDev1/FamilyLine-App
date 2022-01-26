@@ -27,7 +27,6 @@
   },
   "include": [
     "src",
-    "src/custom.d.ts",
-    "src/types/images.d.ts"
+    "src/types/index.d.ts"
   ]
 }

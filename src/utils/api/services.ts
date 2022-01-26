@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import http from './http'
-// import { IResponse } from 'interfaces/mics.interface'
 import { IFamily, IMember } from 'interfaces/auth.interface'
 
 export const register = async (payload: Partial<IFamily>): Promise<any> =>
@@ -9,11 +8,17 @@ export const register = async (payload: Partial<IFamily>): Promise<any> =>
 export const login = async (payload: Partial<IFamily>): Promise<any> =>
   await http.post({ url: '/user/login/', body: JSON.stringify(payload) })
 
-export const getFamilyMembers = async (): Promise<any> =>
+export const getFamilyMembers = async (): Promise<IMember[]> =>
   await http.get({ url: '/user/family/' })
 
-export const addFamilyMembers = async (body): Promise<IMember> =>
+export const addFamilyMember = async (body): Promise<IMember> =>
   await http.post({ url: '/user/family/', body })
+
+export const updateFamilyMember = async (id, body): Promise<IMember> =>
+  await http.put({ url: `/user/family/${id}/`, body })
+
+export const deleteFamilyMember = async (id): Promise<any> =>
+  await http.delete({ url: `/user/family/${id}/` })
 
 export const getMemories = async (): Promise<any> =>
   await http.get({ url: '/memories/memories/' })

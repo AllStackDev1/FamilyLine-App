@@ -1,6 +1,10 @@
 export interface IMember {
   id: string
-  avatar?: string
+  avatar?: {
+    id: number
+    image: string
+    created_at: string
+  }[]
   first_name: string
   last_name: string
 
@@ -43,4 +47,22 @@ export interface IAuthContext {
   setShow: React.Dispatch<React.SetStateAction<boolean>>
   setAccepted: React.Dispatch<React.SetStateAction<boolean>>
   setLoading: React.Dispatch<React.SetStateAction<boolean>>
+}
+
+export interface IGraphData {
+  id: string
+  main: boolean
+  rels: {
+    father: string
+    mother: string
+    spouses: string[]
+    children: string[]
+  }
+  data: {
+    first_name: string
+    last_name: string
+    date_of_birth: string
+    avatar: any
+    gender: string
+  }
 }

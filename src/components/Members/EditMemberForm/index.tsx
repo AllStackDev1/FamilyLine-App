@@ -17,12 +17,11 @@ import useAlertListener from 'hooks/useAlertListener'
 import isEmpty from 'lodash/isEmpty'
 import Modal from 'components/Modal'
 
-const AddMemberForm: FC<{
-  isMain?: boolean
+const EditMemberForm: FC<{
   isOpen: boolean
   onClose: () => void
-}> = ({ isMain, isOpen, onClose }) => {
-  const { error, message, isLoading, selectedData, addFamilyMember } =
+}> = ({ isOpen, onClose }) => {
+  const { error, message, isLoading, selectedMember, updateFamilyMember } =
     familyStore(state => state)
 
   const queryClient = useQueryClient()
@@ -42,38 +41,22 @@ const AddMemberForm: FC<{
   const formik = useFormik<Partial<IMember>>({
     enableReinitialize: true,
     initialValues: {
-      race: '',
-      tribe: '',
-      gender: selectedData?.rel
-        ? ['Son', 'Father'].includes(selectedData.rel)
-          ? 'Male'
-          : 'Female'
-        : '',
-      address: '',
-      country: '',
-      father:
-        ['Male', 'male'].includes(selectedData?.gender || '') &&
-        ['Son', 'Daughter'].includes(selectedData?.rel || '')
-          ? selectedData?.mainId
-          : '',
-      mother:
-        ['Female', 'female'].includes(selectedData?.gender || '') &&
-        ['Son', 'Daughter'].includes(selectedData?.rel || '')
-          ? selectedData?.mainId
-          : '',
-      spouses: selectedData?.rel === 'Spouses' ? [selectedData?.mainId] : [],
-      children: selectedData?.rel
-        ? ['Father', 'Mother'].includes(selectedData?.rel)
-          ? [selectedData?.mainId]
-          : []
-        : [],
-      religion: '',
-      last_name: '',
-      first_name: '',
-      occupation: '',
-      phonenumber: '',
-      date_of_birth: '',
-      avatar: undefined
+      race: selectedMember?.race || '',
+      tribe: selectedMember?.tribe || '',
+      gender: selectedMember?.gender || '',
+      address: selectedMember?.address || '',
+      country: selectedMember?.country || '',
+      father: selectedMember?.father || '',
+      mother: selectedMember?.mother || '',
+      spouses: selectedMember?.spouses || [],
+      children: selectedMember?.children || [],
+      religion: selectedMember?.religion || '',
+      last_name: selectedMember?.last_name || '',
+      first_name: selectedMember?.first_name || '',
+      occupation: selectedMember?.occupation || '',
+      phonenumber: selectedMember?.phonenumber || '',
+      date_of_birth: selectedMember?.date_of_birth || '',
+      avatar: selectedMember?.avatar || undefined
     },
     onSubmit: async values => {
       const fd = new FormData()
@@ -88,14 +71,13 @@ const AddMemberForm: FC<{
           }
         }
       })
-      fd.append('main', '' + isMain)
-      await addFamilyMember(fd)
+      await updateFamilyMember(selectedMember?.id as string, fd)
     }
   })
 
   return (
     <Modal
-      title="Add new member"
+      title="Edit member"
       size="5xl"
       isOpen={isOpen}
       onClose={onClose}
@@ -118,7 +100,7 @@ const AddMemberForm: FC<{
               pos="absolute"
               src={`${Avatar}`}
               alt={formik.values.first_name + ' ' + formik.values.last_name}
-              imageFile={formik.values.avatar}
+              imageFile={formik.values.avatar?.[0]?.image}
             />
             <FileUpload
               w={32}
@@ -184,6 +166,7 @@ const AddMemberForm: FC<{
             value={formik.values.gender}
             error={formik.errors.gender}
             touched={formik.touched.gender}
+            onChange={formik.handleChange}
             setFieldValue={formik.setFieldValue}
             options={['Male', 'Female', 'Others']}
             setFieldTouched={formik.setFieldTouched}
@@ -239,6 +222,7 @@ const AddMemberForm: FC<{
             value={formik.values.race}
             error={formik.errors.race}
             touched={formik.touched.race}
+            onChange={formik.handleChange}
             setFieldValue={formik.setFieldValue}
             setFieldTouched={formik.setFieldTouched}
             options={['African American/Black', 'White', 'Hispanic']}
@@ -252,6 +236,7 @@ const AddMemberForm: FC<{
             value={formik.values.tribe}
             error={formik.errors.tribe}
             touched={formik.touched.tribe}
+            onChange={formik.handleChange}
             setFieldValue={formik.setFieldValue}
             setFieldTouched={formik.setFieldTouched}
             options={['Twi', 'Ga', 'Hausa', 'Igbo', 'Yoruba']}
@@ -265,6 +250,7 @@ const AddMemberForm: FC<{
             value={formik.values.country}
             error={formik.errors.country}
             touched={formik.touched.country}
+            onChange={formik.handleChange}
             setFieldValue={formik.setFieldValue}
             options={['Ghana', 'Nigeria', 'Togo']}
             setFieldTouched={formik.setFieldTouched}
@@ -277,6 +263,7 @@ const AddMemberForm: FC<{
             placeholder="Choose religion"
             value={formik.values.religion}
             error={formik.errors.religion}
+            onChange={formik.handleChange}
             touched={formik.touched.religion}
             setFieldValue={formik.setFieldValue}
             setFieldTouched={formik.setFieldTouched}
@@ -297,4 +284,4 @@ const AddMemberForm: FC<{
   )
 }
 
-export default AddMemberForm
+export default EditMemberForm

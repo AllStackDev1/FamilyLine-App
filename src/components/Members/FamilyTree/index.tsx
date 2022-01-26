@@ -1,11 +1,11 @@
 import { FC, useRef, useEffect } from 'react'
 import { Box } from '@chakra-ui/react'
 import f3 from 'family-chart'
+import { IMember } from 'interfaces/auth.interface'
+import { generateTreeData } from 'utils/helper'
 
-const FamilyTree: FC<{ data: any }> = ({ data }) => {
+const FamilyTree: FC<{ data: IMember[] }> = ({ data }) => {
   const cont = useRef<HTMLDivElement>(null)
-
-  console.log(data)
 
   useEffect(() => {
     if (!cont.current) return
@@ -23,7 +23,7 @@ const FamilyTree: FC<{ data: any }> = ({ data }) => {
     const card_display = cardDisplay()
 
     const store = f3.createStore({
-      data,
+      data: JSON.parse(JSON.stringify(generateTreeData(data))),
       node_separation: 250,
       level_separation: 150
     })
@@ -57,14 +57,7 @@ const FamilyTree: FC<{ data: any }> = ({ data }) => {
       const d1 = d =>
           `${d.data['first_name'] || ''} ${d.data['last_name'] || ''}`,
         d2 = d => `${d.data['date_of_birth'] || ''}`
-      d1.create_form = '{first_name} {last_name}'
-      d2.create_form = '{date_of_birth}'
-
       return [d1, d2]
-    }
-
-    return () => {
-      document.head.lastElementChild?.remove()
     }
   }, [data])
 

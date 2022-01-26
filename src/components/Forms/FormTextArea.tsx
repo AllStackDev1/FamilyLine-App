@@ -35,6 +35,7 @@ const FormTextArea: FC<IFormProps & TextareaProps> = ({
         h={{ base: 10, lg: 12 }}
         borderWidth={0}
         bgColor="white"
+        color="gray.700"
         shadow="md"
       />
       <FormErrorHandler
