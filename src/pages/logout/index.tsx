@@ -2,19 +2,19 @@ import { FC, useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { authStore } from 'stores/auth.store'
 import LoadingOverlay from 'components/LoadingOverlay'
+import { IFamily } from 'interfaces/auth.interface'
 
 const Logout: FC = () => {
   document.title = 'Signing out...'
-  const [_family, setUser] = useState<any>()
+  const [_family, setUser] = useState<IFamily>()
   const navigate = useNavigate()
 
   const { family } = authStore(s => s)
 
-  console.log(family)
-
   useEffect(() => {
     if (family) {
       setUser(family)
+      authStore.setState({})
       localStorage.clear()
       setTimeout(() => {
         window.location.reload()
@@ -23,7 +23,7 @@ const Logout: FC = () => {
       navigate('/login')
     }
   }, [family])
-  return <LoadingOverlay text={`Good Bye, ${_family?.name}`} />
+  return <LoadingOverlay text={`Good Bye, ${_family?.family_name}`} />
 }
 
 export default Logout

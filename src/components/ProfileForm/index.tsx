@@ -2,14 +2,12 @@ import { useState } from 'react'
 import { useFormik } from 'formik'
 import { isEmpty, omit } from 'lodash'
 
-import { Box, Flex, Stack, Button } from '@chakra-ui/react'
+import { Box, Flex, VStack, Button, Heading } from '@chakra-ui/react'
 
 import Thumb from 'components/Thumb'
 import { FileUpload, Input } from 'components/Forms'
 
 import { authStore } from 'stores/auth.store'
-
-import Avatar from 'assets/images/avatar.png'
 
 import { IFamily } from 'interfaces/auth.interface'
 import { objDiff } from 'utils/helper'
@@ -71,7 +69,7 @@ const ProfileForm = () => {
             top={0}
             left={0}
             pos="absolute"
-            src={isEditing ? `${Avatar}` : values?.avatar || `${Avatar}`}
+            src={values?.avatar}
             alt={values.family_name}
             imageFile={values.avatar}
           />
@@ -91,49 +89,51 @@ const ProfileForm = () => {
           )}
         </Box>
       </Flex>
-      <Stack spacing={isEditing ? 1 : -4}>
-        <Input
-          required
-          type="text"
-          id="family_name"
-          isReadOnly={!isEditing}
-          placeholder="First Name"
-          onChange={handleChange}
-          onBlur={formik.handleBlur}
-          error={errors.family_name}
-          touched={touched.family_name}
-          fontWeight={isEditing ? 400 : 700}
-          setFieldTouched={setFieldTouched}
-          textAlign={isEditing ? 'left' : 'center'}
-          value={(!isEditing ? 'The ' : '') + values.family_name}
-        />
-        <Input
-          required
-          type="text"
-          id="phonenumber"
-          isReadOnly={!isEditing}
-          onChange={handleChange}
-          onBlur={formik.handleBlur}
-          placeholder="Phone Number"
-          value={values.phonenumber}
-          error={errors.phonenumber}
-          touched={touched.phonenumber}
-          setFieldTouched={setFieldTouched}
-          fontWeight={isEditing ? 400 : 700}
-          textAlign={isEditing ? 'left' : 'center'}
-        />
+      <VStack mt={4} spacing={2}>
+        {isEditing ? (
+          <>
+            <Input
+              required
+              type="text"
+              id="family_name"
+              onChange={handleChange}
+              onBlur={formik.handleBlur}
+              error={errors.family_name}
+              value={values.family_name}
+              touched={touched.family_name}
+              setFieldTouched={setFieldTouched}
+            />
 
-        <Input
-          required
-          type="text"
-          id="phonenumber"
-          isReadOnly={true}
-          placeholder="Phone Number"
-          value={family?.email}
-          setFieldTouched={setFieldTouched}
-          fontWeight={isEditing ? 400 : 700}
-          textAlign={isEditing ? 'left' : 'center'}
-        />
+            {isEditing && (
+              <Input
+                required
+                type="text"
+                id="phonenumber"
+                onChange={handleChange}
+                onBlur={formik.handleBlur}
+                value={values.phonenumber}
+                error={errors.phonenumber}
+                touched={touched.phonenumber}
+                setFieldTouched={setFieldTouched}
+              />
+            )}
+
+            <Input
+              required
+              type="text"
+              id="email"
+              isReadOnly={true}
+              value={family?.email}
+              setFieldTouched={setFieldTouched}
+            />
+          </>
+        ) : (
+          <>
+            <Heading fontSize="md">{values.family_name}'s</Heading>
+            <Heading fontSize="md">{family?.email}</Heading>
+          </>
+        )}
+
         <Flex justify="center">
           <Button
             p={2}
@@ -147,7 +147,7 @@ const ProfileForm = () => {
             {!isEditing ? 'Edit Profile' : 'Save Profile'}
           </Button>
         </Flex>
-      </Stack>
+      </VStack>
     </form>
   )
 }

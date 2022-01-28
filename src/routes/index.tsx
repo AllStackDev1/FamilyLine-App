@@ -39,6 +39,22 @@ function Router() {
       )
     },
     {
+      path: '/members/add',
+      element: (
+        <RequireAuth>
+          <Views.MemberAdd />
+        </RequireAuth>
+      )
+    },
+    {
+      path: '/members/edit',
+      element: (
+        <RequireAuth>
+          <Views.MemberEdit />
+        </RequireAuth>
+      )
+    },
+    {
       path: '/memories',
       element: (
         <RequireAuth>

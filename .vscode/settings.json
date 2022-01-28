@@ -16,7 +16,8 @@
       "ACCCGHACCBS",
       "ACCDCCBS",
       "Oj'a",
-      "ojauu"
+      "ojauu",
+      "phonenumber"
     ],
     "typescript.tsdk": "node_modules/typescript/lib",
   }

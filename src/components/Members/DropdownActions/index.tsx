@@ -43,7 +43,7 @@ const DropdownActions: FC<IDropdownAction> = ({ data, title, options }) => {
             {open && (
               <Menu.Items
                 static
-                w={56}
+                w={44}
                 mt={3}
                 bg="white"
                 rounded="sm"
@@ -90,7 +90,7 @@ const DropdownActions: FC<IDropdownAction> = ({ data, title, options }) => {
                       animate="visible"
                       exit="removed"
                     >
-                      <Box
+                      <Flex
                         py={2}
                         px={6}
                         _hover={{
@@ -98,15 +98,14 @@ const DropdownActions: FC<IDropdownAction> = ({ data, title, options }) => {
                           color: 'white',
                           bg: 'brand.green.200'
                         }}
-                        onClick={() => {
-                          item.action(data)
-                        }}
+                        align="center"
+                        onClick={() => item.action(data)}
                       >
                         {item.icon && (
                           <Icon as={item.icon} boxSize={4} mr={2} />
                         )}{' '}
                         {item.name}
-                      </Box>
+                      </Flex>
                     </Menu.Item>
                   ))}
                 </AnimatePresence>

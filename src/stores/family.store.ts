@@ -9,7 +9,6 @@ import { IMember } from 'interfaces/auth.interface'
 
 interface IFamilyStore {
   view: Views
-  modal: Modal
   isLoading: boolean
   error?: string | null
   message?: string | null
@@ -25,14 +24,16 @@ interface IFamilyStore {
 }
 
 type Views = 'table' | 'tree'
-type Modal = 'edit' | 'new' | 'prompt'
 
 export const familyStore = create<IFamilyStore>(set => ({
   error: null,
   message: null,
   view: 'table',
-  modal: 'prompt',
   isLoading: false,
+  selectedData: JSON.parse(sessionStorage.getItem('selected_data') || 'null'),
+  selectedMember: JSON.parse(
+    sessionStorage.getItem('selected_member') || 'null'
+  ),
   addFamilyMember: async payload => {
     try {
       set(() => ({ isLoading: true }))

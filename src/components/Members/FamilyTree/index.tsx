@@ -1,6 +1,16 @@
-import { FC, useRef, useEffect } from 'react'
-import { Box } from '@chakra-ui/react'
 import f3 from 'family-chart'
+import screenfull from 'screenfull'
+import { findDOMNode } from 'react-dom'
+import { FC, useRef, useEffect } from 'react'
+import { useReactToPrint } from 'react-to-print'
+import { Box, HStack, IconButton } from '@chakra-ui/react'
+import {
+  BsFillShareFill,
+  BsFillCursorFill,
+  BsFillPrinterFill,
+  BsArrowsFullscreen
+} from 'react-icons/bs'
+
 import { IMember } from 'interfaces/auth.interface'
 import { generateTreeData } from 'utils/helper'
 
@@ -61,11 +71,70 @@ const FamilyTree: FC<{ data: IMember[] }> = ({ data }) => {
     }
   }, [data])
 
+  const toggleFullscreen = () => {
+    return (
+      cont.current && screenfull.toggle(findDOMNode(cont.current) as Element)
+    )
+  }
+
+  const handlePrint = useReactToPrint({
+    content: () => cont.current
+  })
+
   return (
-    <>
-      <div id="form_modal" className="modal" />
-      <Box maxH="calc(100vh - 80px)" h="2xl" pos="relative" ref={cont} />
-    </>
+    <Box pos="relative">
+      <style type="text/css" media="print">
+        {'\
+          @page { size: landscape; }\
+        '}
+      </style>
+      <Box h="2xl" pos="relative" ref={cont} cursor="grabbing" />
+      <HStack spacing={5} pos="absolute" bottom={5} right={5}>
+        <IconButton
+          color="white"
+          title="share"
+          bg="brand.green.200"
+          aria-label="share tree"
+          icon={<BsFillShareFill size={20} />}
+          // onClick={() => handleClickFullscreen()}
+          _active={{ bg: 'white', outline: 'none' }}
+          _hover={{ color: 'brand.green.200', bg: 'white' }}
+        />
+
+        <IconButton
+          color="white"
+          title="send"
+          bg="brand.green.200"
+          aria-label="send tree"
+          icon={<BsFillCursorFill size={20} />}
+          // onClick={() => handleClickFullscreen()}
+          _active={{ bg: 'white', outline: 'none' }}
+          _hover={{ color: 'brand.green.200', bg: 'white' }}
+        />
+
+        <IconButton
+          color="white"
+          title="print"
+          bg="brand.green.200"
+          onClick={handlePrint}
+          aria-label="print tree"
+          icon={<BsFillPrinterFill size={20} />}
+          _active={{ bg: 'white', outline: 'none' }}
+          _hover={{ color: 'brand.green.200', bg: 'white' }}
+        />
+
+        <IconButton
+          color="white"
+          bg="brand.green.200"
+          onClick={toggleFullscreen}
+          title="toggle full screen"
+          aria-label="toggle full screen"
+          icon={<BsArrowsFullscreen size={20} />}
+          _active={{ bg: 'white', outline: 'none' }}
+          _hover={{ color: 'brand.green.200', bg: 'white' }}
+        />
+      </HStack>
+    </Box>
   )
 }
 

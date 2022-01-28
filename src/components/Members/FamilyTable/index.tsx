@@ -1,4 +1,6 @@
 import { FC } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { FiEdit, FiDelete } from 'react-icons/fi'
 import { Box, Text, Flex, FlexProps, BoxProps } from '@chakra-ui/react'
 
 import CustomTable from 'components/CustomTable'
@@ -6,21 +8,22 @@ import { IMember } from 'interfaces/auth.interface'
 import DropdownActions from '../DropdownActions'
 import { familyStore } from 'stores/family.store'
 import { getAge } from 'utils/helper'
-import { FiEdit, FiDelete } from 'react-icons/fi'
 
 const FamilyTable: FC<{ members: IMember[]; onOpen: () => void }> = ({
   members,
   onOpen
 }) => {
   const { deleteFamilyMember } = familyStore(s => s)
+  const navigate = useNavigate()
 
   const actions = [
     {
       name: 'Edit',
       icon: FiEdit,
       action: row => {
-        familyStore.setState({ selectedMember: row, modal: 'edit' })
-        onOpen()
+        familyStore.setState({ selectedMember: row })
+        sessionStorage.setItem('selected_member', JSON.stringify(row))
+        navigate('/members/edit')
       }
     },
     {
@@ -40,9 +43,12 @@ const FamilyTable: FC<{ members: IMember[]; onOpen: () => void }> = ({
       name: 'Father',
       action: ({ id, gender }) => {
         familyStore.setState({
-          modal: 'prompt',
           selectedData: { rel: 'Father', gender, mainId: id }
         })
+        sessionStorage.setItem(
+          'selected_data',
+          JSON.stringify({ rel: 'Father', gender, mainId: id })
+        )
         onOpen()
       }
     },
@@ -50,9 +56,12 @@ const FamilyTable: FC<{ members: IMember[]; onOpen: () => void }> = ({
       name: 'Mother',
       action: ({ id, gender }) => {
         familyStore.setState({
-          modal: 'prompt',
           selectedData: { rel: 'Mother', gender, mainId: id }
         })
+        sessionStorage.setItem(
+          'selected_data',
+          JSON.stringify({ rel: 'Mother', gender, mainId: id })
+        )
         onOpen()
       }
     },
@@ -60,9 +69,12 @@ const FamilyTable: FC<{ members: IMember[]; onOpen: () => void }> = ({
       name: 'Spouses',
       action: ({ id, gender }) => {
         familyStore.setState({
-          modal: 'prompt',
           selectedData: { rel: 'Spouses', gender, mainId: id }
         })
+        sessionStorage.setItem(
+          'selected_data',
+          JSON.stringify({ rel: 'Spouses', gender, mainId: id })
+        )
         onOpen()
       }
     },
@@ -70,9 +82,12 @@ const FamilyTable: FC<{ members: IMember[]; onOpen: () => void }> = ({
       name: 'Son',
       action: ({ id, gender }) => {
         familyStore.setState({
-          modal: 'prompt',
           selectedData: { rel: 'Son', gender, mainId: id }
         })
+        sessionStorage.setItem(
+          'selected_data',
+          JSON.stringify({ rel: 'Son', gender, mainId: id })
+        )
         onOpen()
       }
     },
@@ -80,9 +95,12 @@ const FamilyTable: FC<{ members: IMember[]; onOpen: () => void }> = ({
       name: 'Daughter',
       action: ({ id, gender }) => {
         familyStore.setState({
-          modal: 'prompt',
           selectedData: { rel: 'Daughter', gender, mainId: id }
         })
+        sessionStorage.setItem(
+          'selected_data',
+          JSON.stringify({ rel: 'Daughter', gender, mainId: id })
+        )
         onOpen()
       }
     }
@@ -165,18 +183,12 @@ const FamilyTable: FC<{ members: IMember[]; onOpen: () => void }> = ({
     <Box
       py={10}
       w="full"
-      h="full"
       rounded="md"
-      borderWidth={1}
+      shadow="lg"
       bgColor="white"
       overflow="scroll"
-      borderColor="gray.300"
     >
-      <CustomTable
-        data={members}
-        columns={columns}
-        rowStyle={{ cursor: 'pointer', bgColor: 'grey.200' }}
-      />
+      <CustomTable data={members} variant="simple" columns={columns} />
     </Box>
   )
 }

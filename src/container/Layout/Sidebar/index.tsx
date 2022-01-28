@@ -7,7 +7,7 @@ import {
   BellIcon,
   FamilyIcon
 } from 'utils/theme/custom-icon'
-import { AiOutlinePoweroff } from 'react-icons/ai'
+import { BiLogOutCircle } from 'react-icons/bi'
 
 const Sidebar: FC = (): JSX.Element => {
   const menu = [
@@ -28,15 +28,17 @@ const Sidebar: FC = (): JSX.Element => {
       icon: EventsIcon
     },
     {
+      bottom: 0,
+      pos: 'absolute',
       title: 'Logout',
-      icon: AiOutlinePoweroff
+      icon: BiLogOutCircle
     }
   ]
 
   return (
-    <List>
+    <List pos="relative" h="50vh">
       {menu?.map((item, idx) => (
-        <SidebarItem key={idx + 1} icon={item.icon} title={item.title} />
+        <SidebarItem key={idx + 1} {...item} />
       ))}
     </List>
   )

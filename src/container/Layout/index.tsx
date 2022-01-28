@@ -37,7 +37,7 @@ const Wrapper: FC<{ isAuth?: boolean }> = ({ children, isAuth }) => {
       align="center"
       color="gray.900"
       flexDir="column"
-      bg="brand.bg.200"
+      bg="#FCFCFC"
     >
       <DesktopNav menus={menus} isAuth={isAuth} />
       <MobileNav menus={menus} isAuth={isAuth} />
@@ -57,8 +57,8 @@ const Wrapper: FC<{ isAuth?: boolean }> = ({ children, isAuth }) => {
       >
         {!isAuth && (
           <GridItem
-            bg="white"
-            minH="70vh"
+            bg="#FCFCFC"
+            maxH="80vh"
             shadow="0 4px 50px 0 rgba(0,0,0,0.1)"
             roundedRight="xl"
             mt={{ md: 20, lg: 32 }}
@@ -67,7 +67,7 @@ const Wrapper: FC<{ isAuth?: boolean }> = ({ children, isAuth }) => {
             pr={{ md: 4, lg: 3, xl: 4, '2xl': 5 }}
             position={'relative'}
           >
-            <Flex direction="column" align="center" mb={12}>
+            <Flex direction="column" align="center" mb={8}>
               <ProfileForm />
             </Flex>
             <Sidebar />

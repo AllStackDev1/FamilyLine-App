@@ -19,7 +19,7 @@ export const authStore = create<IAuthStore>(set => ({
   isLoading: false,
   access: localStorage.getItem('_fl_u_T'),
   refresh: localStorage.getItem('_fl_u_R'),
-  family: JSON.parse(localStorage.getItem('_fl_u_F') || '{}'),
+  family: JSON.parse(localStorage.getItem('_fl_u_F') || 'null'),
   login: async payload => {
     try {
       set(() => ({ isLoading: true, error: null, message: null }))

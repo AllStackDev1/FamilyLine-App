@@ -3,63 +3,53 @@ import { useQuery } from 'react-query'
 import { Box, Flex, useDisclosure } from '@chakra-ui/react'
 
 import Wrapper from 'container/Layout'
-import {
-  FamilyTree,
-  FamilyTable,
-  AddMemberForm,
-  EditMemberForm,
-  AddRelationPrompt
-} from 'components/Members'
+import { FamilyTree, FamilyTable, AddRelationPrompt } from 'components/Members'
 
 import { getFamilyMembers } from 'utils/api/services'
 import { familyStore } from 'stores/family.store'
 import { FilledButton } from 'components/Buttons'
+import { useNavigate } from 'react-router-dom'
+import upperFirst from 'lodash/upperFirst'
+import { BsFillEyeFill } from 'react-icons/bs'
 
 const Members: FC = () => {
-  document.title = 'Family Line | Members'
-  const { view, modal } = familyStore(s => s)
+  const navigate = useNavigate()
+
+  const { view } = familyStore(s => s)
   const { isOpen, onClose, onOpen } = useDisclosure()
   const { data } = useQuery('family-members', () => getFamilyMembers(), {
     refetchOnWindowFocus: false,
     staleTime: 300000
   })
 
+  const title = (text: string) => {
+    return [upperFirst(view), text].join(' ')
+  }
+
+  document.title = `${title(
+    view === 'tree' ? 'Diagram' : 'List'
+  )} | Family Line`
+
   useEffect(() => {
     if (data?.length === 0) {
-      onOpen()
+      navigate('/members/add')
     }
   }, [data?.length])
 
   return (
     <Wrapper>
       <Box my={{ xl: 10 }} width={{ xl: '80%' }}>
-        {modal === 'new' && (
-          <AddMemberForm
-            isOpen={isOpen}
-            onClose={onClose}
-            isMain={data?.length === 0}
-          />
-        )}
-
-        {modal === 'prompt' && (
-          <AddRelationPrompt
-            isOpen={isOpen}
-            onClose={onClose}
-            onCancel={() => null}
-            onCreateNew={() => {
-              familyStore.setState({ modal: 'new' })
-            }}
-          />
-        )}
-
-        {modal === 'edit' && (
-          <EditMemberForm isOpen={isOpen} onClose={onClose} />
-        )}
+        <AddRelationPrompt
+          isOpen={isOpen}
+          onClose={onClose}
+          onCreateNew={() => navigate('/members/add')}
+        />
 
         <Flex mb={5} w="full" justify="flex-end">
           <FilledButton
             px={5}
-            title={`Switch To ${view === 'tree' ? 'Table' : 'Tree'} View`}
+            leftIcon={<BsFillEyeFill size={20} />}
+            title={view === 'tree' ? 'Table List' : 'Tree Diagram'}
             onClick={() =>
               familyStore.setState({ view: view === 'tree' ? 'table' : 'tree' })
             }

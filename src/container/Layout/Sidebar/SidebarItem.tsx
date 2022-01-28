@@ -8,14 +8,21 @@ interface ISidebarItem {
   title: string
 }
 
-const SidebarItem: React.FC<ISidebarItem> = ({ icon, title }) => {
+const SidebarItem: React.FC<ISidebarItem> = ({ icon, title, ...rest }) => {
   const { pathname } = useLocation()
 
   const to = `/${title.toLowerCase().replace(' ', '-')}`
 
   return (
-    <ListItem my={3} role="group">
-      <Link d="flex" as={NavLink} justifyItems="center" to={to}>
+    <ListItem my={3} role="group" {...rest}>
+      <Link
+        d="flex"
+        as={NavLink}
+        _focus={{ outline: 'none' }}
+        _hover={{ outline: 'none' }}
+        justifyItems="center"
+        to={to}
+      >
         <Box
           _groupHover={{
             borderLeftWidth: 4,
@@ -23,8 +30,10 @@ const SidebarItem: React.FC<ISidebarItem> = ({ icon, title }) => {
             boxShadow: '0px 0px 45px 3px #efefef'
           }}
           ml={1}
-          borderLeftWidth={pathname === to ? 4 : 0}
-          borderLeftColor={pathname === to ? 'brand.green.200' : 'inherit'}
+          borderLeftWidth={pathname.match(new RegExp(to, 'g')) ? 4 : 0}
+          borderLeftColor={
+            pathname.match(new RegExp(to, 'g')) ? 'brand.green.200' : 'inherit'
+          }
         />
 
         <Flex

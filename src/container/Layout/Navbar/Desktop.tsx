@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { FC } from 'react'
+import { FC, useState, useEffect } from 'react'
 import { NavLink as ReachRouter } from 'react-router-dom'
 import { Box, Text, Flex, Link, Image } from '@chakra-ui/react'
 
@@ -32,6 +32,26 @@ const Layout: FC<{ menus: INavMenu[]; isAuth?: boolean }> = ({
   menus,
   isAuth
 }) => {
+  const [bgColor, setBgColor] = useState(
+    'linear-gradient(180deg, rgba(0, 191, 77, 0.08) 0%, rgba(2, 153, 62, 0.08) 100%);'
+  )
+
+  // navbar scroll changeBackground function
+  const changeBackground = () => {
+    if (window.scrollY >= 30) {
+      setBgColor('#FCFCFC')
+    } else {
+      setBgColor(
+        'linear-gradient(180deg, rgba(0, 191, 77, 0.08) 0%, rgba(2, 153, 62, 0.08) 100%);'
+      )
+    }
+  }
+
+  useEffect(() => {
+    changeBackground()
+    window.addEventListener('scroll', changeBackground)
+  })
+
   return (
     <Flex
       top={0}
@@ -42,8 +62,8 @@ const Layout: FC<{ menus: INavMenu[]; isAuth?: boolean }> = ({
       pos="fixed"
       zIndex={100}
       align="center"
-      bgColor="brand.bg.200"
-      h={{ md: 16, lg: 24 }}
+      bg={bgColor}
+      h={{ md: 16, lg: 28 }}
       justify="space-between"
       px={{ lg: 10, xl: 28 }}
       d={{ base: 'none', xl: 'flex' }}

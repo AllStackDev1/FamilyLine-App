@@ -16,11 +16,9 @@ type rel = 'father' | 'mother' | 'spouses' | 'son' | 'daughter'
 const AddRelationPrompt: FC<{
   isOpen: boolean
   onClose: () => void
-  onCancel: () => void
   onCreateNew: () => void
-}> = ({ isOpen, onClose, onCancel, onCreateNew }) => {
+}> = ({ isOpen, onClose, onCreateNew }) => {
   const [isSelect, setOnSelect] = useState(false)
-
   const { error, message, isLoading, selectedData, updateFamilyMember } =
     familyStore(state => state)
 
@@ -114,6 +112,16 @@ const AddRelationPrompt: FC<{
 
   const _value = data?.find(e => e.id === formik.values.idToAdd)
 
+  const confirmAddition = () => {
+    if (['Mother', 'Father'].includes(selectedData?.rel as string)) {
+      const member = data?.find(e => e.id === selectedData?.mainId)
+      if (member?.father || member?.mother) {
+        return true
+      }
+    }
+    return false
+  }
+
   return (
     <Modal
       title=""
@@ -199,6 +207,7 @@ const AddRelationPrompt: FC<{
                 w="30%"
                 fontSize="sm"
                 title="Create"
+                isDisabled={confirmAddition()}
                 onClick={onCreateNew}
                 colorScheme="primaryScheme"
               />
