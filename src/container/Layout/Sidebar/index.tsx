@@ -1,15 +1,19 @@
 import { FC } from 'react'
 import { List } from '@chakra-ui/react'
 import SidebarItem from 'container/Layout/Sidebar/SidebarItem'
-import { EventsIcon, MemoryIcon, BellIcon } from 'utils/theme/custom-icon'
-
-import { GiFamilyTree } from 'react-icons/gi'
+import {
+  EventsIcon,
+  MemoryIcon,
+  BellIcon,
+  FamilyIcon
+} from 'utils/theme/custom-icon'
+import { BiLogOutCircle } from 'react-icons/bi'
 
 const Sidebar: FC = (): JSX.Element => {
   const menu = [
     {
-      title: 'Tree',
-      icon: GiFamilyTree
+      title: 'Members',
+      icon: FamilyIcon
     },
     {
       title: 'Memories',
@@ -22,13 +26,19 @@ const Sidebar: FC = (): JSX.Element => {
     {
       title: 'Events',
       icon: EventsIcon
+    },
+    {
+      bottom: 0,
+      pos: 'absolute',
+      title: 'Logout',
+      icon: BiLogOutCircle
     }
   ]
 
   return (
-    <List>
+    <List pos="relative" h="50vh">
       {menu?.map((item, idx) => (
-        <SidebarItem key={idx + 1} icon={item.icon} title={item.title} />
+        <SidebarItem key={idx + 1} {...item} />
       ))}
     </List>
   )

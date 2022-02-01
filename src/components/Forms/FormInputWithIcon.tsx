@@ -44,6 +44,7 @@ const FormInputWithIcon: React.FC<IFormProps & IProps> = ({
           borderTopWidth={1}
           borderWidth={0}
           bgColor="white"
+          color="gray.700"
           shadow="md"
           {...rest}
         />

@@ -9,11 +9,13 @@ const Secondary: FC<IProps> = ({ title, ...rest }) => {
   return (
     <Button
       filter="drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.1))"
-      bg="white"
+      _active={{ outline: 'none' }}
+      _focus={{ outline: 'none' }}
       colorScheme="brandGreen"
       fontWeight={700}
       color="#02993E"
       rounded="xl"
+      bg="white"
       py={6}
       px={6}
       {...rest}

@@ -1,7 +1,6 @@
 import { FC } from 'react'
 import { Box, Text, Heading } from '@chakra-ui/react'
 import Wrapper from 'container/Layout'
-import FamilyChart from 'components/FamilyChart'
 
 export type Views = 'add' | 'chart'
 
@@ -20,7 +19,7 @@ const MyFamily: FC = () => {
             <strong>remove </strong> member from your family tree here
           </Text>
         </Box>
-        <FamilyChart />
+        {/* <FamilyChart /> */}
       </Box>
     </Wrapper>
   )

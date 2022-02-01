@@ -27,15 +27,16 @@ const Thumb: FC<IProps & AvatarProps> = ({ imageFile, src, alt, ...rest }) => {
     }
   }, [imageFile])
 
-  if (!imageFile && !src) return <div />
   if (loading) return <div>loading...</div>
 
   return (
     <Avatar
       name={(imageFile && imageFile.name) || alt}
       src={thumb || src}
-      bgColor="white"
       size="xl"
+      filter="drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25))"
+      bgGradient="linear(to-l,  #02993E, #00BF4D)"
+      colorScheme="brandGreen"
       {...rest}
     />
   )

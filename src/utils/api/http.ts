@@ -26,7 +26,8 @@ class HttpFacade {
       response => response,
       error => {
         if ([401, 403].includes(error?.response?.status)) {
-          // TODO: show login
+          localStorage.clear()
+          window.location.reload()
         }
         return Promise.reject(error.response)
       }

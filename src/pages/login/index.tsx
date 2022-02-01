@@ -10,8 +10,7 @@ import {
   Flex,
   GridItem,
   Heading,
-  Divider,
-  useToast
+  Divider
 } from '@chakra-ui/react'
 
 import { authStore } from 'stores/auth.store'
@@ -19,11 +18,12 @@ import { authStore } from 'stores/auth.store'
 import Family from 'assets/images/family.png'
 
 import useAuth from 'utils/providers/AuthContextProvider'
-import { IUser } from 'interfaces/auth.interface'
+import { IFamily } from 'interfaces/auth.interface'
 
 import Wrapper from 'container/Layout'
 import { FilledButton } from 'components/Buttons'
 import { Input, InputWithIcon } from 'components/Forms'
+import useAlertListener from 'hooks/useAlertListener'
 // import SocialButtons from 'components/SocialButtons'
 
 const Login: FC = () => {
@@ -32,41 +32,27 @@ const Login: FC = () => {
 
   const { show, setShow } = useAuth()
 
-  const formik = useFormik<Partial<IUser>>({
-    initialValues: {
-      email: '',
-      password: ''
-    },
+  const formik = useFormik<Partial<IFamily>>({
+    initialValues: { email: '', password: '' },
     onSubmit: async values => {
       await login(values)
     }
   })
 
-  const toast = useToast()
+  useAlertListener(authStore, {
+    message: error || message,
+    type: error ? 'error' : 'success'
+  })
+
   const navigate = useNavigate()
 
   useEffect(() => {
-    if (error) {
-      toast({
-        duration: 8000,
-        isClosable: true,
-        position: 'top-right',
-        description: error,
-        status: 'error',
-        title: 'An error occurred'
-      })
-    }
-
     if (access) {
       setTimeout(() => {
-        navigate('/tree')
+        navigate('/members')
       }, 500)
     }
-
-    return () => {
-      authStore.setState({ error: null, message: null })
-    }
-  }, [error, message, access])
+  }, [access])
 
   return (
     <Wrapper isAuth>

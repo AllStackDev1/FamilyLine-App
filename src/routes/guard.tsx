@@ -17,7 +17,10 @@ const RequireAuth = ({ children }: IProps) => {
   })
 
   useEffect(() => {
-    authStore.setState({ family: data?.[0] })
+    if (data?.[0]) {
+      localStorage.setItem('_fl_u_F', JSON.stringify(data[0]))
+      authStore.setState({ family: data[0] })
+    }
   }, [data])
 
   return access ? children : <Navigate to="/login" />

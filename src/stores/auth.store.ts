@@ -11,17 +11,15 @@ interface IAuthStore {
   error?: string | null
   message?: string | null
   login: (p: Partial<{ email: string; password: string }>) => Promise<void>
-  register: (p: IFamily) => Promise<void>
+  register: (p: Partial<IFamily>) => Promise<void>
   updateProfile: (p: any) => Promise<void>
-  logout: () => boolean
 }
 
 export const authStore = create<IAuthStore>(set => ({
+  isLoading: false,
   access: localStorage.getItem('_fl_u_T'),
   refresh: localStorage.getItem('_fl_u_R'),
-  error: null,
-  message: null,
-  isLoading: false,
+  family: JSON.parse(localStorage.getItem('_fl_u_F') || 'null'),
   login: async payload => {
     try {
       set(() => ({ isLoading: true, error: null, message: null }))
@@ -39,14 +37,21 @@ export const authStore = create<IAuthStore>(set => ({
           .map((e: any) => e[0])
           .join(' <br /> ')
       }
-      set(() => ({ isLoading: false, error }))
+      set(() => ({
+        isLoading: false,
+        error: !err.data.statue ? 'Incorrect email or password' : error
+      }))
     }
   },
   register: async payload => {
     try {
       set(() => ({ isLoading: true, error: null, message: null }))
       const family = await register(payload)
-      set(() => ({ isLoading: false, family }))
+      set(() => ({
+        isLoading: false,
+        family,
+        message: 'Account created successfully'
+      }))
     } catch (err: any) {
       let error = 'Unexpected network error.'
       if (err.status === 500) {
@@ -77,10 +82,5 @@ export const authStore = create<IAuthStore>(set => ({
       }
       set(() => ({ isLoading: false, error }))
     }
-  },
-  logout: () => {
-    localStorage.removeItem('_fl_u_T')
-    localStorage.removeItem('_fl_u_R')
-    return true
   }
 }))

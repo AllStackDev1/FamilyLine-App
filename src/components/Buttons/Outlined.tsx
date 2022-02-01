@@ -9,6 +9,8 @@ const Outlined: FC<IProps> = ({ title, ...rest }) => {
   return (
     <Button
       colorScheme="brandGreen"
+      _active={{ outline: 'none' }}
+      _focus={{ outline: 'none' }}
       fontWeight={400}
       variant="outline"
       {...rest}

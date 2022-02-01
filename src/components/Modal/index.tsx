@@ -6,28 +6,22 @@ import {
   ModalHeader,
   ModalBody,
   ModalCloseButton,
-  ModalProps
+  ModalProps,
+  StyleProps
 } from '@chakra-ui/react'
 
 interface IModal extends ModalProps {
   isOpen: boolean
-  rounded: string
   onClose: () => void
   title: string
-  headerStyle: any
+  headerStyle?: StyleProps
 }
 
-const Modal: FC<IModal> = ({
-  title,
-  headerStyle,
-  children,
-  rounded,
-  ...rest
-}) => {
+const Modal: FC<IModal> = ({ title, headerStyle, children, ...rest }) => {
   return (
     <ChakraModal {...rest}>
       <ModalOverlay />
-      <ModalContent {...{ rounded }}>
+      <ModalContent rounded="xl" bgColor="white">
         <ModalHeader {...headerStyle}>{title}</ModalHeader>
         <ModalCloseButton />
         <ModalBody>{children}</ModalBody>

@@ -31,10 +31,26 @@ function Router() {
       element: <Views.AccountSuccess />
     },
     {
-      path: '/tree',
+      path: '/members',
       element: (
         <RequireAuth>
-          <Views.Tree />
+          <Views.Members />
+        </RequireAuth>
+      )
+    },
+    {
+      path: '/members/add',
+      element: (
+        <RequireAuth>
+          <Views.MemberAdd />
+        </RequireAuth>
+      )
+    },
+    {
+      path: '/members/edit',
+      element: (
+        <RequireAuth>
+          <Views.MemberEdit />
         </RequireAuth>
       )
     },
@@ -64,7 +80,7 @@ function Router() {
     },
     {
       path: '/logout',
-      element: <Views.NotFound />
+      element: <Views.Logout />
     },
     {
       path: '*',
