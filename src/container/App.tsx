@@ -9,7 +9,6 @@ import { ApiContextProvider } from 'utils/providers/APIContextProvider'
 // import { ColorModeSwitcher } from './ColorModeSwitcher'
 import { theme } from 'utils/theme'
 import Router from 'routes'
-
 import 'assets/styles/index.css'
 import 'assets/fonts/fonts.css'
 

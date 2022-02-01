@@ -11,22 +11,14 @@ const MyFamily: FC = () => {
   return (
     <Wrapper>
       <Box my={{ xl: 10 }} width={{ xl: '80%' }}>
-        <Box mb={5}>
-          <Heading fontWeight={500} fontSize="xl">
-            Welcome to you family tree:{' '}
-            <Text as="span" fontWeight={600} color="green.500">
-              add
-            </Text>
-            ,{' '}
-            <Text as="span" fontWeight={600} color="blue.500">
-              edit
-            </Text>
-            , or{' '}
-            <Text as="span" fontWeight={600} color="red.500">
-              delete
-            </Text>{' '}
-            members
+        <Box mb={5} textAlign={'center'}>
+          <Heading fontWeight={500} fontSize="2xl" mb={2}>
+            Your Family Tree
           </Heading>
+          <Text mb={6}>
+            You can <strong>add</strong>, <strong>edit</strong> and{' '}
+            <strong>remove </strong> member from your family tree here
+          </Text>
         </Box>
         <FamilyChart />
       </Box>

@@ -41,11 +41,13 @@ const Wrapper: FC<{ isAuth?: boolean }> = ({ children, isAuth }) => {
   return (
     <Flex
       as="main"
-      minH="100vh"
+      maxH="100vh"
       align="center"
       color="gray.900"
       flexDir="column"
       bg="brand.bg.200"
+      h={'100%'}
+      overflow={'hidden'}
     >
       <DesktopNav menus={menus} isAuth={isAuth} />
       <MobileNav menus={menus} isAuth={isAuth} />
@@ -66,9 +68,9 @@ const Wrapper: FC<{ isAuth?: boolean }> = ({ children, isAuth }) => {
         {!isAuth && (
           <GridItem
             bg="white"
-            minH="70vh"
+            h="calc(100vh - 120px)"
             shadow="0 4px 50px 0 rgba(0,0,0,0.1)"
-            roundedRight="xl"
+            roundedTopRight="3xl"
             mt={{ md: 20, lg: 32 }}
             py={{ md: 24, lg: 6 }}
             d={{ base: 'none', md: 'block' }}
@@ -102,7 +104,13 @@ const Wrapper: FC<{ isAuth?: boolean }> = ({ children, isAuth }) => {
             </Flex>
           </GridItem>
         )}
-        <GridItem d="flex" mt={{ md: 16, lg: 24 }} justifyContent="center">
+        <GridItem
+          d="flex"
+          mt={{ md: 16, lg: 24 }}
+          justifyContent="center"
+          h="calc(100vh - 120px)"
+          overflowY={'scroll'}
+        >
           {children}
         </GridItem>
       </Grid>

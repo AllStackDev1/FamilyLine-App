@@ -17,8 +17,8 @@ li{
   svg.main_svg {
     width: 100%;
     height: 100%;
-    background-color: rgb(59, 85, 96);
-    color: rgb(59, 85, 96);
+    background-color: rgba(0, 191, 76, 0.055);
+    color: white;
   }
   
   svg.main_svg text {
@@ -26,11 +26,11 @@ li{
   }
   
   .card-female {
-    fill: lightpink;
+    fill: rgba(0, 191, 77, 1);
   }
   
   .card-male {
-    fill: lightblue;
+    fill: rgb(17, 107, 53);
   }
   
   .card-genderless {
