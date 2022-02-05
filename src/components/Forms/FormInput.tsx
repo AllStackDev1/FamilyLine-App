@@ -29,7 +29,7 @@ const FormInput: React.FC<IFormProps & InputProps> = ({
         borderWidth={0}
         bgColor="white"
         color="gray.700"
-        shadow="md"
+        shadow="rgba(99, 99, 99, 0.2) 0px 2px 8px 0px"
         {...rest}
       />
       <FormErrorHandler

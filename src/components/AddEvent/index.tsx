@@ -5,53 +5,68 @@ import {
   Grid,
   Flex,
   GridItem,
+  FormLabel,
   Text,
   Icon,
-  useToast
+  Image,
+  useToast,
+  Input as ChakraInput
 } from '@chakra-ui/react'
 
 import { FilledButton } from 'components/Buttons'
 import { Input, TextArea, FileUpload } from 'components/Forms'
 import { saveEvents } from 'utils/api/services'
 import { Views } from 'pages/memories'
-import { fileDoc } from 'utils/theme/custom-icon'
+import { FiUploadCloud } from 'react-icons/fi'
+import { BsX } from 'react-icons/bs'
 
 const AddEvent: FC<{ isAdd?: boolean; toggle?: (e: Views) => void }> = ({
   isAdd,
   toggle
 }) => {
   const [isLoading, setLoading] = useState(false)
+  const [cover, setCover] = useState<any>()
   const toast = useToast()
 
-  interface IMemory {
-    event_name: string
-    event_location: string
-    event_date: string
-    event_time: string
-    event_description: string
-    event_file: string
-    event_note: ''
+  interface IEvent {
+    name: string
+    location: string
+    date?: string
+    time?: string
+    note: string
+    datetime?: string
   }
 
-  const formik = useFormik<IMemory>({
+  const handleCoverDelete = (preview: any) => {
+    const newFiles = cover.filter(i => i.preview !== preview)
+    setCover(newFiles)
+  }
+
+  const formik = useFormik<IEvent>({
     initialValues: {
-      event_name: '',
-      event_location: '',
-      event_date: '',
-      event_time: '',
-      event_description: '',
-      event_file: '',
-      event_note: ''
+      name: '',
+      location: '',
+      date: '',
+      time: '',
+      note: ''
     },
     onSubmit: async values => {
       try {
         const payload = { ...values }
         setLoading(true)
 
+        if (payload.date && payload.time) {
+          payload.datetime = values.date + ' ' + values.time
+          delete payload.date
+          delete payload.time
+        }
+
         const formData = new FormData()
         Object.keys(payload).forEach(key => formData.append(key, payload[key]))
 
-        console.log('Hello accra ', payload)
+        cover.map(item => {
+          formData.append('file', item)
+        })
 
         const res = await saveEvents(formData)
         if (res) {
@@ -84,116 +99,151 @@ const AddEvent: FC<{ isAdd?: boolean; toggle?: (e: Views) => void }> = ({
 
   return (
     <form onSubmit={formik.handleSubmit}>
-      <Grid rowGap={10} columnGap={10} templateColumns={{ xl: '50% 50%' }}>
+      <Text as="h3" textAlign={'center'} mb={4} fontWeight="bold" fontSize={24}>
+        Add Event
+      </Text>
+      <FormLabel for="memory_media" cursor={'pointer'} mr={0}>
+        <ChakraInput
+          type="file"
+          id="memory_media"
+          d="none"
+          accept="image/x-png,image/jpeg"
+          onChange={e => {
+            const files = e.target.files || []
+            const currentFiles = Array.from(files)
+
+            currentFiles.map(file =>
+              Object.assign(file, {
+                preview: URL.createObjectURL(file)
+              })
+            )
+            setCover(prev => [...currentFiles])
+          }}
+        />
+        <Flex
+          w={110}
+          h={48}
+          bg="gray.200"
+          rounded={'lg'}
+          align="center"
+          justify={'center'}
+          mb={4}
+          overflow="hidden"
+          mx="auto"
+        >
+          {!cover ? (
+            <Flex align={'center'} direction="column" p={4}>
+              <Icon as={FiUploadCloud} boxSize={8} color="gray.400" />
+              <Text textAlign={'center'} fontSize={14} mt={2} color="gray.400">
+                Upload your cover picture
+              </Text>
+            </Flex>
+          ) : (
+            <Box>
+              <Image src={cover[0].preview} />
+              <Flex
+                bg="blackAlpha.400"
+                pos="absolute"
+                rounded={'full'}
+                right={2}
+                top={2}
+                w={8}
+                h={8}
+                align="center"
+                justify={'center'}
+                cursor="pointer"
+                onClick={() => handleCoverDelete(cover[0].preview)}
+              >
+                <Icon as={BsX} color="white" />
+              </Flex>
+            </Box>
+          )}
+        </Flex>
+      </FormLabel>
+      <Grid
+        rowGap={10}
+        columnGap={10}
+        templateColumns={{ base: 'repeat(2,1fr)' }}
+      >
         <GridItem
           as={Input}
           required
           type="text"
-          id="event_name"
+          id="name"
+          placeholder=""
           label="Event Name"
           onBlur={formik.handleBlur}
-          placeholder=""
-          value={formik.values.event_name}
-          error={formik.errors.event_name}
-          touched={formik.touched.event_name}
+          value={formik.values.name}
+          error={formik.errors.name}
+          _focus={{ outline: 'none' }}
+          touched={formik.touched.name}
           onChange={formik.handleChange}
           setFieldTouched={formik.setFieldTouched}
         />
 
+        <GridItem>
+          <Grid templateColumns={{ base: 'repeat(2,1fr)' }} gap={6}>
+            <GridItem
+              as={Input}
+              required
+              type="date"
+              id="date"
+              label="Event Date"
+              onBlur={formik.handleBlur}
+              _focus={{ outline: 'none' }}
+              value={formik.values.date}
+              error={formik.errors.date}
+              touched={formik.touched.date}
+              onChange={formik.handleChange}
+              setFieldTouched={formik.setFieldTouched}
+            />
+            <GridItem
+              as={Input}
+              required
+              type="time"
+              id="time"
+              label="Event Time"
+              onBlur={formik.handleBlur}
+              _focus={{ outline: 'none' }}
+              value={formik.values.time}
+              error={formik.errors.time}
+              touched={formik.touched.time}
+              onChange={formik.handleChange}
+              setFieldTouched={formik.setFieldTouched}
+            />
+          </Grid>
+        </GridItem>
         <GridItem
           as={Input}
           required
           type="text"
-          id="event_location"
+          id="location"
+          placeholder=""
           label="Event Location"
           onBlur={formik.handleBlur}
-          placeholder=""
-          value={formik.values.event_location}
-          error={formik.errors.event_location}
-          touched={formik.touched.event_location}
+          _focus={{ outline: 'none' }}
+          value={formik.values.location}
+          error={formik.errors.location}
+          touched={formik.touched.location}
           onChange={formik.handleChange}
           setFieldTouched={formik.setFieldTouched}
         />
-
-        <GridItem
-          as={Input}
-          required
-          type="date"
-          id="event_date"
-          label="Event Date"
-          onBlur={formik.handleBlur}
-          value={formik.values.event_date}
-          error={formik.errors.event_date}
-          touched={formik.touched.event_date}
-          onChange={formik.handleChange}
-          setFieldTouched={formik.setFieldTouched}
-        />
-
-        <GridItem
-          as={Input}
-          required
-          type="time"
-          id="event_time"
-          label="Event Time"
-          onBlur={formik.handleBlur}
-          value={formik.values.event_time}
-          error={formik.errors.event_time}
-          touched={formik.touched.event_time}
-          onChange={formik.handleChange}
-          setFieldTouched={formik.setFieldTouched}
-        />
-
-        <GridItem>
-          <TextArea
-            required
-            id="event_description"
-            label="Add Event Description"
-            onBlur={formik.handleBlur}
-            value={formik.values.event_description}
-            error={formik.errors.event_description}
-            touched={formik.touched.event_description}
-            onChange={formik.handleChange}
-            setFieldTouched={formik.setFieldTouched}
-          />
-        </GridItem>
-
-        <GridItem>
-          <TextArea
-            required
-            id="event_note"
-            label="Add Note"
-            onBlur={formik.handleBlur}
-            value={formik.values.event_note}
-            error={formik.errors.event_note}
-            touched={formik.touched.event_note}
-            onChange={formik.handleChange}
-            setFieldTouched={formik.setFieldTouched}
-          />
-        </GridItem>
-
-        <GridItem>
-          <Text fontSize={14} fontWeight={'bold'} pb={2}>
-            Add File
-          </Text>
-          <FileUpload id="event_file" setFieldValue={formik.setFieldValue}>
-            <Flex
-              w={40}
-              h={28}
-              shadow="md"
-              rounded="lg"
-              bg="#fff"
-              justify={'center'}
-              align={'center'}
-            >
-              <Icon as={fileDoc} boxSize={16} />
-            </Flex>
-          </FileUpload>
-
-          <Text color={' rgba(0, 191, 77, 1)'} mt={2} fontSize={14}>
-            Supported FIles (PNG, JPG, MP4, PDF, DOC)
-          </Text>
-        </GridItem>
       </Grid>
+
+      <Box mt={6}>
+        <TextArea
+          required
+          id="note"
+          label="Add Note"
+          onBlur={formik.handleBlur}
+          value={formik.values.note}
+          error={formik.errors.note}
+          _focus={{ outline: 'none' }}
+          touched={formik.touched.note}
+          onChange={formik.handleChange}
+          setFieldTouched={formik.setFieldTouched}
+        />
+      </Box>
 
       <Flex mt={16} w="full" justify="center">
         {isAdd ? (
@@ -209,7 +259,7 @@ const AddEvent: FC<{ isAdd?: boolean; toggle?: (e: Views) => void }> = ({
             {toggle && (
               <FilledButton
                 w={44}
-                title="View Tree"
+                title="View Events"
                 onClick={() => toggle('view')}
               />
             )}

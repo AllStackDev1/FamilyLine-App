@@ -16,31 +16,11 @@ interface IEvents {
   title: string
 }
 
-const EventsData: IEvents[] = [
-  {
-    thumb: String(Birthday),
-    title: 'My Son’s 15th Birthday'
-  },
-  {
-    thumb: String(Funeral),
-    title: "Mom's funeral"
-  },
-  {
-    thumb: String(Shower),
-    title: 'Shereens Baby Shower'
-  },
-  {
-    thumb: String(Hangout),
-    title: 'Family Beach Hangout'
-  }
-]
-
 const Events: FC<{ isAdd?: boolean; toggle: (e: Views) => void }> = ({
   toggle
 }) => {
   const { data } = useQuery('family_memories', () => getEvents())
 
-  console.log(data)
   return (
     <>
       {data ? (
@@ -60,10 +40,10 @@ const Events: FC<{ isAdd?: boolean; toggle: (e: Views) => void }> = ({
                   bg="gray.300"
                   minH={60}
                 >
-                  <Image src={item.event_file} w="full" />
+                  <Image src={item.file} w="full" />
                 </Box>
                 <Text textAlign="center" mt={2} fontWeight="bold">
-                  {item.event_name}
+                  {item.name}
                 </Text>
               </Box>
             ))}
