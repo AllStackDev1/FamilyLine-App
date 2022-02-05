@@ -1,5 +1,6 @@
 export interface IMemories {
-  thumb: string
-  length: number
-  type: string
+  name: string
+  location: string
+  date: string
+  memories_upload: any[]
 }

@@ -4,57 +4,64 @@ import {
   Box,
   Grid,
   Flex,
-  GridItem,
-  Text,
   Icon,
-  useToast
+  Text,
+  Image,
+  Input as ChakraInput,
+  useToast,
+  GridItem,
+  FormLabel,
+  AspectRatio
 } from '@chakra-ui/react'
 
-import { saveMemory, getFamilyMembers } from 'utils/api/services'
+import { saveMemory } from 'utils/api/services'
 import { FilledButton } from 'components/Buttons'
-import { Input, MultiSelect, TextArea, FileUpload } from 'components/Forms'
-import { useQuery } from 'react-query'
 import { Views } from 'pages/memories'
-import { fileDoc } from 'utils/theme/custom-icon'
+import { FiUploadCloud } from 'react-icons/fi'
+import { Input } from 'components/Forms'
+import { BsX } from 'react-icons/bs'
 
 const AddMemory: FC<{ isAdd?: boolean; toggle?: (e: Views) => void }> = ({
   isAdd,
   toggle
 }) => {
-  const members = ['Kofi', 'Ama', 'Efua', 'Yaw']
-  const { data } = useQuery('family-members', () => getFamilyMembers())
+  interface IMedia {
+    preview?: string
+  }
+
+  const [media, setMedia] = useState<any[]>([])
   const toast = useToast()
   const [isLoading, setLoading] = useState(false)
+
+  const handleMediaDelete = (preview: any) => {
+    const newFiles = media.filter(i => i.preview !== preview)
+    setMedia(newFiles)
+  }
 
   interface IMemory {
     name: string
     location: string
-    memories_date: string
-    memories: any[] | any
-    file: string
-    note: ''
+    date: string
+    memories_upload?: any[]
   }
 
   const formik = useFormik<IMemory>({
     initialValues: {
       name: '',
       location: '',
-      memories_date: '',
-      memories: [],
-      file: '',
-      note: ''
+      date: ''
     },
     onSubmit: async values => {
       try {
         const payload = { ...values }
         setLoading(true)
-        const memories = payload.memories.map(item => {
-          return { members: item }
-        })
 
-        payload.memories = JSON.stringify(memories)
         const formData = new FormData()
         Object.keys(payload).forEach(key => formData.append(key, payload[key]))
+
+        media.map(item => {
+          formData.append('memories_upload', item)
+        })
 
         const res = await saveMemory(formData)
         if (res) {
@@ -122,67 +129,136 @@ const AddMemory: FC<{ isAdd?: boolean; toggle?: (e: Views) => void }> = ({
           as={Input}
           required
           type="date"
-          id="memories_date"
-          label="date"
+          id="date"
+          label="Date"
           onBlur={formik.handleBlur}
-          value={formik.values.memories_date}
-          error={formik.errors.memories_date}
-          touched={formik.touched.memories_date}
+          value={formik.values.date}
+          error={formik.errors.date}
+          touched={formik.touched.date}
           onChange={formik.handleChange}
           setFieldTouched={formik.setFieldTouched}
         />
-
-        <GridItem>
-          <MultiSelect
-            required
-            options={members}
-            id="memories"
-            label="Members"
-            placeholder="Select family members present"
-            setFieldValue={formik.setFieldValue}
-            value={formik.values.memories}
-            error={formik.errors.memories}
-            setFieldTouched={formik.setFieldTouched}
-          />
-        </GridItem>
-
-        <GridItem>
-          <Text fontSize={14} fontWeight={'bold'} pb={2}>
-            Add File
-          </Text>
-          <FileUpload id="file" setFieldValue={formik.setFieldValue}>
-            <Flex
-              w={40}
-              h={28}
-              shadow="md"
-              rounded="lg"
-              bg="#fff"
-              justify={'center'}
-              align={'center'}
-            >
-              <Icon as={fileDoc} boxSize={16} />
-            </Flex>
-          </FileUpload>
-
-          <Text color={' rgba(0, 191, 77, 1)'} mt={2} fontSize={14}>
-            Supported FIles (PNG, JPG, MP4, PDF, DOC)
-          </Text>
-        </GridItem>
-
-        <GridItem>
-          <TextArea
-            required
-            id="note"
-            label="Add Note"
-            onBlur={formik.handleBlur}
-            value={formik.values.note}
-            error={formik.errors.note}
-            touched={formik.touched.note}
-            onChange={formik.handleChange}
-            setFieldTouched={formik.setFieldTouched}
-          />
-        </GridItem>
       </Grid>
+
+      <Box mt={8}>
+        <Text fontSize={14} fontWeight={'bold'} pb={2}>
+          Add images and videos to memories
+        </Text>
+        <Grid templateColumns={{ base: 'repeat(6, 1fr)' }} gap={4}>
+          <GridItem>
+            <Box>
+              <FormLabel for="memory_media" cursor={'pointer'} mr={0}>
+                <ChakraInput
+                  type="file"
+                  id="memory_media"
+                  d="none"
+                  accept="image/x-png,image/jpeg, video/mp4,video/x-m4v"
+                  onChange={e => {
+                    const files = e.target.files || []
+                    const currentFiles = Array.from(files)
+
+                    currentFiles.map(file =>
+                      Object.assign(file, {
+                        ext: file.name.split('.').pop(),
+                        preview: URL.createObjectURL(file)
+                      })
+                    )
+                    setMedia(prev => [...prev, ...files])
+                  }}
+                  multiple
+                />
+                <Flex
+                  boxSize={40}
+                  bg="gray.100"
+                  rounded={'lg'}
+                  align="center"
+                  justify={'center'}
+                >
+                  <Flex align={'center'} direction="column" p={4}>
+                    <Icon as={FiUploadCloud} boxSize={8} color="gray.400" />
+                    <Text
+                      textAlign={'center'}
+                      fontSize={14}
+                      mt={2}
+                      color="gray.400"
+                    >
+                      Upload your media files
+                    </Text>
+                  </Flex>
+                </Flex>
+              </FormLabel>
+            </Box>
+          </GridItem>
+          {media.map(item => {
+            return (
+              <GridItem>
+                {item.ext === 'png' ||
+                item.ext === 'jpg' ||
+                item.ext === 'jpeg' ? (
+                  <Box
+                    boxSize={40}
+                    bg="gray.100"
+                    rounded={'lg'}
+                    overflow="hidden"
+                    pos="relative"
+                  >
+                    <Image src={item.preview} />
+                    <Flex
+                      bg="blackAlpha.400"
+                      pos="absolute"
+                      rounded={'full'}
+                      right={2}
+                      top={2}
+                      w={8}
+                      h={8}
+                      align="center"
+                      justify={'center'}
+                      cursor="pointer"
+                      onClick={() => handleMediaDelete(item.preview)}
+                    >
+                      <Icon as={BsX} color="white" />
+                    </Flex>
+                  </Box>
+                ) : (
+                  <Box
+                    boxSize={40}
+                    bg="gray.100"
+                    rounded={'lg'}
+                    overflow="hidden"
+                    pos="relative"
+                  >
+                    <AspectRatio maxW="560px" ratio={1}>
+                      <video
+                        src={`${item.preview}#t=10`}
+                        autoPlay={false}
+                        controls={false}
+                      />
+                    </AspectRatio>
+                    <Flex
+                      bg="blackAlpha.400"
+                      pos="absolute"
+                      rounded={'full'}
+                      right={2}
+                      top={2}
+                      w={8}
+                      h={8}
+                      align="center"
+                      justify={'center'}
+                      cursor="pointer"
+                      onClick={() => handleMediaDelete(item.preview)}
+                    >
+                      <Icon as={BsX} color="white" />
+                    </Flex>
+                  </Box>
+                )}
+              </GridItem>
+            )
+          })}
+        </Grid>
+        <Text color={' rgba(0, 191, 77, 1)'} mt={2} fontSize={14}>
+          Supported FIles (PNG, JPG, MP4, PDF, DOC)
+        </Text>
+      </Box>
 
       <Flex mt={16} w="full" justify="center">
         {isAdd ? (
@@ -198,7 +274,7 @@ const AddMemory: FC<{ isAdd?: boolean; toggle?: (e: Views) => void }> = ({
             {toggle && (
               <FilledButton
                 w={44}
-                title="View Tree"
+                title="Show Memories"
                 onClick={() => toggle('view')}
               />
             )}

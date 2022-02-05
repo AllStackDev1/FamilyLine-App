@@ -1,9 +1,8 @@
 import { useState } from 'react'
-import { Box, Flex, Text, Icon, useDisclosure } from '@chakra-ui/react'
+import { Box, Flex, Text, Icon, Image, useDisclosure } from '@chakra-ui/react'
 import { FiChevronDown, FiChevronRight, FiEdit2, FiPower } from 'react-icons/fi'
 import { authStore } from 'stores/auth.store'
 import EditProfile from './Modals/EditModal'
-import Avatar from 'assets/images/avatar.png'
 
 const ProfileForm = () => {
   const [openDrop, setOpenDrop] = useState(false)
@@ -19,8 +18,11 @@ const ProfileForm = () => {
       mb={isEditing ? 3 : 0}
     >
       <EditProfile isOpen={isOpen} onClose={onClose} />
+
       <Box pos="relative" w={48} h={32}>
-        <Box w={28} h={28} bg="gray.200" rounded={'full'} mx={'auto'}></Box>
+        <Box w={28} h={28} bg="gray.200" rounded={'full'} mx={'auto'}>
+          <Image src={family?.avatar} />
+        </Box>
         <Flex
           align={'center'}
           mt={4}
@@ -50,6 +52,7 @@ const ProfileForm = () => {
               right={-4}
               top={8}
               w={44}
+              zIndex={4}
             >
               <Flex
                 px={2}
