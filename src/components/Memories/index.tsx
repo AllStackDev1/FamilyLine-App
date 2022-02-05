@@ -73,7 +73,7 @@ const Memories: FC<{ isAdd?: boolean; toggle: (e: Views) => void }> = ({
           MemoriesData.map(item => (
             <Box>
               <Box
-                h={'auto'}
+                h={'200px'}
                 rounded={'3xl'}
                 w="full"
                 pos="relative"

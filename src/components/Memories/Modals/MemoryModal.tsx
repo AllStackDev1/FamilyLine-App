@@ -5,6 +5,7 @@ import {
   ModalOverlay,
   ModalContent,
   ModalBody,
+  AspectRatio,
   Image,
   Flex,
   Icon
@@ -66,9 +67,15 @@ const ShowImage: FC<{ item: IMemories | undefined }> = ({ item }) => {
   )
 }
 
-const ShowVideo: FC<{ item: IMemories }> = ({ item }) => (
+const ShowVideo: FC<{ item: IMemories | undefined }> = ({ item }) => (
   <Box p={6} pos="relative">
-    <Image src={item?.memories_upload[0].media} />
+    <AspectRatio maxW="full" ratio={1}>
+      <video
+        src={`${item?.memories_upload[0].media}`}
+        autoPlay={false}
+        controls={true}
+      />
+    </AspectRatio>
   </Box>
 )
 
@@ -95,8 +102,7 @@ const MemoryModal: FC<IProps> = ({ isOpen, onClose, item }) => {
             ) ? (
               <ShowImage item={item} />
             ) : (
-              <></>
-              // <ShowVideo item={item} />
+              <ShowVideo item={item} />
             )}
           </Box>
         </ModalBody>
