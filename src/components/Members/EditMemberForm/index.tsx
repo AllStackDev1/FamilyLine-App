@@ -16,6 +16,7 @@ import Avatar from 'assets/images/avatar.png'
 import useAlertListener from 'hooks/useAlertListener'
 import isEmpty from 'lodash/isEmpty'
 import Modal from 'components/Modal'
+import CountryList from 'country-json/src/country-by-name.json'
 
 const EditMemberForm: FC<{
   isOpen: boolean
@@ -241,6 +242,7 @@ const EditMemberForm: FC<{
             setFieldTouched={formik.setFieldTouched}
             options={['Twi', 'Ga', 'Hausa', 'Igbo', 'Yoruba']}
           />
+          {/* {JSON.stringify(CountryList)} */}
 
           <GridItem
             as={Select}

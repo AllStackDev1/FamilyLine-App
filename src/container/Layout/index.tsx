@@ -14,8 +14,8 @@ const Wrapper: FC<{ isAuth?: boolean }> = ({ children, isAuth }) => {
       id: 1
     },
     {
-      title: 'Blog',
-      link: `${WEBSITE_URL}/blog`,
+      title: 'About Us',
+      link: `${WEBSITE_URL}/about-us`,
       id: 2
     },
     {

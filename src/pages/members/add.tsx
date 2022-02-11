@@ -17,7 +17,7 @@ import Avatar from 'assets/images/avatar.png'
 import useAlertListener from 'hooks/useAlertListener'
 import Wrapper from 'container/Layout'
 import { getFamilyMembers } from 'utils/api/services'
-
+import CountryList from 'country-json/src/country-by-name.json'
 const Members: FC = () => {
   document.title = 'Add Member | Family Line'
 
@@ -171,16 +171,16 @@ const Members: FC = () => {
             />
 
             <GridItem
-              as={Select}
+              as={Input}
               required
+              type="text"
               id="gender"
               label="Gender"
-              placeholder="Choose gender"
+              placeholder="Type gender e.g Male"
               value={formik.values.gender}
               error={formik.errors.gender}
               touched={formik.touched.gender}
-              setFieldValue={formik.setFieldValue}
-              options={['Male', 'Female', 'Others']}
+              onChange={formik.handleChange}
               setFieldTouched={formik.setFieldTouched}
             />
 
@@ -261,21 +261,20 @@ const Members: FC = () => {
               error={formik.errors.country}
               touched={formik.touched.country}
               setFieldValue={formik.setFieldValue}
-              options={['Ghana', 'Nigeria', 'Togo']}
+              options={CountryList.map(item => item.country)}
               setFieldTouched={formik.setFieldTouched}
             />
 
             <GridItem
-              as={Select}
+              as={Input}
               id="religion"
               label="Religion"
-              placeholder="Choose religion"
+              placeholder="Type religion"
               value={formik.values.religion}
               error={formik.errors.religion}
               touched={formik.touched.religion}
-              setFieldValue={formik.setFieldValue}
+              onChange={formik.handleChange}
               setFieldTouched={formik.setFieldTouched}
-              options={['Christianity', 'Islam', 'Others']}
             />
           </Grid>
           <Flex mt={16} w="full" justify="center">
