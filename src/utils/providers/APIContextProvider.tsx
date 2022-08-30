@@ -1,10 +1,12 @@
 import PropTypes from 'prop-types'
 import { IApiContext } from 'interfaces/api.interface'
-import { FC, useState, createContext, useContext } from 'react'
+import { FC, useState, createContext, useContext, ReactNode } from 'react'
 
 const APIContext = createContext({})
 
-export const ApiContextProvider: FC = ({ children }) => {
+export const ApiContextProvider: FC<{
+  children?: ReactNode
+}> = ({ children }: { children?: ReactNode }) => {
   const [isLoading, setLoading] = useState<boolean>(false)
 
   return (

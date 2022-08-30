@@ -1,10 +1,12 @@
 import PropTypes from 'prop-types'
 import { IAuthContext } from 'interfaces/auth.interface'
-import { FC, useState, createContext, useContext } from 'react'
+import React, { FC, useState, createContext, useContext } from 'react'
 
 const AuthContext = createContext({})
 
-export const AuthContextProvider: FC = ({ children }) => {
+export const AuthContextProvider: FC<{
+  children?: React.ReactNode
+}> = ({ children }: { children?: React.ReactNode }) => {
   const [show, setShow] = useState<boolean>(false)
   const [isAccepted, setAccepted] = useState<boolean>(false)
   const [isLoading, setLoading] = useState<boolean>(false)

@@ -102,11 +102,11 @@ const AddEvent: FC<{ isAdd?: boolean; toggle?: (e: Views) => void }> = ({
       <Text as="h3" textAlign={'center'} mb={4} fontWeight="bold" fontSize={24}>
         Add Event
       </Text>
-      <FormLabel for="memory_media" cursor={'pointer'} mr={0}>
+      <FormLabel htmlFor="memory_media" cursor={'pointer'} mr={0}>
         <ChakraInput
           type="file"
           id="memory_media"
-          d="none"
+          display="none"
           accept="image/x-png,image/jpeg"
           onChange={e => {
             const files = e.target.files || []

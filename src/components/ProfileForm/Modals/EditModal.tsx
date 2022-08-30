@@ -95,7 +95,7 @@ const EditProfile: FC<IProps> = ({ isOpen, onClose }) => {
             Edit Your Profile
           </Box>
           <Box w={'lg'} mx="auto">
-            <FormLabel for="avatar" cursor={'pointer'}>
+            <FormLabel htmlFor="avatar" cursor={'pointer'}>
               <Input
                 type={'file'}
                 id="avatar"
@@ -131,7 +131,6 @@ const EditProfile: FC<IProps> = ({ isOpen, onClose }) => {
                     Update Profile Picture
                   </Text>
                   <Text
-                    Text
                     mb={2}
                     mt={1}
                     fontSize={'sm'}
@@ -151,10 +150,7 @@ const EditProfile: FC<IProps> = ({ isOpen, onClose }) => {
                 placeholder="Family Name"
                 onChange={handleChange}
                 onBlur={formik.handleBlur}
-                error={errors.family_name}
-                touched={touched.family_name}
                 fontWeight={400}
-                setFieldTouched={setFieldTouched}
                 value={values.family_name}
                 outline={'none'}
                 mb={4}
@@ -169,9 +165,6 @@ const EditProfile: FC<IProps> = ({ isOpen, onClose }) => {
                 onBlur={formik.handleBlur}
                 placeholder="Phone Number"
                 value={values.phonenumber}
-                error={errors.phonenumber}
-                touched={touched.phonenumber}
-                setFieldTouched={setFieldTouched}
                 fontWeight={400}
                 _focus={{ outline: 'none' }}
               />

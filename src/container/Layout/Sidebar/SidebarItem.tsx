@@ -16,7 +16,7 @@ const SidebarItem: React.FC<ISidebarItem> = ({ icon, title, ...rest }) => {
   return (
     <ListItem my={3} role="group" {...rest}>
       <Link
-        d="flex"
+        display="flex"
         as={NavLink}
         _focus={{ outline: 'none' }}
         _hover={{ outline: 'none' }}

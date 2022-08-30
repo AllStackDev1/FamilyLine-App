@@ -19,14 +19,14 @@ const FileUpload: FC<IProps & InputProps> = ({
       p={12}
       borderWidth={1}
       borderColor="brandGreen.500"
-      d={'inline-block'}
+      display={'inline-block'}
       rounded="md"
     >
       <Box color="gray.500">{fileUploaded?.name}</Box>
     </Box>
   )
   return (
-    <FormLabel for={id} cursor="pointer">
+    <FormLabel htmlFor={id} cursor="pointer">
       <Input
         type="file"
         accept="image/jpeg, image/png, video/*"

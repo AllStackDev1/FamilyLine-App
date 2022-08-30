@@ -70,7 +70,13 @@ const FormMultiSelect: FC<FormMultiSelectProps> = ({
       >
         {({ open }) => (
           <Box pos="relative">
-            <Box as="span" d="inline-block" w="full" rounded="md" shadow="sm">
+            <Box
+              as="span"
+              display="inline-block"
+              w="full"
+              rounded="md"
+              shadow="sm"
+            >
               <ListBoxButton
                 placeholder={placeholder}
                 selectedItems={value}

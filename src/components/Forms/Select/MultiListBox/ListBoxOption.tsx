@@ -27,8 +27,7 @@ const ListBoxOption: React.FC<MultiListBoxOption> = ({ selected, item }) => {
           <Text
             as="span"
             fontWeight={selected ? 'semibold' : 'normal'}
-            isTruncated
-            d="block"
+            display="block"
           >
             {item}
           </Text>

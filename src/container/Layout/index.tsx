@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { FC, ReactNode } from 'react'
 import { Flex, Grid, GridItem } from '@chakra-ui/react'
 import DesktopNav from 'container/Layout/Navbar/Desktop'
 import MobileNav from 'container/Layout/Navbar/Mobile'
@@ -6,7 +6,10 @@ import Sidebar from 'container/Layout/Sidebar'
 import { WEBSITE_URL } from 'utils/variables'
 import ProfileForm from 'components/ProfileForm'
 
-const Wrapper: FC<{ isAuth?: boolean }> = ({ children, isAuth }) => {
+const Wrapper: FC<{ isAuth?: boolean; children?: ReactNode }> = ({
+  children,
+  isAuth
+}) => {
   const menus = [
     {
       title: 'Home',
@@ -56,6 +59,7 @@ const Wrapper: FC<{ isAuth?: boolean }> = ({ children, isAuth }) => {
         }
         w="full"
         pos="relative"
+        mt={6}
       >
         {!isAuth && (
           <GridItem
@@ -65,7 +69,7 @@ const Wrapper: FC<{ isAuth?: boolean }> = ({ children, isAuth }) => {
             roundedTopRight="3xl"
             mt={{ md: 20, lg: 32 }}
             py={{ md: 24, lg: 6 }}
-            d={{ base: 'none', md: 'block' }}
+            display={{ base: 'none', md: 'block' }}
             pr={{ md: 4, lg: 3, xl: 4, '2xl': 5 }}
             position={'relative'}
           >
@@ -76,7 +80,7 @@ const Wrapper: FC<{ isAuth?: boolean }> = ({ children, isAuth }) => {
           </GridItem>
         )}
         <GridItem
-          d="flex"
+          display="flex"
           mt={{ md: 16, lg: 24 }}
           justifyContent="center"
           h="calc(100vh - 120px)"

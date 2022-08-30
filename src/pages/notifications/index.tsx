@@ -44,7 +44,6 @@ const notifications = [
 const Alert = ({ notice }) => (
   <Grid
     w="md"
-    justify="space-between"
     px={4}
     py={6}
     shadow="md"

@@ -41,7 +41,7 @@ const ListBoxButton: React.FC<ListBoxButtonProps> = ({
       )}
       {selectedItems.map(item => (
         <Flex
-          d="inline-flex"
+          display="inline-flex"
           align="center"
           px={1}
           mr={1}

@@ -17,11 +17,15 @@ interface IAuthLink {
 const AuthLink: FC<IAuthLink> = ({ to, text, disable }) => (
   <Link
     display={disable}
-    _hover={{ textDecor: 'none' }}
-    transition="box-shadow 1s"
-    py={{ md: 3 }}
-    px={{ md: 6 }}
-    rounded="full"
+    py={2}
+    key={text}
+    color="#979797"
+    rounded={'full'}
+    cursor={'pointer'}
+    fontWeight={700}
+    px={{ md: 5, lg: 8 }}
+    fontSize={{ md: 16 }}
+    _hover={{ textDecoration: 'none', color: 'family.500' }}
     href={to}
   >
     <Text fontWeight={700}>{text}</Text>
@@ -56,69 +60,74 @@ const Layout: FC<{ menus: INavMenu[]; isAuth?: boolean }> = ({
     <Flex
       top={0}
       as="nav"
+      mb={6}
       w="full"
       left={0}
       right={0}
       pos="fixed"
       zIndex={100}
       align="center"
-      bgColor="brand.green.50"
-      h={{ md: 16, lg: 24 }}
+      bgColor={bgColor}
+      h={{ md: 16, lg: 28 }}
       justify="space-between"
-      px={{ lg: 10, xl: 28 }}
-      d={{ base: 'none', xl: 'flex' }}
+      pl={{ lg: 10, xl: 28 }}
+      display={{ base: 'none', xl: 'flex' }}
     >
       <Box as="picture">
         <source srcSet={`${Logo2x}`} />
         <Image src={`${Logo}`} alt="logo" h={{ base: 8, md: 10, lg: 20 }} />
       </Box>
 
-      <Flex w={110} justify="space-between">
-        {menus.map((m, i) => (
-          <AuthLink
-            key={i}
-            disable={m.disable || ''}
-            text={m.title}
-            id={m.id}
-            to={m.link ?? `/${m.title.toLowerCase()}`}
-          />
-        ))}
+      <Flex height={'100%'}>
+        <Flex align="center">
+          {menus.map((m, i) => (
+            <AuthLink
+              key={i}
+              disable={m.disable || ''}
+              text={m.title}
+              id={m.id}
+              to={m.link ?? `/${m.title.toLowerCase()}`}
+            />
+          ))}
+        </Flex>
       </Flex>
 
       {isAuth ? (
-        <Flex align="center">
+        <Flex
+          align="center"
+          ml={{ md: 3, lg: 6 }}
+          bg="rgba(227, 255, 238, 0.56)"
+          px={12}
+          h="100%"
+        >
           <Link
-            _activeLink={{
-              color: 'white',
-              background: 'linear-gradient(to left, #02993E, #00BF4D)',
-              filter: 'drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25))'
-            }}
-            _hover={{ textDecor: 'none' }}
+            href={`/login`}
             transition="box-shadow 1s"
-            as={ReachRouter}
-            py={{ md: 3 }}
-            px={{ md: 6 }}
+            fontWeight={500}
+            py={{ md: 2 }}
+            px={{ md: 8 }}
             rounded="full"
-            to={'/login'}
+            color="brandGreen.500"
+            borderWidth={1}
+            borderColor="brandGreen.500"
+            _hover={{ bg: 'brandGreen.500', textDecor: 'none', color: 'white' }}
           >
-            <Text fontWeight={700}>Log in</Text>
+            Log In
           </Link>
           <Box mx={2} />
           <Link
-            _activeLink={{
-              color: 'white',
-              background: 'linear-gradient(to left, #02993E, #00BF4D)',
-              filter: 'drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25))'
-            }}
-            _hover={{ textDecor: 'none' }}
+            _hover={{ bg: 'brandGreen.500', textDecor: 'none', color: 'white' }}
+            href={`/register`}
             transition="box-shadow 1s"
-            as={ReachRouter}
-            py={{ md: 3 }}
-            px={{ md: 6 }}
+            fontWeight={500}
+            py={{ md: 2 }}
+            px={{ md: 8 }}
             rounded="full"
-            to={'/register'}
+            color="brandGreen.500"
+            borderWidth={1}
+            borderColor="brandGreen.500"
           >
-            <Text fontWeight={700}>Sign up</Text>
+            Sign up
           </Link>
         </Flex>
       ) : (

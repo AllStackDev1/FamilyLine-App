@@ -26,8 +26,10 @@ const ReloadCard: React.FC<Props> = ({
         textAlign="center"
         direction="column"
       >
-        {isLoading && <Splash text={text} />}
-        {!isLoading && error && <ErrorReloadButton refetch={refetch} />}
+        <>
+          {isLoading && <Splash text={text} />}
+          {!isLoading && error && <ErrorReloadButton refetch={refetch} />}
+        </>
       </Flex>
     </Flex>
   )

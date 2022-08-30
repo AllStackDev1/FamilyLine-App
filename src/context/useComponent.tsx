@@ -1,10 +1,18 @@
-import React, { FC, createContext, useState, useCallback } from 'react'
+import React, {
+  FC,
+  createContext,
+  useState,
+  useCallback,
+  ReactNode
+} from 'react'
 import PropTypes from 'prop-types'
 import { useDisclosure } from '@chakra-ui/react'
 
 const ComponentContext = createContext({})
 
-export const ComponentContextProvider: FC = ({ children }) => {
+export const ComponentContextProvider: FC<{ children?: ReactNode }> = ({
+  children
+}) => {
   const [loading, setLoading] = useState(false)
   const [id, setId] = useState('')
   const [data, setData] = useState([])

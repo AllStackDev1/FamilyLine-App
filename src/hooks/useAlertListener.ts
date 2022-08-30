@@ -6,7 +6,7 @@ import { StoreApi, UseBoundStore } from 'zustand'
 import upperFirst from 'lodash/upperFirst'
 
 const useAlertListener = (
-  store: UseBoundStore<any, StoreApi<any>>,
+  store: UseBoundStore<StoreApi<any>>,
   p: {
     message?: string | null
     type: 'error' | 'success' | 'info' | 'warning'

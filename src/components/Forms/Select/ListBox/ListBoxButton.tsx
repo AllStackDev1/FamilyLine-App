@@ -1,12 +1,12 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React from 'react'
+import React, { ReactNode } from 'react'
 import { Flex, Icon, Text } from '@chakra-ui/react'
 import { FiChevronDown } from 'react-icons/fi'
 import { Listbox } from '@headlessui/react'
 import { IOption } from 'interfaces/forms.interface'
 
 interface IListBoxButton {
-  selected?: IOption
+  selected?: IOption | string
   placeholder: string
 }
 
@@ -33,14 +33,9 @@ const ListBoxButton: React.FC<IListBoxButton & Record<string, any>> = ({
       _focus={{ boxShadow: '0 0 0 1px #3182ce', borderColor: '#3182ce' }}
       {...rest}
     >
-      <Text
-        as="span"
-        color="gray.700"
-        isTruncated
-        fontSize={{ base: 12, xl: 14 }}
-      >
+      <Text as="span" color="gray.700" fontSize={{ base: 12, xl: 14 }}>
         {selected ? (
-          selected?.name || selected
+          (selected as IOption)?.name || (selected as string)
         ) : (
           <Text color="gray.300" fontSize={{ base: 12, xl: 14 }}>
             {placeholder}

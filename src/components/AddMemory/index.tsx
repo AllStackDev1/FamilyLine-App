@@ -147,11 +147,11 @@ const AddMemory: FC<{ isAdd?: boolean; toggle?: (e: Views) => void }> = ({
         <Grid templateColumns={{ base: 'repeat(6, 1fr)' }} gap={4}>
           <GridItem>
             <Box>
-              <FormLabel for="memory_media" cursor={'pointer'} mr={0}>
+              <FormLabel htmlFor="memory_media" cursor={'pointer'} mr={0}>
                 <ChakraInput
                   type="file"
                   id="memory_media"
-                  d="none"
+                  display="none"
                   accept="image/x-png,image/jpeg, video/mp4,video/x-m4v"
                   onChange={e => {
                     const files = e.target.files || []

@@ -19,7 +19,7 @@ const ListBoxOption: React.FC<IListBoxOption> = ({ item }) => {
           bg={active ? 'brand.green.200' : ''}
           color={active ? 'white' : 'gray.700'}
         >
-          <Text isTruncated fontWeight={selected ? 'medium' : 'normal'}>
+          <Text fontWeight={selected ? 'medium' : 'normal'}>
             {item?.name || item}
           </Text>
         </Box>

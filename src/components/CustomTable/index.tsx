@@ -14,7 +14,7 @@ interface ICustomTable {
   handleRowClick?: (e: any) => void
 }
 
-const CustomTable: React.FC<ICustomTable> = ({
+const CustomTable: React.FC<ICustomTable & { children?: React.ReactNode }> = ({
   data,
   variant,
   columns,

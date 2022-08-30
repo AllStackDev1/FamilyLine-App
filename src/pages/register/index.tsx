@@ -1,6 +1,6 @@
 import { FC, useEffect } from 'react'
 import { useFormik } from 'formik'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link as RouterLink } from 'react-router-dom'
 import { FiEye, FiEyeOff } from 'react-icons/fi'
 import {
   Box,
@@ -94,7 +94,7 @@ const Register: FC = () => {
           bgRepeat="no-repeat"
           borderLeftRadius="xl"
           bgImage={`${MomDaughter}`}
-          d={{ base: 'none', xl: 'unset' }}
+          display={{ base: 'none', xl: 'unset' }}
         >
           <Flex
             bgRepeat="no-repeat"
@@ -195,12 +195,18 @@ const Register: FC = () => {
                   iconAction={() => setShow(!show)}
                 />
 
-                <GridItem d="flex" mt={5} flexDir="column" alignItems="center">
+                <GridItem
+                  display="flex"
+                  mt={5}
+                  flexDir="column"
+                  alignItems="center"
+                >
                   <Text fontSize={{ base: 10, xl: 12 }} textAlign="center">
                     <Text as="span" fontWeight={500}>
                       By clicking on Sign up, you agree to our
                     </Text>{' '}
                     <Link
+                      as={RouterLink}
                       fontWeight={600}
                       to="/terms-&-conditions"
                       color="brand.green.200"

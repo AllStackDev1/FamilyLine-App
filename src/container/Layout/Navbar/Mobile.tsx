@@ -56,7 +56,7 @@ const Layout: FC<{ menus: INavMenu[]; isAuth?: boolean }> = ({
       pos="relative"
       px={{ base: 2 }}
       justify="space-between"
-      d={{ base: 'flex', xl: 'none' }}
+      display={{ base: 'flex', xl: 'none' }}
     >
       <Box as="picture">
         <source srcSet={`${Logo2x}`} />
